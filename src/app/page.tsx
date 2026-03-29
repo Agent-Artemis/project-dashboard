@@ -190,6 +190,13 @@ export default function DashboardPage() {
                 {brandLabels[brand]}
               </button>
             ))}
+            <a
+              href="/resources"
+              className="w-full text-left px-4 py-3 rounded-lg text-blue-200 hover:bg-white/5 hover:text-white text-sm font-medium block mt-4"
+            >
+              <span className="inline-block w-2 h-2 rounded-full mr-2 bg-blue-400" />
+              Resources
+            </a>
           </nav>
 
           <div className="mt-12 pt-6 border-t border-white/10">
