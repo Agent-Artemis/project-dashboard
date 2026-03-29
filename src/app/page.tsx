@@ -191,8 +191,15 @@ export default function DashboardPage() {
               </button>
             ))}
             <a
-              href="/resources"
+              href="/future"
               className="w-full text-left px-4 py-3 rounded-lg text-blue-200 hover:bg-white/5 hover:text-white text-sm font-medium block mt-4"
+            >
+              <span className="inline-block w-2 h-2 rounded-full mr-2 bg-amber-400" />
+              Future Projects
+            </a>
+            <a
+              href="/resources"
+              className="w-full text-left px-4 py-3 rounded-lg text-blue-200 hover:bg-white/5 hover:text-white text-sm font-medium block"
             >
               <span className="inline-block w-2 h-2 rounded-full mr-2 bg-blue-400" />
               Resources
