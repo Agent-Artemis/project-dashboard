@@ -1,0 +1,284 @@
+"use client";
+
+import { useState } from "react";
+import {
+  projects,
+  getProjectsByBrand,
+  getAggregateKPIs,
+  type Brand,
+  type Status,
+  type Trend,
+  type Project,
+} from "@/data/projects";
+
+const brandColors: Record<Brand, string> = {
+  hcip: "#22c55e",
+  augeo: "#f59e0b",
+};
+
+const brandLabels: Record<Brand | "all", string> = {
+  all: "All Projects",
+  hcip: "HCIP",
+  augeo: "Augeo",
+};
+
+const statusStyles: Record<Status, { bg: string; text: string; label: string }> = {
+  active: { bg: "bg-green-100", text: "text-green-700", label: "Active" },
+  "in-progress": { bg: "bg-blue-100", text: "text-blue-700", label: "In Progress" },
+  planned: { bg: "bg-gray-100", text: "text-gray-600", label: "Planned" },
+  existing: { bg: "bg-purple-100", text: "text-purple-700", label: "Existing" },
+};
+
+const trendIcons: Record<Trend, { icon: string; color: string }> = {
+  up: { icon: "▲", color: "text-green-500" },
+  down: { icon: "▼", color: "text-red-500" },
+  flat: { icon: "—", color: "text-gray-400" },
+};
+
+function KPICard({ label, value, detail }: { label: string; value: string | number; detail?: string }) {
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 p-5">
+      <p className="text-sm text-gray-500 font-medium">{label}</p>
+      <p className="text-3xl font-extrabold text-[#1e3a5f] mt-1">{value}</p>
+      {detail && <p className="text-xs text-gray-400 mt-1">{detail}</p>}
+    </div>
+  );
+}
+
+function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
+  const status = statusStyles[project.status];
+  const trend = trendIcons[project.keyMetric.trend];
+
+  return (
+    <button
+      onClick={onClick}
+      className="bg-white rounded-xl border border-gray-200 p-6 text-left hover:shadow-md transition-shadow w-full"
+    >
+      <div className="flex justify-between items-start mb-3">
+        <div>
+          <span
+            className="text-xs font-bold uppercase tracking-wider"
+            style={{ color: brandColors[project.brand] }}
+          >
+            {project.brand.toUpperCase()}
+          </span>
+          <h3 className="text-lg font-bold text-[#1e3a5f] mt-1">{project.name}</h3>
+        </div>
+        <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${status.bg} ${status.text}`}>
+          {status.label}
+        </span>
+      </div>
+      <p className="text-sm text-gray-500 mb-4 line-clamp-2">{project.description}</p>
+      <div className="flex items-center justify-between border-t border-gray-100 pt-3">
+        <div>
+          <p className="text-xs text-gray-400">{project.keyMetric.label}</p>
+          <p className="text-xl font-bold text-[#1e3a5f]">{project.keyMetric.value}</p>
+        </div>
+        <span className={`text-lg ${trend.color}`}>{trend.icon}</span>
+      </div>
+    </button>
+  );
+}
+
+function ProjectDetail({ project, onBack }: { project: Project; onBack: () => void }) {
+  const status = statusStyles[project.status];
+
+  return (
+    <div>
+      <button onClick={onBack} className="text-sm text-gray-500 hover:text-[#1e3a5f] mb-4 flex items-center gap-1">
+        ← Back to Dashboard
+      </button>
+
+      <div className="flex items-center gap-4 mb-6">
+        <h1 className="text-2xl md:text-3xl font-extrabold text-[#1e3a5f]">{project.name}</h1>
+        <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${status.bg} ${status.text}`}>
+          {status.label}
+        </span>
+        <span className="text-xs font-bold uppercase tracking-wider" style={{ color: brandColors[project.brand] }}>
+          {project.brand.toUpperCase()}
+        </span>
+      </div>
+
+      <p className="text-gray-600 mb-8">{project.description}</p>
+
+      {/* Quick Links */}
+      {(project.url || project.github || project.stripeUrl) && (
+        <div className="flex gap-3 mb-8 flex-wrap">
+          {project.url && (
+            <a href={project.url} target="_blank" rel="noopener noreferrer" className="text-sm bg-[#1e3a5f] text-white px-4 py-2 rounded-lg hover:bg-[#2a4a73] transition-colors">
+              Live Site ↗
+            </a>
+          )}
+          {project.github && (
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-sm bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+              GitHub ↗
+            </a>
+          )}
+          {project.stripeUrl && (
+            <a href={project.stripeUrl} target="_blank" rel="noopener noreferrer" className="text-sm bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+              Stripe ↗
+            </a>
+          )}
+        </div>
+      )}
+
+      {/* KPIs */}
+      <h2 className="text-lg font-bold text-[#1e3a5f] mb-4">Key Performance Indicators</h2>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+        {project.kpis.map((kpi) => (
+          <div key={kpi.label} className="bg-white rounded-xl border border-gray-200 p-5">
+            <p className="text-sm text-gray-500 font-medium">{kpi.label}</p>
+            <div className="flex items-center gap-2 mt-1">
+              <p className="text-2xl font-bold text-[#1e3a5f]">{kpi.value}</p>
+              {kpi.trend && <span className={`text-sm ${trendIcons[kpi.trend].color}`}>{trendIcons[kpi.trend].icon}</span>}
+            </div>
+            {kpi.detail && <p className="text-xs text-gray-400 mt-1">{kpi.detail}</p>}
+          </div>
+        ))}
+      </div>
+
+      {/* Activity Log */}
+      <h2 className="text-lg font-bold text-[#1e3a5f] mb-4">Recent Activity</h2>
+      <div className="bg-white rounded-xl border border-gray-200 p-6">
+        <div className="space-y-3">
+          {project.recentActivity.map((activity, i) => (
+            <div key={i} className="flex items-start gap-3">
+              <div className="w-2 h-2 rounded-full bg-[#22c55e] mt-2 shrink-0" />
+              <p className="text-sm text-gray-600">{activity}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function DashboardPage() {
+  const [activeBrand, setActiveBrand] = useState<Brand | "all">("all");
+  const [selectedProject, setSelectedProject] = useState<string | null>(null);
+
+  const filteredProjects = getProjectsByBrand(activeBrand);
+  const agg = getAggregateKPIs(activeBrand);
+  const detail = selectedProject ? projects.find((p) => p.id === selectedProject) : null;
+
+  return (
+    <div className="min-h-screen">
+      {/* Sidebar + Content */}
+      <div className="flex">
+        {/* Sidebar */}
+        <aside className="w-64 bg-[#1e3a5f] min-h-screen p-6 hidden lg:block">
+          <h1 className="text-white text-xl font-bold mb-1">Project HQ</h1>
+          <p className="text-blue-300 text-xs mb-8">Jeff Oldroyd</p>
+
+          <nav className="space-y-2">
+            {(["all", "hcip", "augeo"] as const).map((brand) => (
+              <button
+                key={brand}
+                onClick={() => { setActiveBrand(brand); setSelectedProject(null); }}
+                className={`w-full text-left px-4 py-3 rounded-lg transition-colors text-sm font-medium ${
+                  activeBrand === brand
+                    ? "bg-white/10 text-white"
+                    : "text-blue-200 hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <span
+                  className="inline-block w-2 h-2 rounded-full mr-2"
+                  style={{
+                    backgroundColor: brand === "all" ? "#fff" : brandColors[brand as Brand],
+                  }}
+                />
+                {brandLabels[brand]}
+              </button>
+            ))}
+          </nav>
+
+          <div className="mt-12 pt-6 border-t border-white/10">
+            <p className="text-blue-300 text-xs">Revenue Target</p>
+            <p className="text-white text-lg font-bold">$10,000/week</p>
+            <p className="text-blue-300 text-xs mt-1">by May 25, 2026</p>
+          </div>
+        </aside>
+
+        {/* Main Content */}
+        <main className="flex-1 p-6 md:p-10">
+          {/* Mobile brand toggle */}
+          <div className="flex gap-2 mb-6 lg:hidden">
+            {(["all", "hcip", "augeo"] as const).map((brand) => (
+              <button
+                key={brand}
+                onClick={() => { setActiveBrand(brand); setSelectedProject(null); }}
+                className={`px-4 py-2 rounded-lg text-sm font-semibold transition-colors ${
+                  activeBrand === brand
+                    ? "bg-[#1e3a5f] text-white"
+                    : "bg-gray-200 text-gray-600"
+                }`}
+              >
+                {brandLabels[brand]}
+              </button>
+            ))}
+          </div>
+
+          {detail ? (
+            <ProjectDetail project={detail} onBack={() => setSelectedProject(null)} />
+          ) : (
+            <>
+              {/* Header */}
+              <div className="mb-8">
+                <h1 className="text-2xl md:text-3xl font-extrabold text-[#1e3a5f]">
+                  {brandLabels[activeBrand]}
+                </h1>
+                <p className="text-gray-500 mt-1">
+                  {activeBrand === "all"
+                    ? "Overview of all projects across HCIP and Augeo"
+                    : `Projects under the ${brandLabels[activeBrand]} brand`}
+                </p>
+              </div>
+
+              {/* Aggregate KPIs */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <KPICard label="Total Projects" value={agg.totalProjects} />
+                <KPICard label="Active" value={agg.activeProjects} />
+                <KPICard label="In Progress" value={agg.inProgress} />
+                <KPICard label="Planned" value={agg.planned} />
+              </div>
+
+              {/* Revenue Targets */}
+              <div className="bg-[#1e3a5f] rounded-xl p-6 mb-8 text-white">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                  <div>
+                    <p className="text-blue-200 text-sm">Weekly Target</p>
+                    <p className="text-2xl font-extrabold">$10,000</p>
+                  </div>
+                  <div>
+                    <p className="text-blue-200 text-sm">This Week</p>
+                    <p className="text-2xl font-extrabold text-[#22c55e]">$0</p>
+                  </div>
+                  <div>
+                    <p className="text-blue-200 text-sm">This Month</p>
+                    <p className="text-2xl font-extrabold">$0</p>
+                  </div>
+                  <div>
+                    <p className="text-blue-200 text-sm">All Time</p>
+                    <p className="text-2xl font-extrabold">$0</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Project Cards */}
+              <h2 className="text-lg font-bold text-[#1e3a5f] mb-4">Projects</h2>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredProjects.map((project) => (
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    onClick={() => setSelectedProject(project.id)}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+        </main>
+      </div>
+    </div>
+  );
+}
