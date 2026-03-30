@@ -10,6 +10,13 @@ import {
   type Trend,
   type Project,
 } from "@/data/projects";
+import {
+  agents,
+  agentStatusStyles,
+  getActiveAgentCount,
+  getIdleAgentCount,
+  type SubAgent,
+} from "@/data/agents";
 
 const brandColors: Record<Brand, string> = {
   hcip: "#22c55e",
@@ -34,6 +41,34 @@ const trendIcons: Record<Trend, { icon: string; color: string }> = {
   down: { icon: "▼", color: "text-red-500" },
   flat: { icon: "—", color: "text-gray-400" },
 };
+
+function AgentCard({ agent }: { agent: SubAgent }) {
+  const style = agentStatusStyles[agent.status];
+  return (
+    <div className={`rounded-xl border border-gray-200 p-5 ${style.bg}`}>
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          <div className={`w-2.5 h-2.5 rounded-full ${style.dot} ${agent.status === "active" ? "animate-pulse" : ""}`} />
+          <h3 className="font-bold text-[#1e3a5f] text-sm">{agent.name}</h3>
+        </div>
+        <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${style.text} bg-white/60`}>
+          {style.label}
+        </span>
+      </div>
+      <p className="text-xs text-gray-500 mb-3">{agent.description}</p>
+      {agent.currentTask && (
+        <div className="bg-white/80 rounded-lg px-3 py-2 mb-3">
+          <p className="text-xs text-gray-400">Current Task</p>
+          <p className="text-sm font-medium text-[#1e3a5f]">{agent.currentTask}</p>
+        </div>
+      )}
+      <div className="flex items-center justify-between text-xs text-gray-400">
+        <span>{agent.tasksCompleted} tasks completed</span>
+        <span>{agent.capabilities.length} capabilities</span>
+      </div>
+    </div>
+  );
+}
 
 function KPICard({ label, value, detail }: { label: string; value: string | number; detail?: string }) {
   return (
@@ -190,6 +225,21 @@ export default function DashboardPage() {
                 {brandLabels[brand]}
               </button>
             ))}
+            <div className="mt-6 mb-2 px-4">
+              <p className="text-blue-300 text-xs font-semibold uppercase tracking-wider">Sub-Agents</p>
+            </div>
+            {agents.map((agent) => {
+              const style = agentStatusStyles[agent.status];
+              return (
+                <div
+                  key={agent.id}
+                  className="w-full text-left px-4 py-2 rounded-lg text-blue-200 text-sm font-medium flex items-center gap-2"
+                >
+                  <span className={`w-2 h-2 rounded-full ${style.dot} ${agent.status === "active" ? "animate-pulse" : ""}`} />
+                  <span className="truncate">{agent.name}</span>
+                </div>
+              );
+            })}
             <a
               href="/future"
               className="w-full text-left px-4 py-3 rounded-lg text-blue-200 hover:bg-white/5 hover:text-white text-sm font-medium block mt-4"
@@ -282,6 +332,28 @@ export default function DashboardPage() {
                     <p className="text-blue-200 text-sm">All Time</p>
                     <p className="text-2xl font-extrabold">$0</p>
                   </div>
+                </div>
+              </div>
+
+              {/* Agent Status */}
+              <div className="mb-8">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-lg font-bold text-[#1e3a5f]">Sub-Agents</h2>
+                  <div className="flex items-center gap-3 text-sm">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-green-500" />
+                      <span className="text-gray-500">{getActiveAgentCount()} Active</span>
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-gray-400" />
+                      <span className="text-gray-500">{getIdleAgentCount()} Idle</span>
+                    </span>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {agents.map((agent) => (
+                    <AgentCard key={agent.id} agent={agent} />
+                  ))}
                 </div>
               </div>
 
