@@ -29,6 +29,7 @@ const futureProjects: FutureProject[] = [
     status: "scoping",
     notes: [
       "Jeff's #1 priority from idea list",
+      "Target: clinics specifically",
       "Needs: workflow definition, buyer profile, revenue model",
       "HIPAA compliance is table stakes -- must be built in from day one",
       "AI can automate submission, tracking, and follow-up with payers",
@@ -251,12 +252,13 @@ const futureProjects: FutureProject[] = [
     name: "RE / Opportunity Zone",
     category: "Real Estate / Finance",
     description:
-      "Real estate investment in qualified Opportunity Zones for tax advantages.",
+      "Real estate search combined with Opportunity Zone investing. These two overlap -- find RE deals in qualified OZs for tax-advantaged returns.",
     revenueModel: "Investment returns + tax benefits",
     estimatedRevenue: "TBD",
     priority: "medium",
     status: "idea",
     notes: [
+      "Overlay between RE search and OZ investing -- not separate plays",
       "Jeff to add details on target zones, deal size",
     ],
     dateAdded: "2026-03-29",
@@ -278,16 +280,18 @@ const futureProjects: FutureProject[] = [
   },
   {
     id: "investment",
-    name: "Investment",
+    name: "Investment Agent",
     category: "Finance",
     description:
-      "General investment opportunities or portfolio management.",
-    revenueModel: "Returns",
+      "Personal investment agent for Jeff. AI-managed investment research, opportunity tracking, and portfolio analysis.",
+    revenueModel: "Personal use -- ROI on investments",
     estimatedRevenue: "TBD",
     priority: "medium",
     status: "idea",
     notes: [
-      "Jeff to add details on focus areas",
+      "Personal tool for Jeff, not a product to sell",
+      "Artemis handles research, tracking, and analysis",
+      "Jeff to add details on investment focus areas",
     ],
     dateAdded: "2026-03-29",
   },
@@ -311,14 +315,51 @@ const futureProjects: FutureProject[] = [
     name: "Fundraiser for Non-Profit -- Helping Captives (HC)",
     category: "Non-Profit",
     description:
-      "Fundraising effort for Helping Captives non-profit organization.",
+      "Fundraising for Helping Captives, a healthcare-focused non-profit. Fundraiser events, campaigns, donor outreach.",
     revenueModel: "Non-profit fundraising",
     estimatedRevenue: "N/A -- charitable",
     priority: "medium",
     status: "idea",
     notes: [
+      "Healthcare-focused non-profit",
       "Related contacts: Caleb & Nate",
-      "Jeff to add details on the org and fundraising goals",
+      "Jeff to add details on fundraising goals and timeline",
+    ],
+    dateAdded: "2026-03-29",
+  },
+  // === NEW IDEAS (3/29 evening) ===
+  {
+    id: "product-lab",
+    name: "Product Lab",
+    category: "SaaS / Education",
+    description:
+      "Tool that walks people through the full product lifecycle: idea validation, patents, production/manufacturing, and selling. End-to-end guided product development.",
+    revenueModel: "TBD -- SaaS subscription or high-ticket course",
+    estimatedRevenue: "TBD",
+    priority: "medium",
+    status: "idea",
+    notes: [
+      "Full lifecycle: idea -> patents -> manufacturing -> sales",
+      "Nobody does this well in one place",
+      "Could be AI-guided with step-by-step workflows",
+      "Jeff to add details on format and audience",
+    ],
+    dateAdded: "2026-03-29",
+  },
+  {
+    id: "business-in-a-box",
+    name: "Business in a Box",
+    category: "SaaS / Education",
+    description:
+      "Turnkey setup for new entrepreneurs. Everything needed to launch a business: LLC formation, branding, website, payments, first product -- all guided in one system.",
+    revenueModel: "TBD -- subscription, one-time fee, or service",
+    estimatedRevenue: "TBD",
+    priority: "medium",
+    status: "idea",
+    notes: [
+      "Meta play -- build the machine that builds businesses",
+      "Could be AI-guided or done-for-you service",
+      "Jeff to add details on target entrepreneur type",
     ],
     dateAdded: "2026-03-29",
   },
@@ -368,6 +409,7 @@ const categoryColors: Record<string, string> = {
   Finance: "#0ea5e9",
   "Education / Services": "#6366f1",
   "Services / Automation": "#6366f1",
+  "SaaS / Education": "#10b981",
   "Non-Profit": "#14b8a6",
   Infrastructure: "#6b7280",
 };
