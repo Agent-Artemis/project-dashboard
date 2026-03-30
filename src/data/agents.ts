@@ -15,7 +15,7 @@ export interface SubAgent {
 export const agents: SubAgent[] = [
   {
     id: "healthcare-ops",
-    name: "Healthcare Ops Agent",
+    name: "Benny",
     role: "Healthcare Operations",
     description:
       "CCM/RPM pipeline automation, medical billing AI, pre-auth workflows, and healthcare operations support.",
@@ -33,10 +33,10 @@ export const agents: SubAgent[] = [
   },
   {
     id: "content-distribution",
-    name: "Content & Distribution Agent",
+    name: "Charlie",
     role: "Content & Distribution",
     description:
-      "X/Twitter posting, Beehiiv newsletter, Artemis site content, YouTube scripts. Handles both HCIP and Artemis brands.",
+      "X/Twitter posting, Beehiiv newsletter, Artemis site content, YouTube scripts. Dual-brand: HCIP and Artemis.",
     status: "idle",
     lastActive: "2026-03-30T10:00:00",
     tasksCompleted: 0,
@@ -47,6 +47,44 @@ export const agents: SubAgent[] = [
       "Blog/site content",
       "YouTube script writing",
       "Social engagement tracking",
+    ],
+  },
+  {
+    id: "sales-outreach",
+    name: "Dennis",
+    role: "Sales & Outreach",
+    description:
+      "Lead generation, cold outreach sequences, prospect research, and pipeline management. Billing companies first, then practices.",
+    status: "idle",
+    lastActive: "2026-03-30T12:20:00",
+    tasksCompleted: 0,
+    currentTask: undefined,
+    capabilities: [
+      "Lead generation",
+      "Email sequence drafting",
+      "Prospect research",
+      "Pipeline tracking",
+      "Cal.com booking integration",
+      "Partnership outreach",
+    ],
+  },
+  {
+    id: "research-scout",
+    name: "Evelyn",
+    role: "Research & Opportunity Scout",
+    description:
+      "Market analysis, competitive intel, product validation, arbitrage detection, and technology scouting.",
+    status: "idle",
+    lastActive: "2026-03-30T12:20:00",
+    tasksCompleted: 0,
+    currentTask: undefined,
+    capabilities: [
+      "Market analysis",
+      "Competitive intelligence",
+      "Product idea validation",
+      "Arbitrage detection",
+      "Technology scouting",
+      "Investment research",
     ],
   },
 ];
