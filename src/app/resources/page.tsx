@@ -182,6 +182,13 @@ export default function ResourcesPage() {
               <span className="inline-block w-2 h-2 rounded-full mr-2 bg-amber-400" />
               Future Projects
             </a>
+            <a
+              href="/models"
+              className="w-full text-left px-4 py-3 rounded-lg text-blue-200 hover:bg-white/5 hover:text-white text-sm font-medium block"
+            >
+              <span className="inline-block w-2 h-2 rounded-full mr-2 bg-pink-400" />
+              Idea Models
+            </a>
             <div className="w-full text-left px-4 py-3 rounded-lg bg-white/10 text-white text-sm font-medium">
               <span className="inline-block w-2 h-2 rounded-full mr-2 bg-blue-400" />
               Resources
