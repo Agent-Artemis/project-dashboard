@@ -2,7 +2,7 @@
 
 const resources = [
   {
-    category: "HCIP Products",
+    category: "Augeo Health Products",
     color: "#22c55e",
     items: [
       {
@@ -55,14 +55,14 @@ const resources = [
       {
         name: "Project HQ — All Projects",
         url: "https://dashboard-six-roan-46.vercel.app",
-        description: "Internal command center — all projects across HCIP and Augeo",
+        description: "Internal command center — all projects across Augeo Health and Artemis",
         status: "Live",
         statusColor: "bg-green-100 text-green-700",
       },
       {
-        name: "HCIP Partner Dashboard",
+        name: "Augeo Health Partner Dashboard",
         url: "https://dashboard-six-roan-46.vercel.app/hcip",
-        description: "Shareable HCIP-only view — safe for partners",
+        description: "Shareable Augeo Health-only view — safe for partners",
         status: "Live",
         statusColor: "bg-green-100 text-green-700",
       },

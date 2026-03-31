@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Project Dashboard | Jeff Oldroyd",
-  description: "Internal project dashboard for HCIP and Augeo brands.",
+  description: "Internal project dashboard for Augeo Health and Artemis brands.",
 };
 
 export default function RootLayout({

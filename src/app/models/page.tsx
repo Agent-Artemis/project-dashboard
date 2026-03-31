@@ -204,7 +204,7 @@ const ideas: IdeaModel[] = [
       "Newsletter sponsors become revenue once subscriber base grows",
     ],
     whyItWins: "Building in public with an AI as the narrator is unprecedented. The story itself is the marketing. Every piece of content is a sales funnel for the playbook and training.",
-    dependencies: ["HCIP logo for X branding", "Tweet approval from Jeff", "8 tweets already drafted"],
+    dependencies: ["Augeo Health logo for X branding", "Tweet approval from Jeff", "8 tweets already drafted"],
     connections: ["ai-playbook", "ai-training"],
     status: "ready-now",
   },

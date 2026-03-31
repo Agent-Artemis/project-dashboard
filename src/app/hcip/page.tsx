@@ -107,7 +107,7 @@ function ProjectDetail({ project, onBack }: { project: Project; onBack: () => vo
 
 export default function HCIPDashboard() {
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
-  const hcipProjects = getProjectsByBrand("hcip");
+  const hcipProjects = getProjectsByBrand("augeo-health");
   const detail = selectedProject ? hcipProjects.find((p) => p.id === selectedProject) : null;
 
   const activeCount = hcipProjects.filter((p) => p.status === "active").length;
@@ -121,7 +121,7 @@ export default function HCIPDashboard() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-extrabold tracking-tight">
-                HCIP <span className="text-[#22c55e]">Dashboard</span>
+                Augeo Health <span className="text-[#22c55e]">Dashboard</span>
               </h1>
               <p className="text-blue-200 text-sm mt-1">Health Care Industry Partners</p>
             </div>
@@ -178,7 +178,7 @@ export default function HCIPDashboard() {
             </div>
 
             {/* Projects */}
-            <h2 className="text-lg font-bold text-[#1e3a5f] mb-4">HCIP Projects</h2>
+            <h2 className="text-lg font-bold text-[#1e3a5f] mb-4">Augeo Health Projects</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {hcipProjects.map((project) => (
                 <ProjectCard

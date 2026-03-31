@@ -19,13 +19,13 @@ import {
 } from "@/data/agents";
 
 const brandColors: Record<Brand, string> = {
-  hcip: "#22c55e",
+  "augeo-health": "#22c55e",
   augeo: "#f59e0b",
 };
 
 const brandLabels: Record<Brand | "all", string> = {
   all: "All Projects",
-  hcip: "HCIP",
+  "augeo-health": "Augeo Health",
   augeo: "Augeo",
 };
 
@@ -206,7 +206,7 @@ export default function DashboardPage() {
           <p className="text-blue-300 text-xs mb-8">Jeff Oldroyd</p>
 
           <nav className="space-y-2">
-            {(["all", "hcip", "augeo"] as const).map((brand) => (
+            {(["all", "augeo-health", "artemis"] as const).map((brand) => (
               <button
                 key={brand}
                 onClick={() => { setActiveBrand(brand); setSelectedProject(null); }}
@@ -274,7 +274,7 @@ export default function DashboardPage() {
         <main className="flex-1 p-6 md:p-10">
           {/* Mobile brand toggle */}
           <div className="flex gap-2 mb-6 lg:hidden">
-            {(["all", "hcip", "augeo"] as const).map((brand) => (
+            {(["all", "augeo-health", "artemis"] as const).map((brand) => (
               <button
                 key={brand}
                 onClick={() => { setActiveBrand(brand); setSelectedProject(null); }}
@@ -300,7 +300,7 @@ export default function DashboardPage() {
                 </h1>
                 <p className="text-gray-500 mt-1">
                   {activeBrand === "all"
-                    ? "Overview of all projects across HCIP and Augeo"
+                    ? "Overview of all projects across Augeo Health and Artemis"
                     : `Projects under the ${brandLabels[activeBrand]} brand`}
                 </p>
               </div>

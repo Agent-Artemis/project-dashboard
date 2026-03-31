@@ -36,7 +36,7 @@ export const agents: SubAgent[] = [
     name: "Charlie",
     role: "Content & Distribution",
     description:
-      "X/Twitter posting, Beehiiv newsletter, Artemis site content, YouTube scripts. Dual-brand: HCIP and Artemis.",
+      "X/Twitter posting, Beehiiv newsletter, Artemis site content, YouTube scripts. Dual-brand: Augeo Health and Artemis.",
     status: "idle",
     lastActive: "2026-03-30T10:00:00",
     tasksCompleted: 0,

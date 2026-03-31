@@ -1,4 +1,4 @@
-export type Brand = "hcip" | "augeo";
+export type Brand = "augeo-health" | "artemis";
 export type Status = "active" | "in-progress" | "planned" | "existing";
 export type Trend = "up" | "down" | "flat";
 
@@ -27,7 +27,7 @@ export const projects: Project[] = [
   {
     id: "ccm-rpm-calculator",
     name: "CCM/RPM Revenue Calculator",
-    brand: "hcip",
+    brand: "augeo-health",
     status: "active",
     description:
       "Paid calculator tool for healthcare practices to estimate CCM and RPM revenue potential. Includes PDF export, ROI scenarios, and strategy call booking.",
@@ -46,7 +46,7 @@ export const projects: Project[] = [
     recentActivity: [
       "2026-03-28: Launched with CCM + RPM calculators",
       "2026-03-28: Added ROI scenario toggle",
-      "2026-03-28: Added PDF export (HCIP branded)",
+      "2026-03-28: Added PDF export (Augeo Health branded)",
       "2026-03-28: Updated pricing to $29/$49",
       "2026-03-28: Stripe checkout + promo codes enabled",
     ],
@@ -54,7 +54,7 @@ export const projects: Project[] = [
   {
     id: "ccm-rpm-consulting",
     name: "CCM/RPM Consulting",
-    brand: "hcip",
+    brand: "augeo-health",
     status: "planned",
     description:
       "Fractional COO / implementation consulting for healthcare practices launching CCM and RPM programs. Revenue from strategy calls booked through calculator.",
@@ -73,7 +73,7 @@ export const projects: Project[] = [
   {
     id: "4afulllife",
     name: "4afulllife.com",
-    brand: "augeo",
+    brand: "artemis",
     status: "existing",
     description:
       "White-label SaaS coaching software for coaching companies. Body, Being, Balance, Business framework.",
@@ -89,7 +89,7 @@ export const projects: Project[] = [
   {
     id: "ai-automation",
     name: "AI Automation Services",
-    brand: "augeo",
+    brand: "artemis",
     status: "planned",
     description:
       "AI automation consulting and implementation for businesses. Healthcare-focused initially.",
@@ -104,7 +104,7 @@ export const projects: Project[] = [
   {
     id: "content-newsletter",
     name: "Content & Newsletter",
-    brand: "augeo",
+    brand: "artemis",
     status: "in-progress",
     description:
       "Beehiiv newsletter for audience building. X account for social distribution. YouTube for long-form content.",
