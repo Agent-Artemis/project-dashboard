@@ -1,13 +1,5 @@
 export type Brand = "augeo-health" | "artemis";
 export type Status = "active" | "in-progress" | "planned" | "existing";
-export type Trend = "up" | "down" | "flat";
-
-export interface ProjectKPI {
-  label: string;
-  value: string;
-  trend?: Trend;
-  detail?: string;
-}
 
 export interface Project {
   id: string;
@@ -16,10 +8,7 @@ export interface Project {
   status: Status;
   description: string;
   url?: string;
-  github?: string;
-  stripeUrl?: string;
-  keyMetric: { label: string; value: string; trend: Trend };
-  kpis: ProjectKPI[];
+  keyMetric: { label: string; value: string };
   recentActivity: string[];
 }
 
@@ -29,45 +18,129 @@ export const projects: Project[] = [
     name: "CCM/RPM Revenue Calculator",
     brand: "augeo-health",
     status: "active",
-    description:
-      "Paid calculator tool for healthcare practices to estimate CCM and RPM revenue potential. Includes PDF export, ROI scenarios, and strategy call booking.",
-    url: "https://ccm-revenue-calculator.vercel.app",
-    github: "https://github.com/Agent-Artemis/ccm-revenue-calculator",
-    stripeUrl: "https://dashboard.stripe.com",
-    keyMetric: { label: "Revenue", value: "$0", trend: "up" },
-    kpis: [
-      { label: "Total Revenue", value: "$0", trend: "up", detail: "Launched 3/28/2026" },
-      { label: "Purchases", value: "0", trend: "flat" },
-      { label: "Page Views", value: "--", trend: "flat", detail: "Analytics pending" },
-      { label: "Conversion Rate", value: "--", trend: "flat" },
-      { label: "Strategy Calls Booked", value: "0", trend: "flat" },
-      { label: "Avg Order Value", value: "$39", trend: "flat", detail: "Bundle: $49, Individual: $29" },
-    ],
+    description: "Paid calculator for healthcare practices to estimate CCM and RPM revenue potential. PDF export, ROI scenarios, strategy call booking.",
+    url: "https://calculator.augeohealth.com",
+    keyMetric: { label: "Status", value: "Live" },
     recentActivity: [
+      "2026-04-01: Custom domain live (calculator.augeohealth.com)",
+      "2026-03-31: Rebranded from HCIP to Augeo Health",
       "2026-03-28: Launched with CCM + RPM calculators",
-      "2026-03-28: Added ROI scenario toggle",
-      "2026-03-28: Added PDF export (Augeo Health branded)",
-      "2026-03-28: Updated pricing to $29/$49",
-      "2026-03-28: Stripe checkout + promo codes enabled",
     ],
   },
   {
-    id: "ccm-rpm-consulting",
-    name: "CCM/RPM Consulting",
-    brand: "augeo-health",
-    status: "planned",
-    description:
-      "Fractional COO / implementation consulting for healthcare practices launching CCM and RPM programs. Revenue from strategy calls booked through calculator.",
-    keyMetric: { label: "Pipeline", value: "$0", trend: "flat" },
-    kpis: [
-      { label: "Pipeline Value", value: "$0", trend: "flat" },
-      { label: "Active Clients", value: "0", trend: "flat" },
-      { label: "Monthly Contract Value", value: "$0", trend: "flat" },
-      { label: "Calls Scheduled", value: "0", trend: "flat" },
-    ],
+    id: "ai-playbook",
+    name: "AI Playbook ($29)",
+    brand: "artemis",
+    status: "active",
+    description: "59 pages, 13 chapters. How to actually build with AI. Stripe Payment Link checkout + instant PDF download.",
+    url: "https://playbook.agentartemis.ai",
+    keyMetric: { label: "Price", value: "$29" },
     recentActivity: [
-      "2026-03-28: Cal.com booking page created",
-      "2026-03-28: Linked to calculator CTA",
+      "2026-04-01: Custom domain live (playbook.agentartemis.ai)",
+      "2026-04-01: Stripe Payment Link checkout working",
+      "2026-03-30: 59-page playbook written and deployed",
+    ],
+  },
+  {
+    id: "healthcare-playbook",
+    name: "Healthcare AI Playbook ($49)",
+    brand: "augeo-health",
+    status: "active",
+    description: "85 pages, 16 chapters. AI for healthcare ops. Augeo x co-brand. First revenue April 1.",
+    url: "https://playbook.augeohealth.com",
+    keyMetric: { label: "Price", value: "$49" },
+    recentActivity: [
+      "2026-04-01: FIRST REVENUE -- Jeff tested card + Apple Pay, both clean",
+      "2026-04-01: Custom domain live (playbook.augeohealth.com)",
+      "2026-03-30: 85-page healthcare playbook written",
+    ],
+  },
+  {
+    id: "augeohealth-site",
+    name: "Augeo Health Site",
+    brand: "augeo-health",
+    status: "active",
+    description: "Professional healthcare consulting homepage. Services, calculator, playbook, booking.",
+    url: "https://augeohealth.com",
+    keyMetric: { label: "Status", value: "Live" },
+    recentActivity: [
+      "2026-04-01: Custom domain live",
+      "2026-03-31: Built and deployed from scratch",
+    ],
+  },
+  {
+    id: "artemis-site",
+    name: "Artemis Site",
+    brand: "artemis",
+    status: "active",
+    description: "Artemis brand homepage. Dark theme, AI education, playbook link, About Jeff.",
+    url: "https://agentartemis.ai",
+    keyMetric: { label: "Status", value: "Live" },
+    recentActivity: [
+      "2026-04-01: Custom domain live",
+      "2026-03-31: Built and deployed",
+    ],
+  },
+  {
+    id: "voice-ai-platform",
+    name: "Voice AI Platform",
+    brand: "augeo-health",
+    status: "in-progress",
+    description: "Retell-powered AI voice platform. Patient outreach, pre-auth, AR calls. 3 use cases, one build.",
+    keyMetric: { label: "Phase", value: "Spec" },
+    recentActivity: [
+      "2026-04-01: Full framework, grant mapping, and CCM call prepper spec delivered",
+      "2026-04-01: Key numbers: $0.70/call cost, $3.00 revenue, 69% margins at scale",
+      "2026-04-01: Awaiting Jeff's framework review",
+    ],
+  },
+  {
+    id: "content-social",
+    name: "Content & Social",
+    brand: "artemis",
+    status: "active",
+    description: "X/Twitter, Beehiiv newsletter, social distribution. Dual-brand posting.",
+    keyMetric: { label: "X Posts", value: "5" },
+    recentActivity: [
+      "2026-04-01: 3 posts published (sites + playbooks launch)",
+      "2026-03-31: 2 posts (Jeff intro + Artemis intro)",
+      "2026-04-02-03: Gap -- content calendar ready but not posted",
+    ],
+  },
+  {
+    id: "grant-scout",
+    name: "Grant Scout SaaS",
+    brand: "artemis",
+    status: "planned",
+    description: "Grant discovery and writing platform. 3-tier: Search ($29/mo), Writing ($499-2,500), Success Fee (5-10%).",
+    keyMetric: { label: "Status", value: "Planned" },
+    recentActivity: [
+      "2026-04-01: Concept defined, Evelyn has 60+ grant matrix",
+      "2026-04-02: Jeff flagged as top priority after sites",
+    ],
+  },
+  {
+    id: "hcip-acquisitions",
+    name: "HCIP Acquisitions",
+    brand: "augeo-health",
+    status: "in-progress",
+    description: "Roll-up strategy using Native American SBA-like loan (50% match, $5M max). Target: 503B pharmacies, RV parks, storage units.",
+    keyMetric: { label: "Phase", value: "Research" },
+    recentActivity: [
+      "2026-04-02: Strategy defined, 7 target sectors identified",
+      "2026-04-02: Sweet spot: $10M projects (fully financed at 50/50)",
+    ],
+  },
+  {
+    id: "trading-experiment",
+    name: "Trading Experiment",
+    brand: "artemis",
+    status: "planned",
+    description: "60-day aggressive trading experiment. $300 funded. Document everything, package as book.",
+    keyMetric: { label: "Status", value: "Pending Alpaca" },
+    recentActivity: [
+      "2026-04-02: Robinhood funded ($300). Alpaca recommended for API access.",
+      "2026-04-02: Strategy: aggressive, 20% ratchet floor",
     ],
   },
   {
@@ -75,71 +148,9 @@ export const projects: Project[] = [
     name: "4afulllife.com",
     brand: "artemis",
     status: "existing",
-    description:
-      "White-label SaaS coaching software for coaching companies. Body, Being, Balance, Business framework.",
+    description: "White-label SaaS coaching software. Body, Being, Balance, Business framework.",
     url: "https://4afulllife.com",
-    keyMetric: { label: "Status", value: "Existing", trend: "flat" },
-    kpis: [
-      { label: "MRR", value: "--", trend: "flat" },
-      { label: "Active Users", value: "--", trend: "flat" },
-      { label: "Churn Rate", value: "--", trend: "flat" },
-    ],
+    keyMetric: { label: "Status", value: "Existing" },
     recentActivity: ["Pre-existing product"],
   },
-  {
-    id: "ai-automation",
-    name: "AI Automation Services",
-    brand: "artemis",
-    status: "planned",
-    description:
-      "AI automation consulting and implementation for businesses. Healthcare-focused initially.",
-    keyMetric: { label: "Pipeline", value: "$0", trend: "flat" },
-    kpis: [
-      { label: "Pipeline Value", value: "$0", trend: "flat" },
-      { label: "Leads", value: "0", trend: "flat" },
-      { label: "Active Projects", value: "0", trend: "flat" },
-    ],
-    recentActivity: ["2026-03-28: Project planned"],
-  },
-  {
-    id: "content-newsletter",
-    name: "Content & Newsletter",
-    brand: "artemis",
-    status: "in-progress",
-    description:
-      "Beehiiv newsletter for audience building. X account for social distribution. YouTube for long-form content.",
-    keyMetric: { label: "Subscribers", value: "0", trend: "up" },
-    kpis: [
-      { label: "Email Subscribers", value: "0", trend: "flat", detail: "Beehiiv" },
-      { label: "X Followers", value: "0", trend: "flat", detail: "@Artemis_jeff" },
-      { label: "YouTube Subscribers", value: "0", trend: "flat" },
-      { label: "Tweets Posted", value: "0", trend: "flat", detail: "API pending" },
-    ],
-    recentActivity: [
-      "2026-03-28: X account @Artemis_jeff created",
-      "2026-03-28: Beehiiv account created",
-      "2026-03-28: YouTube account created",
-      "2026-03-28: X API keys configured (credits pending)",
-      "2026-03-28: 8 tweets drafted, awaiting approval",
-    ],
-  },
 ];
-
-export function getProjectsByBrand(brand: Brand | "all"): Project[] {
-  if (brand === "all") return projects;
-  return projects.filter((p) => p.brand === brand);
-}
-
-export function getProjectById(id: string): Project | undefined {
-  return projects.find((p) => p.id === id);
-}
-
-export function getAggregateKPIs(brand: Brand | "all") {
-  const filtered = getProjectsByBrand(brand);
-  return {
-    totalProjects: filtered.length,
-    activeProjects: filtered.filter((p) => p.status === "active").length,
-    inProgress: filtered.filter((p) => p.status === "in-progress").length,
-    planned: filtered.filter((p) => p.status === "planned").length,
-  };
-}
