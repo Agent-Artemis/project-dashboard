@@ -112,7 +112,7 @@ function RevenueHero() {
 function AgentCard({ agent }: { agent: Agent }) {
   const isActive = agent.status === "active";
   return (
-    <div className={`bg-[#1A1A1A] border border-[#2A2A2A] rounded-xl p-5 ${agent.isOrchestrator ? "md:col-span-full" : ""}`}>
+    <div className="bg-[#1A1A1A] border border-[#2A2A2A] rounded-xl p-5">
       <div className="flex items-start justify-between mb-2">
         <div className="flex items-center gap-3">
           <div className="relative">
