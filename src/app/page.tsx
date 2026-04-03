@@ -151,6 +151,7 @@ function AgentCommandCenter() {
 }
 
 function TaskCard({ task }: { task: Task }) {
+  const [expanded, setExpanded] = useState(false);
   const priorityColors: Record<string, string> = { high: "border-l-[#FF5252]", medium: "border-l-[#FFB800]", low: "border-l-[#9CA3AF]" };
   const statusBadge: Record<string, { bg: string; text: string; label: string }> = {
     "not-started": { bg: "bg-[#2A2A2A]", text: "text-[#9CA3AF]", label: "Not Started" },
@@ -158,13 +159,54 @@ function TaskCard({ task }: { task: Task }) {
     done: { bg: "bg-[#00C805]/20", text: "text-[#00C805]", label: "Done" },
   };
   const badge = statusBadge[task.status] ?? statusBadge["not-started"];
+  const hasDetails = (task.details && task.details.length > 0) || (task.links && task.links.length > 0) || task.description;
   return (
     <div className={`bg-[#111111] rounded-lg p-3 border-l-4 ${priorityColors[task.priority]} mb-2`}>
-      <p className="text-sm text-white font-medium">{task.title}</p>
-      <div className="flex items-center justify-between mt-2">
-        <span className="text-xs text-[#9CA3AF] capitalize">{task.assignee}</span>
-        <span className={`text-xs px-2 py-0.5 rounded ${badge.bg} ${badge.text}`}>{badge.label}</span>
+      <div className={`${hasDetails ? "cursor-pointer" : ""}`} onClick={() => hasDetails && setExpanded(!expanded)}>
+        <div className="flex items-start justify-between">
+          <p className="text-sm text-white font-medium flex-1">{task.title}</p>
+          {hasDetails && (
+            <span className="text-xs text-[#9CA3AF] ml-2 shrink-0">{expanded ? "−" : "+"}</span>
+          )}
+        </div>
+        <div className="flex items-center justify-between mt-2">
+          <span className="text-xs text-[#9CA3AF] capitalize">{task.assignee}</span>
+          <span className={`text-xs px-2 py-0.5 rounded ${badge.bg} ${badge.text}`}>{badge.label}</span>
+        </div>
       </div>
+      {expanded && (
+        <div className="mt-3 pt-3 border-t border-[#2A2A2A] space-y-3">
+          {task.description && (
+            <p className="text-xs text-[#9CA3AF]">{task.description}</p>
+          )}
+          {task.details && task.details.length > 0 && (
+            <div>
+              <p className="text-xs text-[#FFB800] font-semibold mb-1">Steps:</p>
+              <ol className="space-y-1">
+                {task.details.map((d, i) => (
+                  <li key={i} className="text-xs text-[#9CA3AF] flex gap-2">
+                    <span className="text-[#FFB800] shrink-0">{i + 1}.</span>
+                    <span>{d}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
+          {task.links && task.links.length > 0 && (
+            <div>
+              <p className="text-xs text-[#00BFFF] font-semibold mb-1">Links:</p>
+              <div className="flex flex-wrap gap-2">
+                {task.links.map((link, i) => (
+                  <a key={i} href={link.url} target="_blank" rel="noreferrer"
+                    className="text-xs bg-[#00BFFF]/10 text-[#00BFFF] px-2 py-1 rounded hover:bg-[#00BFFF]/20 transition-colors">
+                    {link.label} ↗
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

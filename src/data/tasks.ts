@@ -13,19 +13,33 @@ export interface Task {
   status: TaskStatus;
   priority: Priority;
   description?: string;
+  details?: string[];
+  links?: { label: string; url: string }[];
 }
 
 export const tasks: Task[] = [
   // === JEFF'S BOARD ===
   {
     id: "j-001",
-    title: "Approve April 3-4 tweets for posting",
-    assignee: "charlie",
+    title: "Refresh Facebook Page Access Token",
+    assignee: "artemis",
     board: "jeff",
     column: "today",
     status: "not-started",
     priority: "high",
-    description: "Charlie has tweets ready in content/charlie-april-push.md",
+    description: "Token expired April 1. Need new one so Artemis can post to Augeo Agency page.",
+    details: [
+      "Go to Graph API Explorer (link below)",
+      "Select app: Augeo Agency (ID: 1674993343520476)",
+      "Click 'Get Token' dropdown -> 'Get Page Access Token'",
+      "Select the Augeo Agency page from the list",
+      "Copy the token and send it to Artemis on Telegram",
+      "Artemis will convert it to a 60-day long-lived token this time",
+    ],
+    links: [
+      { label: "Graph API Explorer", url: "https://developers.facebook.com/tools/explorer/" },
+      { label: "Augeo Agency FB Page", url: "https://www.facebook.com/profile.php?id=103923762424965" },
+    ],
   },
   {
     id: "j-002",
@@ -35,7 +49,17 @@ export const tasks: Task[] = [
     column: "today",
     status: "not-started",
     priority: "high",
-    description: "Full framework doc at knowledge/projects/voice-ai-platform-framework.md",
+    description: "Benny built the full framework: 3 use cases (CCM outreach, pre-auth, AR), cost model, go-to-market.",
+    details: [
+      "The doc covers: Retell AI integration, $0.70/call cost vs $3.00 revenue, 69% margins",
+      "Three revenue models: per-claim ($3-5), tiered sub ($1,500-$8,000/mo), hybrid",
+      "Go-to-market: billing companies first, then clinics",
+      "Review and tell Artemis: green light to build, changes needed, or park it",
+    ],
+    links: [
+      { label: "Retell AI (HIPAA/SOC2)", url: "https://www.retellai.com/" },
+      { label: "Augeo Health Site", url: "https://augeohealth.com" },
+    ],
   },
   {
     id: "j-003",
@@ -45,37 +69,82 @@ export const tasks: Task[] = [
     column: "this-week",
     status: "not-started",
     priority: "medium",
-    description: "Needed to start the 60-day trading experiment",
+    description: "Robinhood has no API. Alpaca does. Need this for the 60-day trading experiment.",
+    details: [
+      "Go to alpaca.markets and sign up for a paper trading account",
+      "Paper trading = fake money, real market data. No risk.",
+      "Once signed up, go to API Keys in the dashboard",
+      "Send Artemis the API Key + Secret Key",
+      "Artemis already has placeholder keys in TOOLS.md -- we'll swap them for real ones",
+    ],
+    links: [
+      { label: "Alpaca Sign Up", url: "https://app.alpaca.markets/signup" },
+      { label: "Alpaca Paper Trading Docs", url: "https://docs.alpaca.markets/docs/paper-trading" },
+    ],
   },
   {
     id: "j-004",
-    title: "SAM.gov registration",
+    title: "SAM.gov registration (Augeo LLC)",
     assignee: "evelyn",
     board: "jeff",
     column: "this-week",
     status: "not-started",
     priority: "high",
-    description: "2-4 week lead time for federal grants. Start ASAP.",
+    description: "Required to apply for federal grants. 2-4 week processing time -- every day we wait costs us.",
+    details: [
+      "Go to SAM.gov (link below) and click 'Get Started'",
+      "You'll need: Augeo LLC EIN, DUNS/UEI number, bank account info",
+      "If you don't have a UEI yet, request one at SAM.gov (takes ~2 days)",
+      "Complete Entity Registration for Augeo LLC",
+      "This unlocks: grants.gov applications, SBIR/STTR submissions, federal contracts",
+      "SBIR/STTR just got reauthorized April 1 after 6-month freeze -- $6B in funding about to flow",
+    ],
+    links: [
+      { label: "SAM.gov Registration", url: "https://sam.gov/content/entity-registration" },
+      { label: "UEI Request (if needed)", url: "https://sam.gov/content/entity-registration" },
+      { label: "SBIR/STTR Portal", url: "https://www.sbir.gov/" },
+    ],
   },
   {
     id: "j-005",
-    title: "Review Grant Scout SaaS concept",
-    assignee: "artemis",
+    title: "Post 2 LinkedIn posts (draft ready)",
+    assignee: "dennis",
     board: "jeff",
     column: "this-week",
     status: "not-started",
-    priority: "medium",
-    description: "3-tier model: Search ($29/mo) + Grant Writing ($499-2,500) + Success Fee (5-10%)",
+    priority: "high",
+    description: "Dennis is drafting LinkedIn posts for Jeff to publish from his personal account. LinkedIn = Jeff's biggest network.",
+    details: [
+      "Dennis is building the full outreach playbook now",
+      "He'll have 2 LinkedIn posts ready: 1 healthcare angle, 1 AI angle",
+      "Copy-paste from the draft and post from your LinkedIn profile",
+      "Your network is where the buyers are -- practice managers, billing companies",
+      "Each post drives to a sales page",
+    ],
+    links: [
+      { label: "LinkedIn (post from here)", url: "https://www.linkedin.com/feed/" },
+      { label: "Healthcare Playbook (CTA target)", url: "https://playbook.augeohealth.com" },
+      { label: "AI Playbook (CTA target)", url: "https://playbook.agentartemis.ai" },
+    ],
   },
   {
     id: "j-006",
     title: "Share Augeo Agency posts to personal Facebook",
     assignee: "artemis",
     board: "jeff",
-    column: "general",
+    column: "this-week",
     status: "not-started",
-    priority: "low",
-    description: "Artemis posts to page, Jeff shares to personal profile",
+    priority: "medium",
+    description: "Once Artemis posts to the Augeo Agency page, share to your personal profile for reach.",
+    details: [
+      "Blocked until j-001 (token refresh) is done",
+      "Once token is refreshed, Artemis will post both today's tweets as FB posts",
+      "Go to the Augeo Agency page and hit 'Share' on each post",
+      "Share to your personal timeline with a brief comment",
+    ],
+    links: [
+      { label: "Augeo Agency FB Page", url: "https://www.facebook.com/profile.php?id=103923762424965" },
+    ],
   },
   {
     id: "j-007",
@@ -85,7 +154,18 @@ export const tasks: Task[] = [
     column: "general",
     status: "not-started",
     priority: "medium",
-    description: "Jeff's own exports are better than AI-generated versions",
+    description: "Your Pixelmator exports look better than anything AI generates. Need logos for all 3 brand sites.",
+    details: [
+      "Needed: Augeo Health logo, Artemis logo, Augeo Agency logo",
+      "Export as PNG with transparent background, at least 512x512",
+      "The compass-as-O concept is the brand mark",
+      "Send to Artemis on Telegram or drop in the shared workspace",
+      "Artemis will deploy to all sites (agentartemis.ai, augeohealth.com, dashboard)",
+    ],
+    links: [
+      { label: "agentartemis.ai (needs logo)", url: "https://agentartemis.ai" },
+      { label: "augeohealth.com (needs logo)", url: "https://augeohealth.com" },
+    ],
   },
   {
     id: "j-008",
@@ -95,6 +175,12 @@ export const tasks: Task[] = [
     column: "general",
     status: "not-started",
     priority: "low",
+    description: "Gives Artemis permission to run certain commands without asking each time.",
+    details: [
+      "Run in terminal: openclaw config edit",
+      "Add elevated permissions for common operations",
+      "Not urgent -- Artemis works around it, just slightly slower",
+    ],
   },
 
   // === AGENT BOARD ===
