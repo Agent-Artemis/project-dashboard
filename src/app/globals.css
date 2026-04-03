@@ -37,3 +37,31 @@ body {
 .animate-pulse-green {
   animation: pulse-green 2s ease-in-out infinite;
 }
+
+/* Harry Potter "living photo" effect -- Ken Burns slow zoom/pan loop */
+@keyframes ken-burns {
+  0% { transform: scale(1) translate(0, 0); }
+  25% { transform: scale(1.08) translate(-1%, -0.5%); }
+  50% { transform: scale(1.05) translate(0.5%, 0.5%); }
+  75% { transform: scale(1.1) translate(-0.5%, -1%); }
+  100% { transform: scale(1) translate(0, 0); }
+}
+.animate-ken-burns {
+  animation: ken-burns 12s ease-in-out infinite;
+  overflow: hidden;
+}
+
+/* Old film flicker overlay */
+@keyframes film-flicker {
+  0%, 100% { opacity: 0; }
+  5% { opacity: 0.03; }
+  10% { opacity: 0; }
+  42% { opacity: 0.02; }
+  44% { opacity: 0; }
+  77% { opacity: 0.04; }
+  79% { opacity: 0; }
+}
+.animate-film-flicker {
+  animation: film-flicker 4s steps(1) infinite;
+  background: white;
+}

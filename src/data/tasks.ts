@@ -182,6 +182,48 @@ export const tasks: Task[] = [
       "Not urgent -- Artemis works around it, just slightly slower",
     ],
   },
+  {
+    id: "j-009",
+    title: "Post LinkedIn drafts (2 posts ready)",
+    assignee: "dennis",
+    board: "jeff",
+    column: "today",
+    status: "not-started",
+    priority: "high",
+    description: "Dennis drafted 2 LinkedIn posts in your voice. Copy-paste and post from your profile -- your network is where the buyers are.",
+    details: [
+      "Post 1 (Healthcare): CCM revenue most practices miss. Drives to calculator.",
+      "Post 2 (AI): 'I hired an AI as an employee.' Drives to playbook.",
+      "Use 'link in comments' pattern -- post the text, then drop the link as the first comment. Beats the algorithm.",
+      "Artemis will send both drafts here in Telegram for you to copy-paste.",
+    ],
+    links: [
+      { label: "LinkedIn (post here)", url: "https://www.linkedin.com/feed/" },
+      { label: "Calculator (CTA)", url: "https://calculator.augeohealth.com" },
+      { label: "AI Playbook (CTA)", url: "https://playbook.agentartemis.ai" },
+    ],
+  },
+  {
+    id: "j-010",
+    title: "Approve Chase ACH transfer for Alpaca",
+    assignee: "artemis",
+    board: "jeff",
+    column: "today",
+    status: "not-started",
+    priority: "medium",
+    description: "Chase flagged the Alpaca ACH transfer. Need to clear it with the bank.",
+    details: [
+      "Check Chase app for a fraud alert or pending verification",
+      "Or call Chase: 1-800-935-9935",
+      "Verify you recognize the Alpaca transfer",
+      "Once cleared, the transfer should process within 1-2 business days",
+      "Note: paper trading works without funding -- you can trade with virtual money now",
+    ],
+    links: [
+      { label: "Chase App", url: "https://www.chase.com" },
+      { label: "Alpaca Dashboard", url: "https://app.alpaca.markets/paper/dashboard/overview" },
+    ],
+  },
 
   // === AGENT BOARD ===
   // Today
