@@ -88,6 +88,35 @@ function RevenueHero() {
   );
 }
 
+/* ───── Workload Ring ───── */
+function WorkloadRing({ pct, size = 40 }: { pct: number; size?: number }) {
+  const r = (size - 6) / 2;
+  const circ = 2 * Math.PI * r;
+  const offset = circ - (pct / 100) * circ;
+  const color = pct >= 80 ? "#FF5252" : pct >= 50 ? "#FFB800" : pct > 0 ? "#00C805" : "#2A2A2A";
+
+  return (
+    <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+      <svg width={size} height={size} className="-rotate-90">
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="#2A2A2A" strokeWidth={4} />
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={r}
+          fill="none"
+          stroke={color}
+          strokeWidth={4}
+          strokeDasharray={circ}
+          strokeDashoffset={offset}
+          strokeLinecap="round"
+          className="transition-all duration-1000"
+        />
+      </svg>
+      <span className="absolute text-[10px] font-bold text-white">{pct}%</span>
+    </div>
+  );
+}
+
 /* ───── Agent Card ───── */
 function AgentCard({ agent }: { agent: Agent }) {
   const isActive = agent.status === "active";
@@ -99,11 +128,14 @@ function AgentCard({ agent }: { agent: Agent }) {
     >
       <div className="flex items-start justify-between mb-2">
         <div className="flex items-center gap-3">
-          <div
-            className={`w-3 h-3 rounded-full ${
-              isActive ? "bg-[#00C805] animate-pulse-green" : "bg-[#FF5252]"
-            }`}
-          />
+          <div className="relative">
+            <WorkloadRing pct={agent.workload} size={agent.isOrchestrator ? 48 : 40} />
+            <div
+              className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-[#1A1A1A] ${
+                isActive ? "bg-[#00C805] animate-pulse-green" : "bg-[#FF5252]"
+              }`}
+            />
+          </div>
           <div>
             <h3 className="font-bold text-white text-lg">{agent.name}</h3>
             <p className="text-xs text-[#9CA3AF]">{agent.role}</p>

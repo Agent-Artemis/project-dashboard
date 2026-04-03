@@ -10,6 +10,7 @@ export interface Agent {
   tasksCompleted: number;
   lastActive: string;
   isOrchestrator?: boolean;
+  workload: number; // 0-100 percentage
 }
 
 export const agents: Agent[] = [
@@ -23,6 +24,7 @@ export const agents: Agent[] = [
     tasksCompleted: 47,
     lastActive: "2026-04-03T17:30:00Z",
     isOrchestrator: true,
+    workload: 75,
   },
   {
     id: "benny",
@@ -33,6 +35,7 @@ export const agents: Agent[] = [
     currentTask: null,
     tasksCompleted: 3,
     lastActive: "2026-04-01T20:49:00Z",
+    workload: 0,
   },
   {
     id: "charlie",
@@ -43,6 +46,7 @@ export const agents: Agent[] = [
     currentTask: null,
     tasksCompleted: 2,
     lastActive: "2026-04-01T19:56:00Z",
+    workload: 0,
   },
   {
     id: "dennis",
@@ -53,6 +57,7 @@ export const agents: Agent[] = [
     currentTask: null,
     tasksCompleted: 0,
     lastActive: "2026-03-30T12:20:00Z",
+    workload: 0,
   },
   {
     id: "evelyn",
@@ -63,5 +68,6 @@ export const agents: Agent[] = [
     currentTask: null,
     tasksCompleted: 2,
     lastActive: "2026-04-01T20:49:00Z",
+    workload: 0,
   },
 ];
