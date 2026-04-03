@@ -142,8 +142,19 @@ function AgentCommandCenter() {
   return (
     <div>
       <h2 className="text-xl font-bold mb-4 text-white">Agent Command Center</h2>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      {/* Artemis row with team image */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         {orchestrator && <AgentCard agent={orchestrator} />}
+        <div className="bg-[#1A1A1A] border border-[#2A2A2A] rounded-xl overflow-hidden relative">
+          <img src="/team-office.png" alt="The team -- 1950s noir office with futuristic tech" className="w-full h-full object-cover opacity-80" />
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+            <p className="text-white text-sm font-bold">The Team</p>
+            <p className="text-[#9CA3AF] text-xs">1950s grit. 2026 tech.</p>
+          </div>
+        </div>
+      </div>
+      {/* Sub-agents grid */}
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
         {subAgents.map((a) => <AgentCard key={a.id} agent={a} />)}
       </div>
     </div>
