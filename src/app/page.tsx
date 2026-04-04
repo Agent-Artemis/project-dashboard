@@ -19,7 +19,7 @@ import type { ResourceCategory, ResourceStatus } from "@/data/resources";
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
-type Tab = "dashboard" | "future" | "models" | "resources";
+type Tab = "dashboard" | "marketing" | "future" | "models" | "resources";
 
 /* ═══════════════════════════════════════════
    SHARED COMPONENTS
@@ -627,11 +627,201 @@ function ResourcesTab() {
 }
 
 /* ═══════════════════════════════════════════
+   TAB: MARKETING
+   ═══════════════════════════════════════════ */
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function KpiCard({ label, value, sub, color, prefix, suffix }: { label: string; value: any; sub?: string; color?: string; prefix?: string; suffix?: string }) {
+  return (
+    <div className="bg-[#1A1A1A] border border-[#2A2A2A] rounded-xl p-4">
+      <p className="text-xs text-[#9CA3AF] mb-1">{label}</p>
+      <p className="text-2xl font-extrabold" style={{ color: color ?? "#fff" }}>
+        {prefix}{typeof value === "number" ? value.toLocaleString("en-US", { minimumFractionDigits: value % 1 !== 0 ? 2 : 0, maximumFractionDigits: 2 }) : value}{suffix}
+      </p>
+      {sub && <p className="text-xs text-[#9CA3AF] mt-1">{sub}</p>}
+    </div>
+  );
+}
+
+function MarketingTab() {
+  const { data } = useSWR("/api/marketing", fetcher, { refreshInterval: 60000 });
+  const kpis = data?.kpis ?? {};
+  const sites = data?.sites ?? [];
+  const channels = data?.channels ?? [];
+  const funnel = data?.funnel ?? {};
+
+  const brandColors: Record<string, string> = { "augeo-health": "#00BFFF", artemis: "#00C805" };
+
+  return (
+    <div className="space-y-8">
+      {/* KPI Header Row */}
+      <div>
+        <h2 className="text-xl font-bold mb-4 text-white">Marketing KPIs</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <KpiCard label="Monthly Revenue" value={kpis.monthlyRevenue ?? 0} prefix="$" color="#00C805" sub={`Target: $${((kpis.revenueTarget ?? 10000) * 4).toLocaleString()}/mo`} />
+          <KpiCard label="Weekly Revenue" value={kpis.weeklyRevenue ?? 0} prefix="$" color="#00C805" sub={`${(kpis.revenueProgress ?? 0).toFixed(1)}% of $10K target`} />
+          <KpiCard label="Avg Order Value" value={kpis.avgOrderValue ?? 0} prefix="$" />
+          <KpiCard label="Total Customers" value={kpis.totalCustomers ?? 0} color="#00BFFF" />
+          <KpiCard label="Customer Acquisition Cost" value={kpis.customerAcquisitionCost ?? 0} prefix="$" color={kpis.customerAcquisitionCost > 0 ? "#FFB800" : "#00C805"} sub="$0 = organic" />
+          <KpiCard label="LTV:CAC Ratio" value={kpis.ltcCacRatio ?? "N/A"} color="#8B5CF6" sub="Target: >3:1" />
+        </div>
+      </div>
+
+      {/* Sales Funnel */}
+      <div className="bg-[#1A1A1A] border border-[#2A2A2A] rounded-2xl p-6">
+        <h2 className="text-xl font-bold mb-4 text-white">Sales Funnel</h2>
+        <div className="space-y-3">
+          {[
+            { label: "Visitors", value: funnel.visitors ?? 0, color: "#9CA3AF", width: "100%" },
+            { label: "Leads (Email Captured)", value: funnel.leads ?? 0, color: "#00BFFF", width: funnel.visitors ? `${Math.max(5, (funnel.leads / funnel.visitors) * 100)}%` : "60%" },
+            { label: "Customers (Purchased)", value: funnel.customers ?? 0, color: "#00C805", width: funnel.visitors ? `${Math.max(5, (funnel.customers / funnel.visitors) * 100)}%` : "20%" },
+            { label: "Revenue", value: `$${(funnel.revenue ?? 0).toFixed(2)}`, color: "#8B5CF6", width: "15%" },
+          ].map((step, i) => (
+            <div key={i}>
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-sm text-[#9CA3AF]">{step.label}</span>
+                <span className="text-sm font-bold" style={{ color: step.color }}>{typeof step.value === "number" ? step.value.toLocaleString() : step.value}</span>
+              </div>
+              <div className="h-8 bg-[#2A2A2A] rounded-lg overflow-hidden">
+                <div className="h-full rounded-lg transition-all duration-1000 flex items-center pl-3"
+                  style={{ width: step.width, backgroundColor: step.color + "33", borderLeft: `3px solid ${step.color}` }}>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-[#9CA3AF] mt-4">Visitor data populates once Vercel Analytics is enabled in project settings.</p>
+      </div>
+
+      {/* Site Performance */}
+      <div className="bg-[#1A1A1A] border border-[#2A2A2A] rounded-2xl p-6">
+        <h2 className="text-xl font-bold mb-4 text-white">Site Performance</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="text-[#9CA3AF] text-xs uppercase tracking-wider border-b border-[#2A2A2A]">
+                <th className="text-left py-3 pr-4">Site</th>
+                <th className="text-right py-3 px-3">Visitors</th>
+                <th className="text-right py-3 px-3">Conversions</th>
+                <th className="text-right py-3 px-3">Conv. Rate</th>
+                <th className="text-right py-3 px-3">Revenue</th>
+                <th className="text-right py-3 pl-3">AOV</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+              {sites.map((site: any, i: number) => (
+                <tr key={i} className="border-b border-[#2A2A2A]/50 hover:bg-[#222222] transition-colors">
+                  <td className="py-3 pr-4">
+                    <div>
+                      <span className="text-xs font-bold uppercase" style={{ color: brandColors[site.brand] ?? "#9CA3AF" }}>
+                        {site.brand === "augeo-health" ? "Augeo Health" : "Artemis"}
+                      </span>
+                      <p className="text-white font-medium">{site.name}</p>
+                      <a href={`https://${site.domain}`} target="_blank" rel="noreferrer" className="text-xs text-[#9CA3AF] hover:text-[#00BFFF]">{site.domain}</a>
+                    </div>
+                  </td>
+                  <td className="text-right py-3 px-3 text-white">{site.visitors ?? "--"}</td>
+                  <td className="text-right py-3 px-3 text-white">{site.conversions}</td>
+                  <td className="text-right py-3 px-3">
+                    <span className={site.conversionRate > 2 ? "text-[#00C805]" : "text-[#9CA3AF]"}>
+                      {site.conversionRate > 0 ? `${site.conversionRate.toFixed(1)}%` : "--"}
+                    </span>
+                  </td>
+                  <td className="text-right py-3 px-3 text-white font-semibold">${site.revenue.toFixed(2)}</td>
+                  <td className="text-right py-3 pl-3 text-[#9CA3AF]">{site.avgOrderValue > 0 ? `$${site.avgOrderValue.toFixed(2)}` : "--"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Channel Attribution */}
+      <div className="bg-[#1A1A1A] border border-[#2A2A2A] rounded-2xl p-6">
+        <h2 className="text-xl font-bold mb-4 text-white">Channel Attribution</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="text-[#9CA3AF] text-xs uppercase tracking-wider border-b border-[#2A2A2A]">
+                <th className="text-left py-3 pr-4">Channel</th>
+                <th className="text-right py-3 px-3">Leads</th>
+                <th className="text-right py-3 px-3">Conversions</th>
+                <th className="text-right py-3 px-3">Revenue</th>
+                <th className="text-right py-3 px-3">CAC</th>
+                <th className="text-right py-3 pl-3">ROI</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+              {channels.map((ch: any, i: number) => (
+                <tr key={i} className="border-b border-[#2A2A2A]/50 hover:bg-[#222222] transition-colors">
+                  <td className="py-3 pr-4 text-white font-medium">{ch.channel}</td>
+                  <td className="text-right py-3 px-3 text-white">{ch.leads || "--"}</td>
+                  <td className="text-right py-3 px-3 text-white">{ch.conversions || "--"}</td>
+                  <td className="text-right py-3 px-3 text-white font-semibold">{ch.revenue > 0 ? `$${ch.revenue.toFixed(2)}` : "--"}</td>
+                  <td className="text-right py-3 px-3 text-[#9CA3AF]">{ch.costPerAcquisition > 0 ? `$${ch.costPerAcquisition.toFixed(2)}` : "$0"}</td>
+                  <td className="text-right py-3 pl-3">
+                    <span className={ch.roi === "Infinite" ? "text-[#00C805]" : "text-[#9CA3AF]"}>{ch.roi}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Content & Social KPIs */}
+      <div className="bg-[#1A1A1A] border border-[#2A2A2A] rounded-2xl p-6">
+        <h2 className="text-xl font-bold mb-4 text-white">Content & Social</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <KpiCard label="X Followers" value={kpis.totalPosts ?? 0} sub="@Artemis_jeff" />
+          <KpiCard label="Email Subscribers" value={kpis.emailSubscribers ?? 0} sub="Beehiiv" />
+          <KpiCard label="Total Posts" value={kpis.totalPosts ?? 0} sub="X + LinkedIn + FB" />
+          <KpiCard label="Engagement Rate" value="--" sub="Coming soon" />
+        </div>
+      </div>
+
+      {/* Goals Tracker */}
+      <div className="bg-[#1A1A1A] border border-[#2A2A2A] rounded-2xl p-6">
+        <h2 className="text-xl font-bold mb-4 text-white">Goals & Benchmarks</h2>
+        <div className="space-y-4">
+          {[
+            { label: "$10K/week revenue", current: kpis.weeklyRevenue ?? 0, target: 10000, color: "#00C805" },
+            { label: "100 email subscribers", current: kpis.emailSubscribers ?? 0, target: 100, color: "#00BFFF" },
+            { label: "500 X followers", current: 0, target: 500, color: "#8B5CF6" },
+            { label: "5 qualified sales leads", current: 0, target: 5, color: "#FFB800" },
+            { label: "2% site conversion rate", current: 0, target: 2, color: "#FF5252" },
+          ].map((goal, i) => {
+            const pct = Math.min(100, (goal.current / goal.target) * 100);
+            return (
+              <div key={i}>
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-sm text-white">{goal.label}</span>
+                  <span className="text-sm font-bold" style={{ color: goal.color }}>
+                    {typeof goal.current === "number" && goal.label.includes("$") ? `$${goal.current.toLocaleString()}` : goal.current} / {goal.label.includes("$") ? `$${goal.target.toLocaleString()}` : goal.target}
+                  </span>
+                </div>
+                <div className="h-2 bg-[#2A2A2A] rounded-full overflow-hidden">
+                  <div className="h-full rounded-full transition-all duration-1000"
+                    style={{ width: `${pct}%`, backgroundColor: goal.color }} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════
    MAIN PAGE
    ═══════════════════════════════════════════ */
 
 const tabs: { key: Tab; label: string; dot: string }[] = [
   { key: "dashboard", label: "Dashboard", dot: "#00C805" },
+  { key: "marketing", label: "Marketing", dot: "#8B5CF6" },
   { key: "future", label: "Future Projects", dot: "#FFB800" },
   { key: "models", label: "Idea Models", dot: "#FF5252" },
   { key: "resources", label: "Resources", dot: "#00BFFF" },
@@ -663,6 +853,7 @@ export default function Home() {
 
       {/* Tab Content */}
       {activeTab === "dashboard" && <DashboardTab />}
+      {activeTab === "marketing" && <MarketingTab />}
       {activeTab === "future" && <FutureProjectsTab />}
       {activeTab === "models" && <IdeaModelsTab />}
       {activeTab === "resources" && <ResourcesTab />}
