@@ -147,13 +147,14 @@ function AgentCommandCenter() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
         {orchestrator && <AgentCard agent={orchestrator} />}
         <div className="bg-[#1A1A1A] border border-[#2A2A2A] rounded-xl overflow-hidden relative group">
-          {/* Harry Potter effect: slow Ken Burns zoom + subtle pan that loops */}
-          <div className="w-full h-full animate-ken-burns">
-            <img src="/team-office.png" alt="The team -- 1950s noir office with futuristic tech"
-              className="w-full h-full object-cover opacity-80 min-h-[180px]" />
-          </div>
-          {/* Subtle flickering light overlay for that old film look */}
-          <div className="absolute inset-0 animate-film-flicker pointer-events-none" />
+          <video
+            src="/team-office.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-85 min-h-[180px]"
+          />
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
             <p className="text-white text-sm font-bold">The Team</p>
             <p className="text-[#9CA3AF] text-xs">1950s grit. 2026 tech.</p>
