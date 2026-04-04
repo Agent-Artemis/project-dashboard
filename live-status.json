@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-04-04T02:40:29Z",
+  "updatedAt": "2026-04-04T04:10:32Z",
   "agents": {
     "artemis": {
-      "status": "active",
-      "currentTask": "Live API deployed and verified",
-      "workload": 55
+      "status": "idle",
+      "currentTask": "Day complete. Trading prep + weekend scan queued.",
+      "workload": 10
     },
     "benny": {
       "status": "idle",
