@@ -141,7 +141,14 @@ function AgentCommandCenter() {
   const subAgents = agentList.filter((a) => !a.isOrchestrator);
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4 text-white">Agent Command Center</h2>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-bold text-white">Agent Command Center</h2>
+        {data?.liveUpdatedAt && (
+          <span className="text-xs text-[#9CA3AF]">
+            Live &bull; {new Date(data.liveUpdatedAt).toLocaleString("en-US", { timeZone: "America/Denver", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}
+          </span>
+        )}
+      </div>
 
       {/* Top row: Artemis card + team image side by side */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
