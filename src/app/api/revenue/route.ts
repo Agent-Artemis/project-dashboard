@@ -11,7 +11,7 @@ export async function GET() {
 
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const stripe = new Stripe(key.trim(), { apiVersion: "2025-12-18.acacia" as any });
+    const stripe = new Stripe(key.trim());
     const now = Math.floor(Date.now() / 1000);
     const weekStart = now - 7 * 86400;
     const monthStart = now - 30 * 86400;
