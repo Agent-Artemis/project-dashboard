@@ -124,7 +124,7 @@ function AgentCard({ agent }: { agent: Agent }) {
             <p className="text-xs text-[#9CA3AF]">{agent.role}</p>
           </div>
         </div>
-        <span className="text-xs text-[#9CA3AF] bg-[#2A2A2A] px-2 py-1 rounded-md">{agent.tasksCompleted} tasks</span>
+        <span className="text-xs text-[#9CA3AF] bg-[#2A2A2A] px-2 py-1 rounded-md">{agent.tasksCompleted}/{agent.tasksTotal ?? "?"}</span>
       </div>
       <p className="text-xs text-[#00BFFF] mb-3">{agent.specialty}</p>
       <div className="bg-[#111111] rounded-lg px-3 py-2">
