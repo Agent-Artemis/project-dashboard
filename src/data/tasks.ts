@@ -87,6 +87,29 @@ export const activeTasks: Task[] = [
     createdAt: "2026-04-04T00:00:00",
     updatedAt: "2026-04-06T08:00:00", 
     tags: ["research", "competitive-analysis", "agent-leasing"]
+  },
+  {
+    id: "fix-calculator-branding",
+    title: "Fix CCM Calculator Branding",
+    description: "calculator.augeohealth.com still shows 'Healthcare Industry Partners' instead of 'Augeo Health' - deployment or caching issue",
+    assignedTo: "main",
+    status: "active",
+    priority: "high",
+    createdAt: "2026-04-06T15:15:00",
+    updatedAt: "2026-04-06T15:15:00",
+    dueDate: "2026-04-06T18:00:00",
+    tags: ["branding", "deployment", "caching", "calculator"]
+  },
+  {
+    id: "fix-logo-sizes",
+    title: "Investigate Logo Size Issues", 
+    description: "augeohealth.com logo still appears small despite multiple size adjustments - may be browser caching",
+    assignedTo: "main",
+    status: "active",
+    priority: "medium",
+    createdAt: "2026-04-06T15:15:00",
+    updatedAt: "2026-04-06T15:15:00",
+    tags: ["branding", "css", "caching", "logos"]
   }
 ];
 

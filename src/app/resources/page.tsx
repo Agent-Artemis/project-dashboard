@@ -29,6 +29,19 @@ const resources = [
     ],
   },
   {
+    category: "Downloads",
+    color: "#3b82f6",
+    items: [
+      {
+        name: "HCIP Acquisition Targets (CSV)",
+        url: "https://augeohealth.com/HCIP-Acquisition-Targets.csv",
+        description: "Comprehensive list of 503B pharmacies, RV parks, storage facilities, and land opportunities for HCIP acquisition project",
+        status: "Ready",
+        statusColor: "bg-blue-100 text-blue-700",
+      },
+    ],
+  },
+  {
     category: "Artemis Brand",
     color: "#8b5cf6",
     items: [
