@@ -216,7 +216,7 @@ export default function DashboardPage() {
         {/* Sidebar */}
         <aside className="w-64 bg-[#1e3a5f] min-h-screen p-6 hidden lg:block">
           <h1 className="text-white text-xl font-bold mb-1">Project HQ</h1>
-          <p className="text-blue-300 text-xs mb-8">Jeff Oldroyd</p>
+          <p className="text-blue-300 text-xs mb-8">Jeff Oldroyd - Updated 2:32 PM</p>
 
           <nav className="space-y-2">
             {(["all", "augeo-health", "artemis"] as const).map((brand) => (
