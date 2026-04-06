@@ -16,6 +16,38 @@ export interface Task {
   tags: string[];
 }
 
+// Helper functions to work with tasks
+export function getActiveTasksByAgent(agentId: string): Task[] {
+  return activeTasks.filter(task => task.assignedTo === agentId && task.status === 'active');
+}
+
+export function getTasksByAgent(agentId: string): Task[] {
+  return activeTasks.filter(task => task.assignedTo === agentId);
+}
+
+export function getBlockedTasksByAgent(agentId: string): Task[] {
+  return activeTasks.filter(task => task.assignedTo === agentId && task.status === 'blocked');
+}
+
+export function getCompletedTasksByAgent(agentId: string): Task[] {
+  return activeTasks.filter(task => task.assignedTo === agentId && task.status === 'completed');
+}
+
+export function getTasksByStatus(status: TaskStatus): Task[] {
+  return activeTasks.filter(task => task.status === status);
+}
+
+export function getTasksByPriority(priority: TaskPriority): Task[] {
+  return activeTasks.filter(task => task.priority === priority);
+}
+
+export function getOverdueTasks(): Task[] {
+  const now = new Date();
+  return activeTasks.filter(task => 
+    task.dueDate && new Date(task.dueDate) < now && task.status !== 'completed'
+  );
+}
+
 // Current active tasks for all agents
 export const activeTasks: Task[] = [
   {
