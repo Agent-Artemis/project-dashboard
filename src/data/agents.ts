@@ -1,3 +1,5 @@
+import { getActiveTasksByAgent, getTasksByAgent, getBlockedTasksByAgent } from "./tasks";
+
 export type AgentStatus = "active" | "idle" | "offline" | "error";
 
 export interface SubAgent {
@@ -12,17 +14,74 @@ export interface SubAgent {
   capabilities: string[];
 }
 
-export const agents: SubAgent[] = [
+// Helper function to get current task dynamically
+function getCurrentTask(agentId: string): string | undefined {
+  try {
+    const activeTasks = getActiveTasksByAgent(agentId);
+    const blockedTasks = getBlockedTasksByAgent(agentId);
+    
+    // Show blocked tasks first (waiting on Jeff)
+    if (blockedTasks.length > 0) {
+      const priorities = { urgent: 4, high: 3, medium: 2, low: 1 };
+      const sortedBlocked = blockedTasks.sort((a, b) => 
+        priorities[b.priority] - priorities[a.priority]
+      );
+      return sortedBlocked[0].title;
+    }
+    
+    // Then show active tasks
+    if (activeTasks.length > 0) {
+      const priorities = { urgent: 4, high: 3, medium: 2, low: 1 };
+      const sortedActive = activeTasks.sort((a, b) => 
+        priorities[b.priority] - priorities[a.priority]
+      );
+      return sortedActive[0].title;
+    }
+    
+    return undefined;
+  } catch (error) {
+    // Fallback if tasks module has issues
+    return undefined;
+  }
+}
+
+// Helper function to get completed task count dynamically
+function getCompletedTaskCount(agentId: string): number {
+  // Historical counts from before task tracking system
+  const historicalCounts: Record<string, number> = {
+    "healthcare-ops": 3,
+    "content-distribution": 5, 
+    "sales-outreach": 2,
+    "research-scout": 4,
+    "acquisitions-finance": 1,
+    "main": 12 // Artemis main agent
+  };
+  return historicalCounts[agentId] || 0;
+}
+
+// Helper function to determine agent status dynamically
+function getAgentStatus(agentId: string): AgentStatus {
+  try {
+    const activeTasks = getActiveTasksByAgent(agentId);
+    const blockedTasks = getBlockedTasksByAgent(agentId);
+    
+    if (activeTasks.length > 0) return "active";
+    if (blockedTasks.length > 0) return "idle"; // Blocked = idle (waiting)
+    return "idle";
+  } catch (error) {
+    return "idle";
+  }
+}
+
+// Base agent configurations
+const baseAgents = [
   {
     id: "healthcare-ops",
     name: "Benny",
     role: "Healthcare Operations",
     description:
       "CCM/RPM pipeline automation, medical billing AI, pre-auth workflows, voice AI platform, and healthcare operations support.",
-    status: "idle",
     lastActive: "2026-04-03T12:00:00",
-    tasksCompleted: 3,
-    currentTask: undefined,
     capabilities: [
       "CCM/RPM pipeline automation",
       "Medical billing research",
@@ -38,10 +97,7 @@ export const agents: SubAgent[] = [
     role: "Content & Distribution",
     description:
       "X/Twitter posting, Beehiiv newsletter, site content, YouTube scripts, LinkedIn. Dual-brand: Augeo Health and Artemis.",
-    status: "idle",
     lastActive: "2026-04-03T14:00:00",
-    tasksCompleted: 5,
-    currentTask: "Content push awaiting Jeff review",
     capabilities: [
       "X/Twitter content creation",
       "Newsletter drafting (Beehiiv)",
@@ -57,10 +113,7 @@ export const agents: SubAgent[] = [
     role: "Sales & Outreach",
     description:
       "Lead generation, cold outreach, prospect research, pipeline management, and channel partner recruitment.",
-    status: "idle",
     lastActive: "2026-04-03T14:00:00",
-    tasksCompleted: 2,
-    currentTask: "LinkedIn drafts awaiting Jeff review",
     capabilities: [
       "Lead generation",
       "Email sequence drafting",
@@ -77,10 +130,7 @@ export const agents: SubAgent[] = [
     role: "Research & Opportunity Scout",
     description:
       "Market analysis, competitive intel, acquisition research, grant scouting, and technology scouting.",
-    status: "idle",
     lastActive: "2026-04-03T16:00:00",
-    tasksCompleted: 4,
-    currentTask: undefined,
     capabilities: [
       "Market analysis",
       "Competitive intelligence",
@@ -90,7 +140,33 @@ export const agents: SubAgent[] = [
       "Technology scouting",
     ],
   },
+  {
+    id: "acquisitions-finance",
+    name: "Frank",
+    role: "Acquisitions & Finance",
+    description:
+      "Acquisition target analysis, financial modeling, paper trading, investment research, deal structuring, and financial operations.",
+    lastActive: "2026-04-06T08:00:00",
+    capabilities: [
+      "Acquisition target analysis",
+      "Financial modeling",
+      "Paper trading automation",
+      "Investment research",
+      "Deal structuring",
+      "Portfolio management",
+      "Market analysis",
+      "Risk assessment"
+    ],
+  },
 ];
+
+// Dynamic agents list that pulls current tasks and status
+export const agents: SubAgent[] = baseAgents.map(agent => ({
+  ...agent,
+  status: getAgentStatus(agent.id),
+  tasksCompleted: getCompletedTaskCount(agent.id),
+  currentTask: getCurrentTask(agent.id)
+}));
 
 export const agentStatusStyles: Record<
   AgentStatus,
@@ -128,4 +204,8 @@ export function getActiveAgentCount(): number {
 
 export function getIdleAgentCount(): number {
   return agents.filter((a) => a.status === "idle").length;
+}
+
+export function getAgentById(agentId: string): SubAgent | undefined {
+  return agents.find(agent => agent.id === agentId);
 }
