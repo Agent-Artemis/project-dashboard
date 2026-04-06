@@ -20,13 +20,14 @@ export interface Task {
 export const activeTasks: Task[] = [
   {
     id: "frank-paper-trading",
-    title: "Paper Trading - Day 1 Setup", 
-    description: "Initialize paper trading account, validate API connections, prepare for 3-day paper trading phase before live trading on Apr 10",
+    title: "Paper Trading - Day 1 STARTED ✅", 
+    description: "Paper trading account active, $100K virtual balance, API connected, daily monitoring in progress. Live trading starts Thu Apr 10",
     assignedTo: "acquisitions-finance",
-    status: "active",
+    status: "completed",
     priority: "high",
     createdAt: "2026-04-06T08:00:00",
-    updatedAt: "2026-04-06T08:30:00",
+    updatedAt: "2026-04-06T16:46:00",
+    completedAt: "2026-04-06T16:46:00",
     dueDate: "2026-04-07T16:00:00",
     tags: ["trading", "alpaca", "finance"]
   },
@@ -110,6 +111,54 @@ export const activeTasks: Task[] = [
     createdAt: "2026-04-06T15:15:00",
     updatedAt: "2026-04-06T15:15:00",
     tags: ["branding", "css", "caching", "logos"]
+  },
+  {
+    id: "social-media-blitz",
+    title: "Social Media Content Push",
+    description: "FB posts for Augeo Agency (50 followers!), X posts, Instagram cross-posting, LinkedIn intro post - coordinate across all platforms",
+    assignedTo: "content",
+    status: "active",
+    priority: "urgent",
+    createdAt: "2026-04-06T16:46:00",
+    updatedAt: "2026-04-06T16:46:00",
+    dueDate: "2026-04-06T18:00:00",
+    tags: ["social-media", "content", "branding", "linkedin"]
+  },
+  {
+    id: "acquisition-followup",
+    title: "HCIP Acquisition Follow-up Calls",
+    description: "Enhanced contact list ready - priority calls to Qualgen LLC (405-341-7537), Apollo Care (573-234-5678), Storage portfolio leads",
+    assignedTo: "sales",
+    status: "active", 
+    priority: "high",
+    createdAt: "2026-04-06T16:46:00",
+    updatedAt: "2026-04-06T16:46:00",
+    dueDate: "2026-04-07T17:00:00",
+    tags: ["acquisitions", "outreach", "hcip", "503b-pharmacy"]
+  },
+  {
+    id: "grant-platform-spec",
+    title: "Grant Research Platform - Spec & Pricing",
+    description: "Design subscription model: search ($X/mo), fill-out (1x fee), submission + follow-up (8.5% success fee). Competitive research on existing platforms",
+    assignedTo: "research",
+    status: "active",
+    priority: "medium",
+    createdAt: "2026-04-06T16:46:00",
+    updatedAt: "2026-04-06T16:46:00",
+    dueDate: "2026-04-08T17:00:00",
+    tags: ["grants", "platform", "saas", "pricing-model"]
+  },
+  {
+    id: "agent-leasing-research",
+    title: "Agent Leasing Competitive Research",
+    description: "Research existing AI agent service companies, pricing models, service delivery. Map competitive landscape for temp-agency-style AI agent leasing",
+    assignedTo: "research",
+    status: "active",
+    priority: "medium",
+    createdAt: "2026-04-06T16:46:00",
+    updatedAt: "2026-04-06T16:46:00",
+    dueDate: "2026-04-08T17:00:00",
+    tags: ["agents", "competitive", "pricing", "business-model"]
   }
 ];
 
