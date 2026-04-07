@@ -15,57 +15,22 @@ function archiveCompletedTasks() {
   const today = new Date().toISOString().split('T')[0];
   
   try {
-    // Read current tasks and archive files
+    // Read current tasks
     const tasksPath = path.join(__dirname, '../src/data/tasks.ts');
     const archivePath = path.join(__dirname, '../src/data/archive.ts');
     
     const tasksContent = fs.readFileSync(tasksPath, 'utf8');
     
-    // Simple approach: manually manage completed tasks for now
-    // Extract completed tasks by looking for status: "completed"
-    const lines = tasksContent.split('\\n');
-    const activeTasks = [];
+    // Find completed tasks using regex
+    const completedTaskPattern = /{\s*[^}]*status:\s*"completed"[^}]*}/g;
     const completedTasks = [];
-    let currentTask = [];
-    let inTaskObject = false;
-    let taskStatus = '';
+    let match;
     
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
-      
-      if (line.trim().startsWith('{')) {
-        inTaskObject = true;
-        currentTask = [line];
-      } else if (line.trim().startsWith('}')) {
-        currentTask.push(line);
-        inTaskObject = false;
-        
-        // Determine if this task is completed
-        if (taskStatus === 'completed') {
-          // Add archivedAt timestamp
-          const taskText = currentTask.join('\\n');
-          const archivedTask = taskText.replace(/\\}$/, `,\\n    archivedAt: \"${now}\"\\n  }`);
-          completedTasks.push(archivedTask);
-        } else {
-          activeTasks.push(currentTask.join('\\n'));
-        }
-        
-        currentTask = [];
-        taskStatus = '';
-      } else if (inTaskObject) {
-        currentTask.push(line);
-        
-        // Check if this line contains status
-        const statusMatch = line.match(/status: \"(\\w+)\"/);
-        if (statusMatch) {
-          taskStatus = statusMatch[1];
-        }
-      } else {
-        // Keep non-task lines as they are
-        if (!inTaskObject && !line.trim().startsWith('{')) {
-          activeTasks.push(line);
-        }
-      }
+    while ((match = completedTaskPattern.exec(tasksContent)) !== null) {
+      // Add archivedAt timestamp to completed task
+      const task = match[0];
+      const archivedTask = task.replace(/}$/, `,\n    archivedAt: "${now}"\n  }`);
+      completedTasks.push(archivedTask);
     }
     
     if (completedTasks.length === 0) {
@@ -75,7 +40,18 @@ function archiveCompletedTasks() {
     
     console.log(`📦 Archiving ${completedTasks.length} completed tasks...`);
     
-    // Read current archive
+    // Remove completed tasks from active list
+    let updatedTasksContent = tasksContent;
+    const completedTasksPattern = /{\s*[^}]*status:\s*"completed"[^}]*},?\s*/g;
+    updatedTasksContent = updatedTasksContent.replace(completedTasksPattern, '');
+    
+    // Clean up any trailing commas before closing bracket
+    updatedTasksContent = updatedTasksContent.replace(/,\s*\]/g, '\n];');
+    
+    // Write updated tasks file
+    fs.writeFileSync(tasksPath, updatedTasksContent);
+    
+    // Handle archive file
     let archiveContent;
     try {
       archiveContent = fs.readFileSync(archivePath, 'utf8');
@@ -103,16 +79,11 @@ export const archivedTasks: ArchivedTask[] = [
     // Add completed tasks to archive
     const archiveInsertPoint = archiveContent.lastIndexOf('];');
     const beforeBracket = archiveContent.substring(0, archiveInsertPoint);
-    const existingTasks = beforeBracket.includes('{') ? beforeBracket + ',\\n' : beforeBracket;
-    const newArchiveContent = existingTasks + completedTasks.join(',\\n') + '\\n];';
+    const hasExistingTasks = beforeBracket.includes('id:');
+    const separator = hasExistingTasks ? ',\n  ' : '\n  ';
+    const newArchiveContent = beforeBracket + separator + completedTasks.join(',\n  ') + '\n];';
     
-    // Create new active tasks file with only non-completed tasks
-    const taskFileStart = tasksContent.substring(0, tasksContent.indexOf('export const activeTasks'));
-    const newTasksContent = taskFileStart + 'export const activeTasks: Task[] = [\\n' + 
-      activeTasks.filter(task => task.trim() && !task.includes('export const')).join(',\\n') + '\\n];';
-    
-    // Write updated files
-    fs.writeFileSync(tasksPath, newTasksContent);
+    // Write archive file
     fs.writeFileSync(archivePath, newArchiveContent);
     
     console.log(`✅ Archived ${completedTasks.length} tasks`);
@@ -127,7 +98,9 @@ export const archivedTasks: ArchivedTask[] = [
 ## Tasks Archived: ${completedTasks.length}
 
 ${completedTasks.map((task, i) => `### Task ${i + 1}
+\`\`\`typescript
 ${task}
+\`\`\`
 
 `).join('')}
 
@@ -143,8 +116,15 @@ ${task}
       execSync(`git commit -m "Nightly cleanup: Archive ${completedTasks.length} completed tasks (${today})"`, { 
         cwd: path.join(__dirname, '../') 
       });
-      execSync('git push', { cwd: path.join(__dirname, '../') });
-      console.log('📤 Changes committed and deployed');
+      console.log('📤 Changes committed to git');
+      
+      // Try to push if remote exists
+      try {
+        execSync('git push', { cwd: path.join(__dirname, '../') });
+        console.log('🚀 Changes pushed to remote');
+      } catch (pushError) {
+        console.log('⚠️ Git push failed (no remote or auth issues)');
+      }
     } catch (gitError) {
       console.log('⚠️ Git commit failed:', gitError.message);
     }
