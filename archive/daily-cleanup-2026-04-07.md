@@ -5,38 +5,40 @@
 ### Task 1
 ```typescript
 {
-    id: "1",
-    title: "Review Q1 financial reports",
-    assignedTo: "Jeff Oldroyd",
+    id: "dashboard-task-mgmt",
+    title: "Dashboard Task Management",
+    description: "Built real-time task system, nightly cleanup automation", 
+    assignedTo: "Artemis",
     status: "completed",
     priority: "high",
-    createdAt: "2026-04-05T10:00:00Z",
-    updatedAt: "2026-04-06T15:30:00Z",
-    completedAt: "2026-04-06T15:30:00Z",
-    tags: ["finance", "quarterly"]
+    createdAt: "2026-04-06T08:00:00Z", 
+    updatedAt: "2026-04-06T20:46:00Z",
+    completedAt: "2026-04-06T20:46:00Z",
+    tags: ["infrastructure", "automation"]
   ,
-    archivedAt: "2026-04-07T02:50:34.081Z"
+    archivedAt: "2026-04-07T06:01:16.763Z"
   }
 ```
 
 ### Task 2
 ```typescript
 {
-    id: "4",
-    title: "Test new lead generation funnel",
-    assignedTo: "Artemis", 
+    id: "frank-setup", 
+    title: "Frank Paper Trading Setup",
+    description: "$100K virtual account activated, API tested",
+    assignedTo: "Frank",
     status: "completed",
-    priority: "high",
-    createdAt: "2026-04-05T14:00:00Z",
-    updatedAt: "2026-04-06T12:00:00Z",
-    completedAt: "2026-04-06T12:00:00Z",
-    tags: ["marketing", "leads"]
+    priority: "medium", 
+    createdAt: "2026-04-06T08:00:00Z",
+    updatedAt: "2026-04-06T16:46:00Z", 
+    completedAt: "2026-04-06T16:46:00Z",
+    tags: ["trading", "setup"]
   ,
-    archivedAt: "2026-04-07T02:50:34.081Z"
+    archivedAt: "2026-04-07T06:01:16.763Z"
   }
 ```
 
 
 
-**Cleanup completed at:** 2026-04-07T02:50:34.081Z
-**Next cleanup:** 2026-04-08T02:50:34.082Z
+**Cleanup completed at:** 2026-04-07T06:01:16.763Z
+**Next cleanup:** 2026-04-08T06:01:16.764Z
