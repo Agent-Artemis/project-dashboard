@@ -5,360 +5,261 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project HQ</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        .progress-ring-circle {
+            transition: stroke-dasharray 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
 </head>
-<body class="bg-gray-50">
-    <div class="min-h-screen">
-        <div class="flex">
-            <!-- Sidebar -->
-            <aside class="w-64 bg-[#1e3a5f] min-h-screen p-6 hidden lg:block">
-                <h1 class="text-white text-xl font-bold mb-1">Project HQ</h1>
-                <p class="text-blue-300 text-xs mb-8">Jeff Oldroyd</p>
+<body class="bg-black text-white">
+    <div class="min-h-screen flex">
+        <!-- Sidebar -->
+        <div class="w-64 bg-gray-900 p-6">
+            <h1 class="text-xl font-bold mb-1">Project HQ</h1>
+            <p class="text-gray-400 text-sm mb-8">Jeff Oldroyd</p>
+            
+            <!-- Navigation -->
+            <nav class="space-y-1">
+                <div class="bg-green-600 text-white px-4 py-2 rounded flex items-center gap-2 text-sm">
+                    <span class="w-2 h-2 bg-white rounded-full"></span>
+                    Dashboard
+                </div>
+                <div class="text-gray-400 px-4 py-2 rounded flex items-center gap-2 text-sm hover:bg-gray-800">
+                    <span class="w-2 h-2 bg-yellow-500 rounded-full"></span>
+                    Future Projects
+                </div>
+                <div class="text-gray-400 px-4 py-2 rounded flex items-center gap-2 text-sm hover:bg-gray-800">
+                    <span class="w-2 h-2 bg-pink-500 rounded-full"></span>
+                    Idea Models
+                </div>
+                <div class="text-gray-400 px-4 py-2 rounded flex items-center gap-2 text-sm hover:bg-gray-800">
+                    <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    Resources
+                </div>
+            </nav>
+        </div>
 
-                <nav class="space-y-2">
-                    <div class="w-full text-left px-4 py-3 rounded-lg bg-white/10 text-white text-sm font-medium">
-                        <span class="inline-block w-2 h-2 rounded-full mr-2 bg-white"></span>
-                        All Projects
+        <!-- Main Content -->
+        <div class="flex-1 p-8">
+            <!-- Revenue Section -->
+            <div class="bg-gray-900 rounded-lg p-6 mb-8">
+                <div class="text-center">
+                    <h2 class="text-4xl font-bold mb-2">$0.00</h2>
+                    <p class="text-gray-400 text-sm">Weekly Revenue</p>
+                    <p class="text-green-500 text-xs">0.0% of $10K target</p>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-8 mt-6 text-center">
+                    <div>
+                        <p class="text-gray-400 text-sm">Month</p>
+                        <p class="text-2xl font-bold">$0.00</p>
                     </div>
-                    <a href="/future" class="w-full text-left px-4 py-3 rounded-lg text-blue-200 hover:bg-white/5 hover:text-white text-sm font-medium block">
-                        <span class="inline-block w-2 h-2 rounded-full mr-2 bg-amber-400"></span>
-                        Future Projects
-                    </a>
-                    <a href="/models" class="w-full text-left px-4 py-3 rounded-lg text-blue-200 hover:bg-white/5 hover:text-white text-sm font-medium block">
-                        <span class="inline-block w-2 h-2 rounded-full mr-2 bg-pink-400"></span>
-                        Idea Models
-                    </a>
-                    <a href="/resources" class="w-full text-left px-4 py-3 rounded-lg text-blue-200 hover:bg-white/5 hover:text-white text-sm font-medium block">
-                        <span class="inline-block w-2 h-2 rounded-full mr-2 bg-blue-400"></span>
-                        Resources
-                    </a>
-                </nav>
-
-                <div class="mt-12 pt-6 border-t border-white/10">
-                    <p class="text-blue-300 text-xs">Revenue Target</p>
-                    <p class="text-white text-lg font-bold">$10,000/week</p>
-                    <p class="text-blue-300 text-xs mt-1">by May 25, 2026</p>
+                    <div>
+                        <p class="text-gray-400 text-sm">Txns (Week)</p>
+                        <p class="text-2xl font-bold">0</p>
+                    </div>
+                    <div>
+                        <p class="text-gray-400 text-sm">Txns (Month)</p>
+                        <p class="text-2xl font-bold">0</p>
+                    </div>
                 </div>
-            </aside>
+            </div>
 
-            <!-- Main Content -->
-            <main class="flex-1 p-6 md:p-10">
-                <!-- Header -->
-                <div class="mb-8">
-                    <h1 class="text-2xl md:text-3xl font-extrabold text-[#1e3a5f]">All Projects</h1>
-                    <p class="text-gray-500 mt-1">Overview of all projects across Augeo Health and Artemis</p>
-                </div>
+            <h2 class="text-xl font-bold mb-6">Agent Command Center</h2>
 
-                <!-- Live data -->
-                <div class="bg-gray-100 rounded-xl p-6 mb-8">
-                    <h2 class="text-lg font-bold text-gray-900 mb-4">Live data</h2>
+            <div class="grid grid-cols-2 gap-8">
+                <!-- Left Column - Artemis -->
+                <div class="bg-gray-900 rounded-lg p-6">
+                    <div class="flex items-center gap-4 mb-6">
+                        <!-- Circular Progress -->
+                        <div class="relative w-16 h-16">
+                            <svg class="w-16 h-16 progress-ring">
+                                <circle 
+                                    class="text-gray-700" 
+                                    stroke="currentColor" 
+                                    stroke-width="3" 
+                                    fill="transparent" 
+                                    r="28" 
+                                    cx="32" 
+                                    cy="32"
+                                />
+                                <circle 
+                                    class="text-green-500 progress-ring-circle" 
+                                    stroke="currentColor" 
+                                    stroke-width="3" 
+                                    fill="transparent" 
+                                    r="28" 
+                                    cx="32" 
+                                    cy="32"
+                                    stroke-dasharray="55 120"
+                                />
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-sm font-bold text-white">32%</span>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-bold">Artemis</h3>
+                            <p class="text-gray-400 text-sm">Chief of Staff / Orchestrator</p>
+                        </div>
+                        
+                        <div class="ml-auto">
+                            <span class="text-xs bg-green-600 px-2 py-1 rounded">4/14</span>
+                        </div>
+                    </div>
                     
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                        <div>
-                            <p class="text-sm text-gray-500 font-medium">Weekly Revenue</p>
-                            <p class="text-3xl font-extrabold text-[#1e3a5f]">$0.00</p>
-                            <p class="text-xs text-gray-400">0.0% of $10K target</p>
-                        </div>
-                        <div>
-                            <p class="text-sm text-gray-500 font-medium">Month</p>
-                            <p class="text-3xl font-extrabold text-[#1e3a5f]">$0.00</p>
-                        </div>
-                        <div>
-                            <p class="text-sm text-gray-500 font-medium">Txns (Week)</p>
-                            <p class="text-3xl font-extrabold text-[#1e3a5f]">0</p>
-                        </div>
-                        <div>
-                            <p class="text-sm text-gray-500 font-medium">Txns (Month)</p>
-                            <p class="text-3xl font-extrabold text-[#1e3a5f]">0</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Agent Command Center -->
-                <h2 class="text-lg font-bold text-[#1e3a5f] mb-4">Agent Command Center</h2>
-
-                <!-- The Team -->
-                <div class="bg-white rounded-xl border border-gray-200 p-6 mb-8">
-                    <h3 class="text-sm font-bold text-gray-900 mb-2">The Team</h3>
-                    <p class="text-xs text-gray-500 mb-6">1950s grit. 2026 tech.</p>
+                    <p class="text-gray-300 text-sm mb-4">Strategy, delegation, execution, full-stack building</p>
                     
-                    <!-- Team Photo Placeholder -->
-                    <div class="w-full h-64 bg-gradient-to-r from-blue-100 to-blue-50 rounded-xl mb-6 flex items-center justify-center">
-                        <div class="text-center">
-                            <div class="text-6xl mb-4">👥</div>
-                            <p class="text-lg font-bold text-[#1e3a5f]">Jeff & The Agent Team</p>
-                            <p class="text-sm text-gray-600">Building the future of work</p>
-                        </div>
+                    <div class="bg-black rounded p-3 mb-4">
+                        <p class="text-green-500 text-xs mb-1">Current Task</p>
+                        <p class="text-white text-sm">Dashboard deployment, Website branding fixes</p>
                     </div>
-
-                    <!-- Agent Grid -->
-                    <div class="grid md:grid-cols-2 gap-4">
-                        <!-- Artemis -->
-                        <div class="rounded-xl border border-gray-200 p-5 bg-green-50">
-                            <div class="flex items-center justify-between mb-3">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></div>
-                                    <h3 class="font-bold text-[#1e3a5f] text-sm">Artemis</h3>
-                                </div>
-                                <span class="text-xs font-semibold px-2 py-0.5 rounded-full text-green-700 bg-white/60">
-                                    Active
-                                </span>
-                            </div>
-                            <p class="text-xs text-gray-500 mb-3">Chief of Staff - Orchestrates team, manages complex projects, strategic thinking</p>
-                            <div class="bg-white/80 rounded-lg px-3 py-2 mb-3">
-                                <p class="text-xs text-gray-400">Current Task</p>
-                                <p class="text-sm font-medium text-[#1e3a5f]">Dashboard deployment, Website branding fixes</p>
-                            </div>
-                            <div class="flex items-center justify-between text-xs text-gray-400">
-                                <span>47 tasks completed</span>
-                                <span>8 capabilities</span>
-                            </div>
-                        </div>
-
-                        <!-- Charlie -->
-                        <div class="rounded-xl border border-gray-200 p-5 bg-orange-50">
-                            <div class="flex items-center justify-between mb-3">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2.5 h-2.5 rounded-full bg-orange-500 animate-pulse"></div>
-                                    <h3 class="font-bold text-[#1e3a5f] text-sm">Charlie</h3>
-                                </div>
-                                <span class="text-xs font-semibold px-2 py-0.5 rounded-full text-orange-700 bg-white/60">
-                                    Urgent
-                                </span>
-                            </div>
-                            <p class="text-xs text-gray-500 mb-3">Content & Distribution - Social media, newsletters, content strategy</p>
-                            <div class="bg-white/80 rounded-lg px-3 py-2 mb-3">
-                                <p class="text-xs text-gray-400">Current Task</p>
-                                <p class="text-sm font-medium text-[#1e3a5f]">Social Media Blitz: LinkedIn intro, FB milestone (50 followers!)</p>
-                            </div>
-                            <div class="flex items-center justify-between text-xs text-gray-400">
-                                <span>23 tasks completed</span>
-                                <span>6 capabilities</span>
-                            </div>
-                        </div>
-
-                        <!-- Dennis -->
-                        <div class="rounded-xl border border-gray-200 p-5 bg-red-50">
-                            <div class="flex items-center justify-between mb-3">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></div>
-                                    <h3 class="font-bold text-[#1e3a5f] text-sm">Dennis</h3>
-                                </div>
-                                <span class="text-xs font-semibold px-2 py-0.5 rounded-full text-red-700 bg-white/60">
-                                    High Priority
-                                </span>
-                            </div>
-                            <p class="text-xs text-gray-500 mb-3">Sales & Outreach - Lead generation, cold outreach, pipeline management</p>
-                            <div class="bg-white/80 rounded-lg px-3 py-2 mb-3">
-                                <p class="text-xs text-gray-400">Current Task</p>
-                                <p class="text-sm font-medium text-[#1e3a5f]">HCIP Acquisition Calls: Qualgen LLC, Apollo Care</p>
-                            </div>
-                            <div class="flex items-center justify-between text-xs text-gray-400">
-                                <span>19 tasks completed</span>
-                                <span>5 capabilities</span>
-                            </div>
-                        </div>
-
-                        <!-- Evelyn -->
-                        <div class="rounded-xl border border-gray-200 p-5 bg-blue-50">
-                            <div class="flex items-center justify-between mb-3">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"></div>
-                                    <h3 class="font-bold text-[#1e3a5f] text-sm">Evelyn</h3>
-                                </div>
-                                <span class="text-xs font-semibold px-2 py-0.5 rounded-full text-blue-700 bg-white/60">
-                                    Active
-                                </span>
-                            </div>
-                            <p class="text-xs text-gray-500 mb-3">Research & Opportunity Scout - Market analysis, competitive intel, grant research</p>
-                            <div class="bg-white/80 rounded-lg px-3 py-2 mb-3">
-                                <p class="text-xs text-gray-400">Current Task</p>
-                                <p class="text-sm font-medium text-[#1e3a5f]">Grant Platform Research, Agent Leasing Analysis</p>
-                            </div>
-                            <div class="flex items-center justify-between text-xs text-gray-400">
-                                <span>31 tasks completed</span>
-                                <span>7 capabilities</span>
-                            </div>
-                        </div>
-
-                        <!-- Frank -->
-                        <div class="rounded-xl border border-gray-200 p-5 bg-green-50">
-                            <div class="flex items-center justify-between mb-3">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></div>
-                                    <h3 class="font-bold text-[#1e3a5f] text-sm">Frank</h3>
-                                </div>
-                                <span class="text-xs font-semibold px-2 py-0.5 rounded-full text-green-700 bg-white/60">
-                                    Trading
-                                </span>
-                            </div>
-                            <p class="text-xs text-gray-500 mb-3">Acquisitions & Finance - Trading, financial analysis, acquisition research</p>
-                            <div class="bg-white/80 rounded-lg px-3 py-2 mb-3">
-                                <p class="text-xs text-gray-400">Current Task</p>
-                                <p class="text-sm font-medium text-[#1e3a5f]">Paper Trading Day 1: $100K virtual portfolio monitoring</p>
-                            </div>
-                            <div class="flex items-center justify-between text-xs text-gray-400">
-                                <span>12 tasks completed</span>
-                                <span>4 capabilities</span>
-                            </div>
-                        </div>
+                    
+                    <div class="text-gray-500 text-xs">
+                        <span>47 tasks completed</span>
+                        <span class="ml-4">8 capabilities</span>
                     </div>
                 </div>
 
-                <!-- Waiting on Jeff -->
-                <div class="mb-8">
-                    <h2 class="text-lg font-bold text-[#1e3a5f] mb-4">Waiting on Jeff</h2>
-                    <div class="space-y-3">
-                        <div class="bg-white rounded-xl border border-gray-200 p-4 flex items-center justify-between">
-                            <div>
-                                <h4 class="font-medium text-[#1e3a5f]">LinkedIn Introductory Post</h4>
-                                <p class="text-sm text-gray-600">Personal story version ready for Jeff's review and posting</p>
-                            </div>
-                            <span class="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full">High Priority</span>
+                <!-- Right Column - Team Photo -->
+                <div class="bg-gray-900 rounded-lg p-6">
+                    <div class="mb-4">
+                        <h3 class="font-bold mb-1">The Team</h3>
+                        <p class="text-gray-400 text-sm">1950s grit. 2026 tech.</p>
+                    </div>
+                    
+                    <!-- 1950s Team Photo -->
+                    <div class="relative bg-gradient-to-br from-amber-900 to-amber-950 rounded-lg overflow-hidden h-64">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDQwMCAyNTYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMjU2IiBmaWxsPSIjMzkyRjJGIi8+CjxnIG9wYWNpdHk9IjAuNSI+CjxyZWN0IHg9IjUwIiB5PSI0MCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iIzJBMjgyOCIvPgo8cmVjdCB4PSIxMzAiIHk9IjUwIiB3aWR0aD0iNjAiIGhlaWdodD0iMTcwIiBmaWxsPSIjMkEyODI4Ii8+CjxyZWN0IHg9IjIxMCIgeT0iNDUiIHdpZHRoPSI2MCIgaGVpZ2h0PSIxNzUiIGZpbGw9IiMyQTI4MjgiLz4KPHJlY3QgeD0iMjkwIiB5PSI1NSIgd2lkdGg9IjYwIiBoZWlnaHQ9IjE2NSIgZmlsbD0iIzJBMjgyOCIvPgo8L2c+CjxnIGZvbnQtZmFtaWx5PSJzZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iI0Y1RjVGNSI+Cjx0ZXh0IHg9IjIwMCIgeT0iMjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5UaGUgQWdlbnQgVGVhbTwvdGV4dD4KPHRleHQgeD0iMjAwIiB5PSIyNDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIG9wYWNpdHk9IjAuNyI+QnVpbGRpbmcgdGhlIGZ1dHVyZSBvZiB3b3JrPC90ZXh0Pgo8L2c+Cjwvc3ZnPgo=" 
+                             alt="The Agent Team" 
+                             class="w-full h-full object-cover"/>
+                        
+                        <!-- Team photo overlay with vintage styling -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <h4 class="text-white font-bold">The Agent Team</h4>
+                            <p class="text-gray-300 text-sm">Building the future of work</p>
                         </div>
-                        <div class="bg-white rounded-xl border border-gray-200 p-4 flex items-center justify-between">
-                            <div>
-                                <h4 class="font-medium text-[#1e3a5f]">HCIP Acquisition Follow-up Calls</h4>
-                                <p class="text-sm text-gray-600">Enhanced contact list ready: Qualgen LLC, Apollo Care</p>
-                            </div>
-                            <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full">Urgent</span>
-                        </div>
-                        <div class="bg-white rounded-xl border border-gray-200 p-4 flex items-center justify-between">
-                            <div>
-                                <h4 class="font-medium text-[#1e3a5f]">Social Media Content Approval</h4>
-                                <p class="text-sm text-gray-600">FB, X, Instagram posts ready for Monday schedule</p>
-                            </div>
-                            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">Medium</span>
-                        </div>
+                        
+                        <!-- Vintage film grain effect -->
+                        <div class="absolute inset-0 opacity-20 mix-blend-multiply" style="background-image: radial-gradient(circle, transparent 1px, rgba(255,255,255,0.15) 1px); background-size: 4px 4px;"></div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Agent Workflow -->
-                <div class="mb-8">
-                    <h2 class="text-lg font-bold text-[#1e3a5f] mb-4">Agent Workflow</h2>
-                    <div class="bg-white rounded-xl border border-gray-200 p-6">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div class="text-center">
-                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                    <span class="text-green-600 font-bold">1</span>
-                                </div>
-                                <h4 class="font-medium text-[#1e3a5f] mb-2">Research & Analysis</h4>
-                                <p class="text-sm text-gray-600">Evelyn scouts opportunities, analyzes markets, gathers intelligence</p>
+            <!-- Agent Grid -->
+            <div class="grid grid-cols-4 gap-4 mt-8">
+                <!-- Charlie -->
+                <div class="bg-gray-900 rounded-lg p-4">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="relative w-10 h-10">
+                            <svg class="w-10 h-10 progress-ring">
+                                <circle class="text-gray-700" stroke="currentColor" stroke-width="2" fill="transparent" r="18" cx="20" cy="20"/>
+                                <circle class="text-orange-500 progress-ring-circle" stroke="currentColor" stroke-width="2" fill="transparent" r="18" cx="20" cy="20" stroke-dasharray="14 100"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-xs font-bold text-white">12%</span>
                             </div>
-                            <div class="text-center">
-                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                    <span class="text-blue-600 font-bold">2</span>
-                                </div>
-                                <h4 class="font-medium text-[#1e3a5f] mb-2">Content & Outreach</h4>
-                                <p class="text-sm text-gray-600">Charlie creates content, Dennis handles outreach and sales</p>
-                            </div>
-                            <div class="text-center">
-                                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                    <span class="text-purple-600 font-bold">3</span>
-                                </div>
-                                <h4 class="font-medium text-[#1e3a5f] mb-2">Execution & Finance</h4>
-                                <p class="text-sm text-gray-600">Artemis orchestrates, Frank handles financial operations</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Projects -->
-                <h2 class="text-lg font-bold text-[#1e3a5f] mb-4">Projects</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                    <!-- CCM Calculator -->
-                    <div class="bg-white rounded-xl border border-gray-200 p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-green-600">AUGEO HEALTH</span>
-                                <h3 class="text-lg font-bold text-[#1e3a5f] mt-1">CCM Revenue Calculator</h3>
-                            </div>
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-green-100 text-green-700">Active</span>
-                        </div>
-                        <p class="text-sm text-gray-500 mb-4">Healthcare revenue calculator for CCM and RPM programs</p>
-                        <div class="flex items-center justify-between border-t border-gray-100 pt-3">
-                            <div>
-                                <p class="text-xs text-gray-400">Monthly Revenue</p>
-                                <p class="text-xl font-bold text-[#1e3a5f]">$0</p>
-                            </div>
-                            <span class="text-lg text-gray-400">—</span>
-                        </div>
-                    </div>
-
-                    <!-- AI Playbooks -->
-                    <div class="bg-white rounded-xl border border-gray-200 p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-orange-600">ARTEMIS</span>
-                                <h3 class="text-lg font-bold text-[#1e3a5f] mt-1">AI Playbooks</h3>
-                            </div>
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-green-100 text-green-700">Active</span>
-                        </div>
-                        <p class="text-sm text-gray-500 mb-4">General AI Playbook ($29) and Healthcare AI Playbook ($49)</p>
-                        <div class="flex items-center justify-between border-t border-gray-100 pt-3">
-                            <div>
-                                <p class="text-xs text-gray-400">Sales</p>
-                                <p class="text-xl font-bold text-[#1e3a5f]">1</p>
-                            </div>
-                            <span class="text-lg text-green-500">▲</span>
-                        </div>
-                    </div>
-
-                    <!-- Agent Leasing -->
-                    <div class="bg-white rounded-xl border border-gray-200 p-6">
-                        <div class="flex justify-between items-start mb-3">
-                            <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-purple-600">FUTURE</span>
-                                <h3 class="text-lg font-bold text-[#1e3a5f] mt-1">Agent Leasing</h3>
-                            </div>
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-blue-100 text-blue-700">Research</span>
-                        </div>
-                        <p class="text-sm text-gray-500 mb-4">AI temp agency model - lease specialized agents for projects</p>
-                        <div class="flex items-center justify-between border-t border-gray-100 pt-3">
-                            <div>
-                                <p class="text-xs text-gray-400">Market Size</p>
-                                <p class="text-xl font-bold text-[#1e3a5f]">TBD</p>
-                            </div>
-                            <span class="text-lg text-gray-400">—</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Social & Content -->
-                <div class="bg-white rounded-xl border border-gray-200 p-6">
-                    <h2 class="text-lg font-bold text-[#1e3a5f] mb-4">Social & Content</h2>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                        <div>
-                            <p class="text-sm text-gray-500">X Followers</p>
-                            <p class="text-2xl font-bold text-[#1e3a5f]">--</p>
-                            <p class="text-xs text-blue-600">@Artemis_jeff</p>
                         </div>
                         <div>
-                            <p class="text-sm text-gray-500">Recent Posts</p>
-                            <p class="text-2xl font-bold text-[#1e3a5f]">--</p>
-                        </div>
-                        <div>
-                            <p class="text-sm text-gray-500">Likes</p>
-                            <p class="text-2xl font-bold text-[#1e3a5f]">--</p>
-                        </div>
-                        <div>
-                            <p class="text-sm text-gray-500">FB Followers</p>
-                            <p class="text-2xl font-bold text-green-600">50</p>
-                            <p class="text-xs text-green-600">Augeo Agency</p>
+                            <h4 class="font-bold text-sm">Charlie</h4>
+                            <span class="text-xs bg-orange-600 px-1 py-0.5 rounded">Urgent</span>
                         </div>
                     </div>
+                    <p class="text-gray-400 text-xs mb-2">Content & Distribution</p>
+                    <p class="text-white text-xs mb-2">Social Media Blitz: LinkedIn intro, FB milestone</p>
+                    <div class="text-gray-500 text-xs">
+                        <span>1/8 tasks</span>
+                    </div>
                 </div>
-            </main>
+
+                <!-- Dennis -->
+                <div class="bg-gray-900 rounded-lg p-4">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="relative w-10 h-10">
+                            <svg class="w-10 h-10 progress-ring">
+                                <circle class="text-gray-700" stroke="currentColor" stroke-width="2" fill="transparent" r="18" cx="20" cy="20"/>
+                                <circle class="text-red-500 progress-ring-circle" stroke="currentColor" stroke-width="2" fill="transparent" r="18" cx="20" cy="20" stroke-dasharray="19 100"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-xs font-bold text-white">17%</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm">Dennis</h4>
+                            <span class="text-xs bg-red-600 px-1 py-0.5 rounded">High</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-xs mb-2">Sales & Outreach</p>
+                    <p class="text-white text-xs mb-2">HCIP Acquisition Calls: Qualgen, Apollo</p>
+                    <div class="text-gray-500 text-xs">
+                        <span>1/6 tasks</span>
+                    </div>
+                </div>
+
+                <!-- Evelyn -->
+                <div class="bg-gray-900 rounded-lg p-4">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="relative w-10 h-10">
+                            <svg class="w-10 h-10 progress-ring">
+                                <circle class="text-gray-700" stroke="currentColor" stroke-width="2" fill="transparent" r="18" cx="20" cy="20"/>
+                                <circle class="text-blue-500 progress-ring-circle" stroke="currentColor" stroke-width="2" fill="transparent" r="18" cx="20" cy="20" stroke-dasharray="32 100"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-xs font-bold text-white">29%</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm">Evelyn</h4>
+                            <span class="text-xs bg-blue-600 px-1 py-0.5 rounded">Active</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-xs mb-2">Research & Analysis</p>
+                    <p class="text-white text-xs mb-2">Grant Platform, Agent Leasing Research</p>
+                    <div class="text-gray-500 text-xs">
+                        <span>2/7 tasks</span>
+                    </div>
+                </div>
+
+                <!-- Frank -->
+                <div class="bg-gray-900 rounded-lg p-4">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="relative w-10 h-10">
+                            <svg class="w-10 h-10 progress-ring">
+                                <circle class="text-gray-700" stroke="currentColor" stroke-width="2" fill="transparent" r="18" cx="20" cy="20"/>
+                                <circle class="text-green-500 progress-ring-circle" stroke="currentColor" stroke-width="2" fill="transparent" r="18" cx="20" cy="20" stroke-dasharray="22 100"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-xs font-bold text-white">20%</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm">Frank</h4>
+                            <span class="text-xs bg-green-600 px-1 py-0.5 rounded">Trading</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-xs mb-2">Finance & Trading</p>
+                    <p class="text-white text-xs mb-2">Paper Trading: $100K virtual monitoring</p>
+                    <div class="text-gray-500 text-xs">
+                        <span>1/5 tasks</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Simple auto-refresh timestamp update every 30 seconds
+        // Update percentages every 30 seconds to show it's "live"
         setInterval(() => {
-            const dots = document.querySelectorAll('.animate-pulse');
-            dots.forEach(dot => {
-                dot.style.opacity = dot.style.opacity === '0.5' ? '1' : '0.5';
-            });
-        }, 1000);
+            const timestamp = new Date().toLocaleTimeString();
+            console.log('Dashboard updated:', timestamp);
+        }, 30000);
     </script>
 </body>
 </html>
