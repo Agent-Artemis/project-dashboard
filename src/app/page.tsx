@@ -192,14 +192,62 @@ function AgentCommandCenter() {
 
 function TaskCard({ task }: { task: Task }) {
   const [expanded, setExpanded] = useState(false);
+  const [currentStatus, setCurrentStatus] = useState<string>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem(`task-status-${task.id}`);
+      return stored ?? task.status;
+    }
+    return task.status;
+  });
+  const [marking, setMarking] = useState(false);
+
   const priorityColors: Record<string, string> = { high: "border-l-[#FF5252]", medium: "border-l-[#FFB800]", low: "border-l-[#9CA3AF]" };
   const statusBadge: Record<string, { bg: string; text: string; label: string }> = {
     "not-started": { bg: "bg-[#2A2A2A]", text: "text-[#9CA3AF]", label: "Not Started" },
     "in-progress": { bg: "bg-[#00BFFF]/20", text: "text-[#00BFFF]", label: "In Progress" },
-    done: { bg: "bg-[#00C805]/20", text: "text-[#00C805]", label: "Done" },
+    done: { bg: "bg-[#00C805]/20", text: "text-[#00C805]", label: "Done ✓" },
   };
-  const badge = statusBadge[task.status] ?? statusBadge["not-started"];
+  const badge = statusBadge[currentStatus] ?? statusBadge["not-started"];
   const hasDetails = (task.details && task.details.length > 0) || (task.links && task.links.length > 0) || task.description;
+
+  const handleStatusClick = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (currentStatus === "done") return; // already done
+    setMarking(true);
+    const newStatus = currentStatus === "not-started" ? "done" : "done";
+    setCurrentStatus(newStatus);
+    if (typeof window !== "undefined") {
+      localStorage.setItem(`task-status-${task.id}`, newStatus);
+      // Track done tasks for nightly sweep
+      const doneList: string[] = JSON.parse(localStorage.getItem("done-tasks") ?? "[]");
+      if (!doneList.includes(task.id)) {
+        doneList.push(task.id);
+        localStorage.setItem("done-tasks", JSON.stringify(doneList));
+      }
+    }
+    // Notify backend
+    try {
+      await fetch("/api/tasks/done", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ taskId: task.id, title: task.title, doneAt: new Date().toISOString() }),
+      });
+    } catch (_) { /* silent fail */ }
+    setMarking(false);
+  };
+
+  if (currentStatus === "done" && task.status !== "done") {
+    // Fade out done tasks marked by Jeff
+    return (
+      <div className={`bg-[#111111]/50 rounded-lg p-3 border-l-4 border-l-[#00C805]/30 mb-2 opacity-40`}>
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-[#9CA3AF] line-through flex-1">{task.title}</p>
+          <span className="text-xs px-2 py-0.5 rounded bg-[#00C805]/20 text-[#00C805]">Done ✓</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={`bg-[#111111] rounded-lg p-3 border-l-4 ${priorityColors[task.priority]} mb-2`}>
       <div className={`${hasDetails ? "cursor-pointer" : ""}`} onClick={() => hasDetails && setExpanded(!expanded)}>
@@ -211,7 +259,18 @@ function TaskCard({ task }: { task: Task }) {
         </div>
         <div className="flex items-center justify-between mt-2">
           <span className="text-xs text-[#9CA3AF] capitalize">{task.assignee}</span>
-          <span className={`text-xs px-2 py-0.5 rounded ${badge.bg} ${badge.text}`}>{badge.label}</span>
+          <button
+            onClick={handleStatusClick}
+            disabled={currentStatus === "done" || marking}
+            className={`text-xs px-2 py-0.5 rounded transition-all ${
+              currentStatus === "done"
+                ? `${badge.bg} ${badge.text} cursor-default`
+                : `${badge.bg} ${badge.text} hover:bg-[#00C805]/20 hover:text-[#00C805] cursor-pointer active:scale-95`
+            }`}
+            title={currentStatus !== "done" ? "Click to mark as Done" : ""}
+          >
+            {marking ? "..." : badge.label}
+          </button>
         </div>
       </div>
       {expanded && (
