@@ -344,16 +344,16 @@ function ProjectsGrid() {
 }
 
 function SocialMetrics() {
-  const { data } = useSWR("/api/social", fetcher, { refreshInterval: 120000 });
+  const { data } = useSWR("/api/twitter", fetcher, { refreshInterval: 120000 });
   return (
     <div className="bg-[#1A1A1A] border border-[#2A2A2A] rounded-2xl p-6">
       <h2 className="text-xl font-bold mb-4 text-white">Social & Content</h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: "X Followers", value: data?.followers, sub: data?.handle ?? "@Artemis_jeff" },
-          { label: "Recent Posts", value: data?.recentTweetCount },
-          { label: "Likes", value: data?.totalLikes },
-          { label: "Retweets", value: data?.totalRetweets },
+          { label: "X Followers", value: data?.followerCount, sub: data?.handle ?? "@Artemis_jeff" },
+          { label: "Total Tweets", value: data?.tweetCount },
+          { label: "Likes", value: data?.likeCount },
+          { label: "FB Followers", value: 50, sub: "Augeo Agency" },
         ].map((m, i) => (
           <div key={i} className="bg-[#111111] rounded-lg p-4">
             <p className="text-xs text-[#9CA3AF]">{m.label}</p>
