@@ -1,75 +1,65 @@
+export type AgentStatus = "active" | "idle";
+
 export interface Agent {
   id: string;
   name: string;
   role: string;
-  description: string;
-  status: "active" | "idle" | "busy" | "blocked";
-  currentTask?: string;
-  completedTasks: number;
-  totalTasks: number;
-  capabilities: string[];
-  utilization: number; // percentage of capacity being used
+  specialty: string;
+  status: AgentStatus;
+  currentTask: string | null;
+  tasksCompleted: number;
+  tasksInProgress: number;
+  tasksTotal: number;
+  lastActive: string;
+  isOrchestrator?: boolean;
+  workload: number; // 0-100 percentage
 }
 
-export const agents: Agent[] = [
+// Base agent profiles -- stats are computed dynamically from tasks
+export interface AgentProfile {
+  id: string;
+  name: string;
+  role: string;
+  specialty: string;
+  isOrchestrator?: boolean;
+}
+
+export const agentProfiles: AgentProfile[] = [
+  {
+    id: "artemis",
+    name: "Artemis",
+    role: "Chief of Staff / Orchestrator",
+    specialty: "Strategy, delegation, execution, full-stack building",
+    isOrchestrator: true,
+  },
   {
     id: "benny",
-    name: "Benny", 
+    name: "Benny",
     role: "Healthcare Operations",
-    description: "CCM/RPM billing, pre-auth, voice AI platform",
-    status: "active",
-    currentTask: "Voice AI platform review",
-    completedTasks: 12,
-    totalTasks: 17,
-    capabilities: ["healthcare", "billing", "automation", "voice-ai"],
-    utilization: 15
+    specialty: "CCM/RPM, billing AI, pre-auth, revenue modeling",
   },
   {
     id: "charlie",
     name: "Charlie",
-    role: "Content & Distribution", 
-    description: "X/Twitter, Beehiiv, content strategy",
-    status: "busy",
-    currentTask: "Social media content push",
-    completedTasks: 23,
-    totalTasks: 31,
-    capabilities: ["content", "social-media", "newsletters", "distribution"],
-    utilization: 25
+    role: "Content & Distribution",
+    specialty: "X/Twitter, Beehiiv, site content, YouTube",
   },
   {
-    id: "dennis", 
+    id: "dennis",
     name: "Dennis",
     role: "Sales & Outreach",
-    description: "Lead gen, cold outreach, HCIP acquisition calls", 
-    status: "busy",
-    currentTask: "HCIP acquisition calls",
-    completedTasks: 19,
-    totalTasks: 25,
-    capabilities: ["sales", "outreach", "lead-gen", "acquisitions"],
-    utilization: 33
+    specialty: "Lead gen, cold outreach, pipeline management",
   },
   {
     id: "evelyn",
-    name: "Evelyn", 
+    name: "Evelyn",
     role: "Research & Scout",
-    description: "Market analysis, competitive intel, grant research",
-    status: "active",
-    currentTask: "Grant platform research", 
-    completedTasks: 31,
-    totalTasks: 38,
-    capabilities: ["research", "analysis", "competitive-intel", "grants"],
-    utilization: 50
+    specialty: "Market analysis, competitive intel, grants",
   },
   {
     id: "frank",
     name: "Frank",
-    role: "Acquisitions & Finance", 
-    description: "Business acquisitions, trading, financial analysis",
-    status: "blocked",
-    currentTask: "Paper trading active ($100K)", 
-    completedTasks: 12,
-    totalTasks: 17,
-    capabilities: ["finance", "trading", "acquisitions", "analysis"],
-    utilization: 20
-  }
+    role: "Acquisitions & Finance",
+    specialty: "Business acquisitions, real estate, financial modeling, deal sourcing",
+  },
 ];

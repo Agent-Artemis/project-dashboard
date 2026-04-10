@@ -1,0 +1,35 @@
+{
+  "updatedAt": "2026-04-04T04:10:32Z",
+  "agents": {
+    "artemis": {
+      "status": "idle",
+      "currentTask": "Day complete. Trading prep + weekend scan queued.",
+      "workload": 10
+    },
+    "benny": {
+      "status": "idle",
+      "currentTask": null,
+      "workload": 0
+    },
+    "charlie": {
+      "status": "idle",
+      "currentTask": null,
+      "workload": 0
+    },
+    "dennis": {
+      "status": "idle",
+      "currentTask": null,
+      "workload": 0
+    },
+    "evelyn": {
+      "status": "idle",
+      "currentTask": null,
+      "workload": 0
+    },
+    "frank": {
+      "status": "idle",
+      "currentTask": null,
+      "workload": 0
+    }
+  }
+}
