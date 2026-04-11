@@ -56,6 +56,27 @@ export async function POST(req: Request) {
   }
 }
 
+// DELETE — Jeff undoes a done task
+export async function DELETE(req: Request) {
+  try {
+    const { taskId } = await req.json();
+    if (!taskId) return NextResponse.json({ error: "taskId required" }, { status: 400 });
+
+    const token = process.env.GITHUB_TOKEN ?? "";
+    if (!token) return NextResponse.json({ ok: true });
+
+    const { entries, sha } = await readDoneFile(token);
+    const updated = entries.filter((e) => e.taskId !== taskId);
+    if (updated.length !== entries.length) {
+      await writeDoneFile(token, updated, sha, `task undone: ${taskId}`);
+    }
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error(err);
+    return NextResponse.json({ ok: true });
+  }
+}
+
 // GET — nightly sweep reads this to know what Jeff marked done
 export async function GET() {
   const token = process.env.GITHUB_TOKEN ?? "";

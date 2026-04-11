@@ -212,23 +212,29 @@ function TaskCard({ task }: { task: Task }) {
 
   const handleStatusClick = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (currentStatus === "done") return; // already done
     setMarking(true);
-    const newStatus = currentStatus === "not-started" ? "done" : "done";
+    // Toggle: done -> not-started, anything else -> done
+    const newStatus = currentStatus === "done" ? task.status === "done" ? "done" : "not-started" : "done";
     setCurrentStatus(newStatus);
     if (typeof window !== "undefined") {
-      localStorage.setItem(`task-status-${task.id}`, newStatus);
-      // Track done tasks for nightly sweep
-      const doneList: string[] = JSON.parse(localStorage.getItem("done-tasks") ?? "[]");
-      if (!doneList.includes(task.id)) {
-        doneList.push(task.id);
-        localStorage.setItem("done-tasks", JSON.stringify(doneList));
+      if (newStatus === "done") {
+        localStorage.setItem(`task-status-${task.id}`, "done");
+        const doneList: string[] = JSON.parse(localStorage.getItem("done-tasks") ?? "[]");
+        if (!doneList.includes(task.id)) {
+          doneList.push(task.id);
+          localStorage.setItem("done-tasks", JSON.stringify(doneList));
+        }
+      } else {
+        // Undo
+        localStorage.removeItem(`task-status-${task.id}`);
+        const doneList: string[] = JSON.parse(localStorage.getItem("done-tasks") ?? "[]");
+        localStorage.setItem("done-tasks", JSON.stringify(doneList.filter((id) => id !== task.id)));
       }
     }
     // Notify backend
     try {
       await fetch("/api/tasks/done", {
-        method: "POST",
+        method: newStatus === "done" ? "POST" : "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ taskId: task.id, title: task.title, doneAt: new Date().toISOString() }),
       });
@@ -237,12 +243,18 @@ function TaskCard({ task }: { task: Task }) {
   };
 
   if (currentStatus === "done" && task.status !== "done") {
-    // Fade out done tasks marked by Jeff
+    // Done tasks marked by Jeff -- faded but clickable to undo
     return (
-      <div className={`bg-[#111111]/50 rounded-lg p-3 border-l-4 border-l-[#00C805]/30 mb-2 opacity-40`}>
+      <div className={`bg-[#111111]/50 rounded-lg p-3 border-l-4 border-l-[#00C805]/30 mb-2 opacity-40 hover:opacity-70 transition-opacity`}>
         <div className="flex items-center justify-between">
           <p className="text-sm text-[#9CA3AF] line-through flex-1">{task.title}</p>
-          <span className="text-xs px-2 py-0.5 rounded bg-[#00C805]/20 text-[#00C805]">Done ✓</span>
+          <button
+            onClick={handleStatusClick}
+            className="text-xs px-2 py-0.5 rounded bg-[#00C805]/20 text-[#00C805] hover:bg-red-500/20 hover:text-red-400 transition-colors cursor-pointer"
+            title="Click to undo"
+          >
+            {marking ? "..." : "Done ✓"}
+          </button>
         </div>
       </div>
     );
