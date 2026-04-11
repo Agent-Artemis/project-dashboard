@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Healthcare AI Playbook",
+    "status": "live",
+    "url": "https://playbook.augeohealth.com",
+    "revenue7d": 0,
+    "revenueMonth": 0,
+    "lastActivity": "Live since April 1. Stripe checkout working.",
+    "nextAction": "LinkedIn post today driving traffic (Jeff posting)",
+    "updatedAt": "2026-04-10T20:55:00Z"
+  },
+  {
+    "name": "General AI Playbook",
+    "status": "live",
+    "url": "https://playbook.agentartemis.ai",
+    "revenue7d": 0,
+    "revenueMonth": 0,
+    "lastActivity": "Live since March 30. Vercel Analytics added April 10.",
+    "nextAction": "X/Twitter content + LinkedIn outreach",
+    "updatedAt": "2026-04-10T20:55:00Z"
+  },
+  {
+    "name": "CCM/RPM Calculator",
+    "status": "live",
+    "url": "https://calculator.augeohealth.com",
+    "revenue7d": 0,
+    "revenueMonth": 0,
+    "lastActivity": "Free lead gen tool. Live.",
+    "nextAction": "Drive traffic via healthcare LinkedIn posts",
+    "updatedAt": "2026-04-10T20:55:00Z"
+  },
+  {
+    "name": "TheGrant.Ninja",
+    "status": "live",
+    "url": "https://grant-scout.vercel.app",
+    "revenue7d": 0,
+    "revenueMonth": 0,
+    "lastActivity": "9 APIs connected overnight April 9. Grants.gov, NIH, NSF, World Bank, EU, Federal Register live.",
+    "nextAction": "Build $97/mo subscription tier. Jeff needs Simpler Grants API key (10 min at simpler.grants.gov/developer).",
+    "updatedAt": "2026-04-10T20:55:00Z"
+  },
+  {
+    "name": "TheRFP.Ninja",
+    "status": "building",
+    "url": "https://therfp.ninja",
+    "revenue7d": 0,
+    "revenueMonth": 0,
+    "lastActivity": "Listed on dashboard April 10. No product built yet.",
+    "nextAction": "Build RFP search using SAM.gov + USASpending + Federal Register APIs",
+    "updatedAt": "2026-04-10T20:55:00Z"
+  },
+  {
+    "name": "Trading Experiment",
+    "status": "live",
+    "url": "",
+    "revenue7d": 0,
+    "revenueMonth": 0,
+    "lastActivity": "Paper: $102,660 (+2.66%). Live: $300 (no trades yet). Journal Day 4 written. Strategy v2 + crons configured.",
+    "nextAction": "First live trade Monday April 13 at 9:45 AM ET. Morning/midday/EOD strategy sessions scheduled.",
+    "updatedAt": "2026-04-10T20:55:00Z"
+  },
+  {
+    "name": "Trading Book",
+    "status": "building",
+    "url": "",
+    "revenue7d": 0,
+    "revenueMonth": 0,
+    "lastActivity": "Book brief written. Two-book structure confirmed: Phase 1 (autonomous AI) + Phase 2 (human-in-loop). Daily journals auto-generating.",
+    "nextAction": "Document daily. Launch Book 1 around Day 65 (~June 10).",
+    "updatedAt": "2026-04-10T20:55:00Z"
+  },
+  {
+    "name": "agentartemis.ai",
+    "status": "live",
+    "url": "https://agentartemis.ai",
+    "revenue7d": 0,
+    "revenueMonth": 0,
+    "lastActivity": "Vercel Analytics added April 10. Site live.",
+    "nextAction": "LinkedIn + X traffic. Zernio social setup (Jeff doing today).",
+    "updatedAt": "2026-04-10T20:55:00Z"
+  },
+  {
+    "name": "augeohealth.com",
+    "status": "live",
+    "url": "https://augeohealth.com",
+    "revenue7d": 0,
+    "revenueMonth": 0,
+    "lastActivity": "Vercel Analytics added April 10. Site live.",
+    "nextAction": "Healthcare LinkedIn outreach. Jeff posting today.",
+    "updatedAt": "2026-04-10T20:55:00Z"
+  },
+  {
+    "name": "Dashboard (Project HQ)",
+    "status": "live",
+    "url": "https://dashboard-six-roan-46.vercel.app",
+    "revenue7d": 0,
+    "revenueMonth": 0,
+    "lastActivity": "DONE button + undo added April 10. Program Status board added. Morning briefing cron set (7:30 AM daily).",
+    "nextAction": "Morning briefing auto-updates this board daily at 7:30 AM.",
+    "updatedAt": "2026-04-10T20:55:00Z"
+  }
+]
