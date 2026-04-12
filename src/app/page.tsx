@@ -370,6 +370,7 @@ function ProjectCard({ project }: { project: Project }) {
     "in-progress": { bg: "bg-[#00BFFF]/20", text: "text-[#00BFFF]", label: "In Progress" },
     planned: { bg: "bg-[#2A2A2A]", text: "text-[#9CA3AF]", label: "Planned" },
     existing: { bg: "bg-[#FFB800]/20", text: "text-[#FFB800]", label: "Existing" },
+    "on-hold": { bg: "bg-[#FF5252]/20", text: "text-[#FF5252]", label: "On Hold" },
   };
   const s = statusStyles[project.status];
   return (

@@ -1,5 +1,5 @@
 export type Brand = "augeo-health" | "artemis";
-export type Status = "active" | "in-progress" | "planned" | "existing";
+export type Status = "active" | "in-progress" | "planned" | "existing" | "on-hold";
 
 export interface Project {
   id: string;
@@ -138,10 +138,11 @@ export const projects: Project[] = [
     id: "hcip-acquisitions",
     name: "HCIP Acquisitions",
     brand: "augeo-health",
-    status: "in-progress",
+    status: "on-hold",
     description: "Roll-up strategy using Native American SBA-like loan (50% match, $5M max). Target: 503B pharmacies, RV parks, storage units.",
-    keyMetric: { label: "Phase", value: "Research" },
+    keyMetric: { label: "Phase", value: "On Hold" },
     recentActivity: [
+      "2026-04-11: Project placed on hold by Jeff",
       "2026-04-02: Strategy defined, 7 target sectors identified",
       "2026-04-02: Sweet spot: $10M projects (fully financed at 50/50)",
     ],

@@ -2,153 +2,218 @@
 
 /**
  * Nightly Cleanup - 12:00 AM MDT
- * Archive completed tasks, create archive section
+ *
+ * 1. Reads public/done-tasks.json — the list of tasks Jeff marked done via the dashboard
+ * 2. Removes those task IDs from src/data/tasks.ts
+ * 3. Appends them to src/data/archive.ts with archivedAt timestamp
+ * 4. Clears public/done-tasks.json (reset for next day)
+ * 5. Writes a daily archive log to archive/daily-cleanup-YYYY-MM-DD.md
+ * 6. Commits and pushes to GitHub (triggers Vercel redeploy)
  */
 
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
+const ROOT = path.join(__dirname, '..');
+
 function archiveCompletedTasks() {
-  console.log('🌙 Starting nightly cleanup...');
+  console.log('Starting nightly cleanup...');
   const now = new Date().toISOString();
   const today = new Date().toISOString().split('T')[0];
-  
+
   try {
-    // Read current tasks
-    const tasksPath = path.join(__dirname, '../src/data/tasks.ts');
-    const archivePath = path.join(__dirname, '../src/data/archive.ts');
-    
-    const tasksContent = fs.readFileSync(tasksPath, 'utf8');
-    
-    // Find completed tasks using regex
-    const completedTaskPattern = /{\s*[^}]*status:\s*"completed"[^}]*}/g;
-    const completedTasks = [];
-    let match;
-    
-    while ((match = completedTaskPattern.exec(tasksContent)) !== null) {
-      // Add archivedAt timestamp to completed task
-      const task = match[0];
-      const archivedTask = task.replace(/}$/, `,\n    archivedAt: "${now}"\n  }`);
-      completedTasks.push(archivedTask);
+    // ── 1. Read done-tasks.json ──────────────────────────────────────────────
+    const doneTasksPath = path.join(ROOT, 'public/done-tasks.json');
+    let doneTasks = [];
+    try {
+      doneTasks = JSON.parse(fs.readFileSync(doneTasksPath, 'utf8'));
+    } catch {
+      console.log('No done-tasks.json found or empty. Nothing to archive.');
     }
-    
-    if (completedTasks.length === 0) {
-      console.log('📋 No completed tasks to archive');
+
+    if (!doneTasks || doneTasks.length === 0) {
+      console.log('No completed tasks found -- dashboard was already clean, nothing to archive');
       return;
     }
-    
-    console.log(`📦 Archiving ${completedTasks.length} completed tasks...`);
-    
-    // Remove completed tasks from active list
-    let updatedTasksContent = tasksContent;
-    const completedTasksPattern = /{\s*[^}]*status:\s*"completed"[^}]*},?\s*/g;
-    updatedTasksContent = updatedTasksContent.replace(completedTasksPattern, '');
-    
-    // Clean up any trailing commas before closing bracket
-    updatedTasksContent = updatedTasksContent.replace(/,\s*\]/g, '\n];');
-    
-    // Write updated tasks file
-    fs.writeFileSync(tasksPath, updatedTasksContent);
-    
-    // Handle archive file
+
+    const doneIds = new Set(doneTasks.map(t => t.taskId));
+    console.log(`Archiving ${doneIds.size} tasks: ${[...doneIds].join(', ')}`);
+
+    // ── 2. Parse tasks.ts and remove done tasks ──────────────────────────────
+    const tasksPath = path.join(ROOT, 'src/data/tasks.ts');
+    let tasksContent = fs.readFileSync(tasksPath, 'utf8');
+
+    // Extract the full tasks array as text using a brace-depth parser
+    const arrayStart = tasksContent.indexOf('export const tasks: Task[] = [');
+    if (arrayStart === -1) throw new Error('Could not find tasks array in tasks.ts');
+
+    // Find each task object and check if its id matches a done task
+    // Strategy: split on top-level task boundaries by finding id: "..." patterns
+    const archivedTaskObjects = [];
+    const remainingLines = [];
+    const lines = tasksContent.split('\n');
+
+    let inTask = false;
+    let braceDepth = 0;
+    let currentTaskLines = [];
+    let currentTaskId = null;
+    let inTasksArray = false;
+    let closingExports = [];
+
+    for (const line of lines) {
+      // Detect start of tasks array
+      if (line.includes('export const tasks: Task[] = [')) {
+        inTasksArray = true;
+        remainingLines.push(line);
+        continue;
+      }
+
+      // After tasks array ends
+      if (!inTasksArray || line.startsWith('export const jeffColumns') || line.startsWith('export const agentColumns')) {
+        inTasksArray = false;
+        closingExports.push(line);
+        continue;
+      }
+
+      if (!inTasksArray) {
+        remainingLines.push(line);
+        continue;
+      }
+
+      // Track task object boundaries
+      if (!inTask && line.trim() === '{') {
+        inTask = true;
+        braceDepth = 1;
+        currentTaskLines = [line];
+        currentTaskId = null;
+        continue;
+      }
+
+      if (inTask) {
+        currentTaskLines.push(line);
+
+        // Count braces
+        for (const ch of line) {
+          if (ch === '{') braceDepth++;
+          if (ch === '}') braceDepth--;
+        }
+
+        // Detect id
+        const idMatch = line.match(/id:\s*"([^"]+)"/);
+        if (idMatch) currentTaskId = idMatch[1];
+
+        // Task object closed
+        if (braceDepth === 0) {
+          inTask = false;
+          if (currentTaskId && doneIds.has(currentTaskId)) {
+            // This task is done -- archive it
+            const doneEntry = doneTasks.find(t => t.taskId === currentTaskId);
+            archivedTaskObjects.push({
+              id: currentTaskId,
+              lines: currentTaskLines,
+              doneAt: doneEntry?.doneAt ?? now,
+              title: doneEntry?.title ?? currentTaskId,
+            });
+          } else {
+            // Keep it
+            remainingLines.push(...currentTaskLines);
+          }
+          currentTaskLines = [];
+          currentTaskId = null;
+          continue;
+        }
+        continue;
+      }
+
+      remainingLines.push(line);
+    }
+
+    if (archivedTaskObjects.length === 0) {
+      console.log('No matching task IDs found in tasks.ts -- done-tasks.json may be stale');
+    } else {
+      // Write updated tasks.ts
+      const updatedTasks = [...remainingLines, ...closingExports].join('\n');
+      fs.writeFileSync(tasksPath, updatedTasks);
+      console.log(`Removed ${archivedTaskObjects.length} tasks from tasks.ts`);
+    }
+
+    // ── 3. Append to archive.ts ──────────────────────────────────────────────
+    const archivePath = path.join(ROOT, 'src/data/archive.ts');
     let archiveContent;
     try {
       archiveContent = fs.readFileSync(archivePath, 'utf8');
-    } catch (err) {
-      // Create archive file if it doesn't exist
+    } catch {
       archiveContent = `export interface ArchivedTask {
   id: string;
   title: string;
-  description?: string;
-  assignedTo: string;
-  status: "completed" | "cancelled";
-  priority: "urgent" | "high" | "medium" | "low";
-  createdAt: string;
-  updatedAt: string;
-  completedAt: string;
+  doneAt: string;
   archivedAt: string;
-  tags: string[];
 }
 
-// Archived tasks (moved from active at midnight daily)
 export const archivedTasks: ArchivedTask[] = [
 ];`;
     }
-    
-    // Add completed tasks to archive
-    const archiveInsertPoint = archiveContent.lastIndexOf('];');
-    const beforeBracket = archiveContent.substring(0, archiveInsertPoint);
-    const hasExistingTasks = beforeBracket.includes('id:');
-    const separator = hasExistingTasks ? ',\n  ' : '\n  ';
-    const newArchiveContent = beforeBracket + separator + completedTasks.join(',\n  ') + '\n];';
-    
-    // Write archive file
-    fs.writeFileSync(archivePath, newArchiveContent);
-    
-    console.log(`✅ Archived ${completedTasks.length} tasks`);
-    console.log('🔄 Updated active tasks list');
-    
-    // Create daily archive log
-    const archiveLogPath = path.join(__dirname, `../archive/daily-cleanup-${today}.md`);
-    fs.mkdirSync(path.dirname(archiveLogPath), { recursive: true });
-    
+
+    const newEntries = archivedTaskObjects.map(t =>
+      `  { id: "${t.id}", title: ${JSON.stringify(t.title)}, doneAt: "${t.doneAt}", archivedAt: "${now}" }`
+    );
+
+    const insertPoint = archiveContent.lastIndexOf('];');
+    const before = archiveContent.substring(0, insertPoint);
+    const hasExisting = before.includes('id:');
+    const sep = hasExisting ? ',\n' : '\n';
+    const updatedArchive = before + sep + newEntries.join(',\n') + '\n];';
+    fs.writeFileSync(archivePath, updatedArchive);
+    console.log(`Appended ${newEntries.length} entries to archive.ts`);
+
+    // ── 4. Clear done-tasks.json ─────────────────────────────────────────────
+    fs.writeFileSync(doneTasksPath, '[]');
+    console.log('Cleared done-tasks.json for next day');
+
+    // ── 5. Write daily log ───────────────────────────────────────────────────
+    const logDir = path.join(ROOT, 'archive');
+    fs.mkdirSync(logDir, { recursive: true });
+    const logPath = path.join(logDir, `daily-cleanup-${today}.md`);
     const logContent = `# Daily Cleanup - ${today}
 
-## Tasks Archived: ${completedTasks.length}
+## Tasks Archived: ${archivedTaskObjects.length}
 
-${completedTasks.map((task, i) => `### Task ${i + 1}
-\`\`\`typescript
-${task}
-\`\`\`
-
-`).join('')}
+${archivedTaskObjects.map(t => `- **${t.id}**: ${t.title} (done at ${t.doneAt})`).join('\n')}
 
 **Cleanup completed at:** ${now}
-**Next cleanup:** ${new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()}
 `;
-    
-    fs.writeFileSync(archiveLogPath, logContent);
-    
-    // Commit changes
-    try {
-      execSync('git add .', { cwd: path.join(__dirname, '../') });
-      execSync(`git commit -m "Nightly cleanup: Archive ${completedTasks.length} completed tasks (${today})"`, { 
-        cwd: path.join(__dirname, '../') 
-      });
-      console.log('📤 Changes committed to git');
-      
-      // Try to push if remote exists
-      try {
-        execSync('git push', { cwd: path.join(__dirname, '../') });
-        console.log('🚀 Changes pushed to remote');
-      } catch (pushError) {
-        console.log('⚠️ Git push failed (no remote or auth issues)');
-      }
-    } catch (gitError) {
-      console.log('⚠️ Git commit failed:', gitError.message);
-    }
-    
-  } catch (error) {
-    console.error('❌ Cleanup failed:', error.message);
-  }
-  
-  console.log('🌙 Cleanup complete');
-}
+    fs.writeFileSync(logPath, logContent);
 
-// Also create a simple manual trigger for testing
-function testCleanup() {
-  console.log('🧪 Running test cleanup...');
-  archiveCompletedTasks();
+    // ── 6. Git commit + push ─────────────────────────────────────────────────
+    try {
+      execSync('git add .', { cwd: ROOT });
+      execSync(`git commit -m "Nightly cleanup: archive ${archivedTaskObjects.length} done tasks (${today})"`, { cwd: ROOT });
+      console.log('Committed to git');
+      try {
+        execSync('git push', { cwd: ROOT });
+        console.log('Pushed to GitHub -- Vercel redeploy triggered');
+      } catch {
+        console.log('Git push failed (check remote/auth)');
+      }
+    } catch (e) {
+      console.log('Git commit failed:', e.message);
+    }
+
+  } catch (error) {
+    console.error('Cleanup failed:', error.message);
+    process.exit(1);
+  }
+
+  console.log('Nightly cleanup complete');
 }
 
 if (require.main === module) {
   const arg = process.argv[2];
   if (arg === 'test') {
-    testCleanup();
-  } else {
-    archiveCompletedTasks();
+    console.log('Test mode: running cleanup against current done-tasks.json');
   }
+  archiveCompletedTasks();
 }
 
-module.exports = { archiveCompletedTasks, testCleanup };
+module.exports = { archiveCompletedTasks };
