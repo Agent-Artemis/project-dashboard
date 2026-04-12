@@ -64,4 +64,10 @@ export const archivedTasks: ArchivedTask[] = [
     archivedAt: "2026-04-07T06:01:16.763Z",
     tags: ["trading", "setup"],
   },
+,
+  { id: "j-003", title: "Open Alpaca paper trading account", doneAt: "2026-04-12T14:07:44.666Z", archivedAt: "2026-04-12T14:07:44.666Z" },
+  { id: "j-010", title: "Approve Chase ACH transfer for Alpaca", doneAt: "2026-04-12T14:07:44.666Z", archivedAt: "2026-04-12T14:07:44.666Z" },
+  { id: "a-001", title: "Rebuild Project HQ dashboard", doneAt: "2026-04-12T14:07:44.666Z", archivedAt: "2026-04-12T14:07:44.666Z" },
+  { id: "a-002", title: "Build trading strategy framework", doneAt: "2026-04-12T14:07:44.666Z", archivedAt: "2026-04-12T14:07:44.666Z" },
+  { id: "a-003", title: "Generate April 3-4 tweet content", doneAt: "2026-04-12T14:07:44.666Z", archivedAt: "2026-04-12T14:07:44.666Z" }
 ];
