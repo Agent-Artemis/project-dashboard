@@ -1,34 +1,34 @@
 {
-  "updatedAt": "2026-04-04T04:10:32Z",
+  "updatedAt": "2026-04-12T14:25:00Z",
   "agents": {
     "artemis": {
-      "status": "idle",
-      "currentTask": "Day complete. Trading prep + weekend scan queued.",
-      "workload": 10
+      "status": "active",
+      "currentTask": "Dashboard sync + data cleanup",
+      "workload": 75
     },
     "benny": {
       "status": "idle",
-      "currentTask": null,
-      "workload": 0
+      "currentTask": "Blocked: waiting on Voice AI JSON from Jeff",
+      "workload": 10
     },
     "charlie": {
       "status": "idle",
-      "currentTask": null,
-      "workload": 0
+      "currentTask": "Beehiiv newsletter draft queued",
+      "workload": 20
     },
     "dennis": {
       "status": "idle",
-      "currentTask": null,
-      "workload": 0
+      "currentTask": "LinkedIn drafts ready — waiting on Jeff to post",
+      "workload": 20
     },
     "evelyn": {
       "status": "idle",
-      "currentTask": null,
-      "workload": 0
+      "currentTask": "SAM.gov registration pending Jeff action",
+      "workload": 10
     },
     "frank": {
       "status": "idle",
-      "currentTask": null,
+      "currentTask": "HCIP Acquisitions on hold — standing by",
       "workload": 0
     }
   }
