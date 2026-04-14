@@ -1,34 +1,34 @@
 {
-  "updatedAt": "2026-04-12T14:25:00Z",
+  "updatedAt": "2026-04-14T14:57:00Z",
   "agents": {
     "artemis": {
       "status": "active",
-      "currentTask": "Dashboard sync + data cleanup",
-      "workload": 75
+      "currentTask": "Dashboard data sync + cleanup (in progress)",
+      "workload": 85
     },
     "benny": {
-      "status": "idle",
-      "currentTask": "Blocked: waiting on Voice AI JSON from Jeff",
-      "workload": 10
+      "status": "blocked",
+      "currentTask": "Voice AI build blocked — waiting on Jeff's JSON config",
+      "workload": 0
     },
     "charlie": {
       "status": "idle",
       "currentTask": "Beehiiv newsletter draft queued",
-      "workload": 20
+      "workload": 10
     },
     "dennis": {
       "status": "idle",
-      "currentTask": "LinkedIn drafts ready — waiting on Jeff to post",
-      "workload": 20
+      "currentTask": "LinkedIn drafts ready, billing company prospect research queued",
+      "workload": 15
     },
     "evelyn": {
       "status": "idle",
-      "currentTask": "SAM.gov registration pending Jeff action",
-      "workload": 10
+      "currentTask": "Standing by for Grant Scout API expansion once keys arrive",
+      "workload": 5
     },
     "frank": {
       "status": "idle",
-      "currentTask": "HCIP Acquisitions on hold — standing by",
+      "currentTask": "HCIP Acquisitions on hold per Jeff — no active workload",
       "workload": 0
     }
   }
