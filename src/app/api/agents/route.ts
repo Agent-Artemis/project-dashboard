@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { agentProfiles } from "@/data/agents";
 import type { Agent } from "@/data/agents";
-import { tasks } from "@/data/tasks";
 
 export const dynamic = "force-dynamic";
 
@@ -12,6 +11,9 @@ interface LiveAgent {
   status?: "active" | "idle";
   currentTask?: string | null;
   workload?: number;
+  tasksCompleted?: number;
+  tasksInProgress?: number;
+  tasksTotal?: number;
 }
 
 interface LiveStatus {
@@ -20,7 +22,7 @@ interface LiveStatus {
 }
 
 export async function GET() {
-  // 1. Try to fetch live status from GitHub (cache-bust with timestamp)
+  // Fetch live status from GitHub (cache-bust with timestamp)
   let live: LiveStatus = {};
   try {
     const res = await fetch(`${LIVE_STATUS_URL}?t=${Date.now()}`, {
@@ -29,51 +31,28 @@ export async function GET() {
     });
     if (res.ok) live = await res.json();
   } catch {
-    // Fall back to task-based computation
+    // Fall back to defaults
   }
 
-  // 2. Compute task-based stats as baseline
+  // Build agent array with live data or sensible defaults
   const agents: Agent[] = agentProfiles.map((profile) => {
-    const agentTasks = tasks.filter(
-      (t) =>
-        t.assignee === profile.id ||
-        t.assignee === profile.name.toLowerCase()
-    );
-    const completed = agentTasks.filter((t) => t.status === "done").length;
-    const inProgress = agentTasks.filter(
-      (t) => t.status === "in-progress"
-    ).length;
-    const total = agentTasks.length;
-
-    // Defaults from tasks
-    const currentTaskObj = agentTasks.find(
-      (t) => t.status === "in-progress"
-    );
-    let currentTask = currentTaskObj ? currentTaskObj.title : null;
-    let status: "active" | "idle" = inProgress > 0 ? "active" : "idle";
-    const activeTasks = agentTasks.filter((t) => t.status !== "done").length;
-    let workload = profile.isOrchestrator
-      ? Math.min(100, Math.round((activeTasks / Math.max(total, 1)) * 100))
-      : inProgress > 0
-        ? Math.min(100, inProgress * 30 + activeTasks * 5)
-        : 0;
-
-    // 3. Override with live data if available
     const liveAgent = live.agents?.[profile.id];
-    if (liveAgent) {
-      if (liveAgent.status !== undefined) status = liveAgent.status;
-      if (liveAgent.currentTask !== undefined)
-        currentTask = liveAgent.currentTask;
-      if (liveAgent.workload !== undefined) workload = liveAgent.workload;
-    }
+    
+    // Use live data if available, otherwise default to idle
+    const status = liveAgent?.status ?? "idle";
+    const currentTask = liveAgent?.currentTask ?? null;
+    const workload = liveAgent?.workload ?? 0;
+    const tasksCompleted = liveAgent?.tasksCompleted ?? 0;
+    const tasksInProgress = liveAgent?.tasksInProgress ?? 0;
+    const tasksTotal = liveAgent?.tasksTotal ?? 0;
 
     return {
       ...profile,
       status,
       currentTask,
-      tasksCompleted: completed,
-      tasksInProgress: inProgress,
-      tasksTotal: total,
+      tasksCompleted,
+      tasksInProgress,
+      tasksTotal,
       lastActive: live.updatedAt ?? new Date().toISOString(),
       workload,
     };
