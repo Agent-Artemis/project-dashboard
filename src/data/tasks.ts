@@ -215,26 +215,6 @@ export const tasks: Task[] = [
   // ═══════════════════════════════
 
   // TODAY
-  {
-    id: "a-025",
-    title: "Update all stale dashboard data",
-    assignee: "artemis",
-    board: "agent",
-    column: "today",
-    status: "in-progress",
-    priority: "high",
-    description: "Dashboard sync in progress. Updating tasks.ts, live-status.json, programs-status.json to reflect current reality (April 14).",
-  },
-  {
-    id: "a-028",
-    title: "Archive DONE tasks from dashboard",
-    assignee: "artemis",
-    board: "agent",
-    column: "today",
-    status: "in-progress",
-    priority: "high",
-    description: "Remove completed tasks from active view. Jeff's screenshot showed multiple DONE tasks still visible.",
-  },
 
   // THIS WEEK
   {
