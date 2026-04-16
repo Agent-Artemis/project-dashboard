@@ -1,20 +1,23 @@
-import { NextResponse } from "next/server";
-
-export const dynamic = "force-dynamic";
+import { NextResponse } from 'next/server';
 
 const STRIPE_KEY = process.env.STRIPE_SECRET_KEY || '';
 
 async function getStripeRevenue() {
   try {
     const res = await fetch('https://api.stripe.com/v1/charges?limit=100', {
-      headers: { 'Authorization': `Bearer ${STRIPE_KEY}` },
+      headers: {
+        'Authorization': `Bearer ${STRIPE_KEY}`,
+      },
     });
     const data = await res.json();
+    
     const total = data.data
       ?.filter((charge: any) => charge.paid && !charge.refunded)
       ?.reduce((sum: number, charge: any) => sum + charge.amount, 0) || 0;
+    
     return (total / 100).toFixed(2);
   } catch (error) {
+    console.error('Stripe error:', error);
     return '0.00';
   }
 }
@@ -42,6 +45,7 @@ async function getAlpacaData() {
       live: parseFloat(liveData.equity || '300').toFixed(2),
     };
   } catch (error) {
+    console.error('Alpaca error:', error);
     return { paper: '100000.00', live: '300.00' };
   }
 }
@@ -55,98 +59,98 @@ export async function GET() {
     {
       id: "thegrant-ninja",
       name: "TheGrant.Ninja",
-      brand: "artemis",
-      status: "active",
-      description: `3 pricing tiers: $97/mo, $970/yr, $2,497 flat. Total revenue: $${revenue}`,
+      brand: "artemis" as const,
+      status: "active" as const,
+      description: "Federal, state & private grant search engine. 3 pricing tiers live: $97/mo, $970/yr, $2,497 + $997+8.5%.",
       url: "https://thegrant.ninja",
-      keyMetric: { label: "Revenue", value: `$${revenue}` },
+      keyMetric: { label: "Pricing Tiers", value: "3" },
       recentActivity: [
-        `${today}: 3-tier pricing live`,
-        "2026-04-15: Subscriptions added ($97/mo + $970/yr)",
+        `${today}: 3-tier pricing live ($97/mo + $970/yr subscriptions)`,
         "2026-04-10: 9 API sources connected",
+        "2026-04-08: First version shipped",
       ],
     },
     {
       id: "therfp-ninja",
       name: "TheRFP.Ninja",
-      brand: "artemis",
-      status: "active",
-      description: `3 pricing tiers: $97/mo, $970/yr, $2,497 flat. Total revenue: $${revenue}`,
+      brand: "artemis" as const,
+      status: "active" as const,
+      description: "Government RFP search engine. 3 pricing tiers live: $97/mo, $970/yr, $2,497 + $997+8.5%.",
       url: "https://therfp.ninja",
-      keyMetric: { label: "Revenue", value: `$${revenue}` },
+      keyMetric: { label: "Pricing Tiers", value: "3" },
       recentActivity: [
-        `${today}: 3-tier pricing live`,
-        "2026-04-15: Subscriptions added ($97/mo + $970/yr)",
-        "2026-04-10: RFP discovery engine live",
+        `${today}: 3-tier pricing live ($97/mo + $970/yr subscriptions)`,
+        "2026-04-10: SAM.gov, USASpending, Federal Register connected",
       ],
     },
     {
       id: "voice-ai-platform",
       name: "Voice AI Platform",
-      brand: "augeo-health",
-      status: "on-hold",
-      description: "Retell-powered AI voice. ON HOLD - waiting for first client.",
+      brand: "augeo-health" as const,
+      status: "on-hold" as const,
+      description: "Retell-powered AI voice platform. ON HOLD - waiting for first client. Retell will build initial agent.",
       keyMetric: { label: "Status", value: "ON HOLD" },
       recentActivity: [
-        `${today}: Waiting for first client`,
-        "2026-04-16: Clarified - no JSON needed, Retell builds first agent",
+        `${today}: ON HOLD - waiting for first client`,
+        "2026-04-01: 3 use cases defined: CCM outreach, pre-auth, AR calls",
       ],
     },
     {
       id: "trading-experiment",
       name: "Trading Experiment",
-      brand: "artemis",
-      status: "active",
-      description: `60-day experiment. Paper: $${trading.paper} (+${((parseFloat(trading.paper) - 100000) / 1000).toFixed(2)}%), Live: $${trading.live}`,
-      keyMetric: { label: "Paper P&L", value: `+$${(parseFloat(trading.paper) - 100000).toFixed(0)}` },
+      brand: "artemis" as const,
+      status: "active" as const,
+      description: `60-day trading experiment. Paper: $${trading.paper}, Live: $${trading.live}. Documenting for book ($29 + $49 bundle).`,
+      keyMetric: { label: "Paper Account", value: `$${trading.paper}` },
       recentActivity: [
         `${today}: Paper $${trading.paper}, Live $${trading.live}`,
-        "2026-04-13: First live trade",
+        "2026-04-13: First live trade executed",
         "2026-04-07: Paper trading started",
       ],
     },
     {
       id: "healthcare-playbook",
       name: "Healthcare AI Playbook",
-      brand: "augeo-health",
-      status: "active",
-      description: `85 pages, $49. Total revenue: $${revenue}`,
+      brand: "augeo-health" as const,
+      status: "active" as const,
+      description: "85 pages, 16 chapters. $49. Stripe live. First revenue April 1.",
       url: "https://playbook.augeohealth.com",
-      keyMetric: { label: "Revenue", value: `$${revenue}` },
+      keyMetric: { label: "Price", value: "$49" },
       recentActivity: [
-        `${today}: Live, accepting payments`,
-        "2026-04-01: First sale (test purchase)",
-        "2026-03-30: Deployed",
+        `${today}: Total revenue: $${revenue}`,
+        "2026-04-01: First sale (Jeff test purchase)",
+        "2026-03-30: 85-page playbook deployed",
       ],
     },
     {
       id: "ai-playbook",
       name: "General AI Playbook",
-      brand: "artemis",
-      status: "active",
-      description: `59 pages, $29. Total revenue: $${revenue}`,
+      brand: "artemis" as const,
+      status: "active" as const,
+      description: "59 pages, 13 chapters. $29. Stripe live.",
       url: "https://playbook.agentartemis.ai",
-      keyMetric: { label: "Revenue", value: `$${revenue}` },
+      keyMetric: { label: "Price", value: "$29" },
       recentActivity: [
-        `${today}: Live, accepting payments`,
-        "2026-04-01: Domain configured",
-        "2026-03-30: Deployed",
+        `${today}: Total revenue: $${revenue}`,
+        "2026-04-01: Custom domain live",
+        "2026-03-30: 59-page playbook deployed",
       ],
     },
     {
       id: "ccm-rpm-calculator",
-      name: "CCM/RPM Calculator",
-      brand: "augeo-health",
-      status: "active",
-      description: "Free tool. PDF export. Lead gen for Augeo Health.",
+      name: "CCM/RPM Revenue Calculator",
+      brand: "augeo-health" as const,
+      status: "active" as const,
+      description: "Free calculator tool. PDF export, editable labor costs. Lead gen for Augeo Health services.",
       url: "https://calculator.augeohealth.com",
-      keyMetric: { label: "Type", value: "Free" },
+      keyMetric: { label: "Type", value: "Free Tool" },
       recentActivity: [
         `${today}: Live with PDF export`,
         "2026-03-31: Rebranded to Augeo Health",
+        "2026-03-28: First version deployed",
       ],
     },
   ];
   
-  return NextResponse.json({ projects });
+  return NextResponse.json({ projects, lastUpdated: today, totalRevenue: revenue });
 }
