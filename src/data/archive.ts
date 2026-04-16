@@ -64,12 +64,72 @@ export const archivedTasks: ArchivedTask[] = [
     archivedAt: "2026-04-07T06:01:16.763Z",
     tags: ["trading", "setup"],
   },
-,
-  { id: "j-003", title: "Open Alpaca paper trading account", doneAt: "2026-04-12T14:07:44.666Z", archivedAt: "2026-04-12T14:07:44.666Z" },
-  { id: "j-010", title: "Approve Chase ACH transfer for Alpaca", doneAt: "2026-04-12T14:07:44.666Z", archivedAt: "2026-04-12T14:07:44.666Z" },
-  { id: "a-001", title: "Rebuild Project HQ dashboard", doneAt: "2026-04-12T14:07:44.666Z", archivedAt: "2026-04-12T14:07:44.666Z" },
-  { id: "a-002", title: "Build trading strategy framework", doneAt: "2026-04-12T14:07:44.666Z", archivedAt: "2026-04-12T14:07:44.666Z" },
-  { id: "a-003", title: "Generate April 3-4 tweet content", doneAt: "2026-04-12T14:07:44.666Z", archivedAt: "2026-04-12T14:07:44.666Z" },
+  // Recovered from commit 69a800d (April 12, 2026) — schema was invalid.
+  // RECOVERED from git: assignedTo, priority, status, completedAt.
+  // SYNTHESIZED (unknown in source): createdAt, updatedAt.
+  // Both placeholders = completedAt; the original Task schema
+  // did not track creation/update timestamps.
+  // tags: [] — unknown in source. Do not infer from titles.
+  {
+    id: "j-003",
+    title: "Open Alpaca paper trading account",
+    assignedTo: "artemis",
+    status: "completed",
+    priority: "medium",
+    createdAt: "2026-04-12T14:07:44Z",
+    updatedAt: "2026-04-12T14:07:44Z",
+    completedAt: "2026-04-12T14:07:44Z",
+    archivedAt: "2026-04-12T14:07:44Z",
+    tags: []
+  },
+  {
+    id: "j-010",
+    title: "Approve Chase ACH transfer for Alpaca",
+    assignedTo: "artemis",
+    status: "completed",
+    priority: "medium",
+    createdAt: "2026-04-12T14:07:44Z",
+    updatedAt: "2026-04-12T14:07:44Z",
+    completedAt: "2026-04-12T14:07:44Z",
+    archivedAt: "2026-04-12T14:07:44Z",
+    tags: []
+  },
+  {
+    id: "a-001",
+    title: "Rebuild Project HQ dashboard",
+    assignedTo: "artemis",
+    status: "completed",
+    priority: "high",
+    createdAt: "2026-04-12T14:07:44Z",
+    updatedAt: "2026-04-12T14:07:44Z",
+    completedAt: "2026-04-12T14:07:44Z",
+    archivedAt: "2026-04-12T14:07:44Z",
+    tags: []
+  },
+  {
+    id: "a-002",
+    title: "Build trading strategy framework",
+    assignedTo: "artemis",
+    status: "completed",
+    priority: "high",
+    createdAt: "2026-04-12T14:07:44Z",
+    updatedAt: "2026-04-12T14:07:44Z",
+    completedAt: "2026-04-12T14:07:44Z",
+    archivedAt: "2026-04-12T14:07:44Z",
+    tags: []
+  },
+  {
+    id: "a-003",
+    title: "Generate April 3-4 tweet content",
+    assignedTo: "charlie",
+    status: "completed",
+    priority: "high",
+    createdAt: "2026-04-03T08:00:00Z",
+    updatedAt: "2026-04-12T14:07:44Z",
+    completedAt: "2026-04-12T14:07:44Z",
+    archivedAt: "2026-04-12T14:07:44Z",
+    tags: []
+  },
   {
     id: "a-025",
     title: "Update all stale dashboard data",
