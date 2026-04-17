@@ -1,19 +1,19 @@
 {
-  "updatedAt": "2026-04-16T06:00:00Z",
+  "updatedAt": "2026-04-17T06:00:00Z",
   "agents": {
     "artemis": {
       "status": "active",
-      "currentTask": "Nightly cleanup complete. Dashboard synced, tasks archived.",
-      "workload": 15
+      "currentTask": "Nightly cleanup complete. Dashboard data sources converted to live APIs.",
+      "workload": 20
     },
     "benny": {
-      "status": "blocked",
-      "currentTask": "Voice AI build blocked — waiting on Jeff's JSON config (P0)",
+      "status": "parked",
+      "currentTask": "Voice AI platform on hold — waiting for first client (Retell will build agent)",
       "workload": 0
     },
     "charlie": {
-      "status": "idle",
-      "currentTask": "Social posts running automatically (3 scheduled daily)",
+      "status": "active",
+      "currentTask": "Social posts running clean (3/day automated). Content calendar loaded.",
       "workload": 5
     },
     "dennis": {
@@ -22,9 +22,9 @@
       "workload": 10
     },
     "evelyn": {
-      "status": "blocked",
-      "currentTask": "Grant Scout expansion blocked on API keys (P0: Simpler + SAM.gov)",
-      "workload": 0
+      "status": "idle",
+      "currentTask": "Grant Scout complete with Simpler API. Only SAM.gov key optional (P1).",
+      "workload": 5
     },
     "frank": {
       "status": "parked",
