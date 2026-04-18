@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-04-17T06:00:00Z",
+  "updatedAt": "2026-04-18T06:00:00Z",
   "agents": {
     "artemis": {
       "status": "active",
-      "currentTask": "Nightly cleanup complete. Dashboard data sources converted to live APIs.",
-      "workload": 20
+      "currentTask": "Trading Day 11/60 (Paper: +5.15%). GHL sync. Dashboard maintenance. Nightly cleanup.",
+      "workload": 25
     },
     "benny": {
       "status": "parked",
@@ -13,17 +13,17 @@
     },
     "charlie": {
       "status": "active",
-      "currentTask": "Social posts running clean (3/day automated). Content calendar loaded.",
-      "workload": 5
+      "currentTask": "3 social posts/day automated. Need marketing campaigns for Grant/RFP.Ninja + Playbooks.",
+      "workload": 15
     },
     "dennis": {
       "status": "idle",
-      "currentTask": "LinkedIn drafts ready, awaiting Jeff's approval",
-      "workload": 10
+      "currentTask": "Waiting on marketing campaign activation signal. LinkedIn drafts ready.",
+      "workload": 5
     },
     "evelyn": {
       "status": "idle",
-      "currentTask": "Grant Scout complete with Simpler API. Only SAM.gov key optional (P1).",
+      "currentTask": "Grant Scout + RFP.Ninja live. Research capacity available.",
       "workload": 5
     },
     "frank": {

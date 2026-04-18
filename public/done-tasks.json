@@ -1,1 +1,79 @@
-[]
+[
+  {
+    "id": "j-011",
+    "title": "Send Voice AI JSON config",
+    "assignee": "jeff",
+    "completedDate": "2026-04-16",
+    "resolution": "RESOLVED - No JSON config needed. Voice AI platform on hold waiting for first client. Retell will build agent when client secured."
+  },
+  {
+    "id": "j-014",
+    "title": "Get Simpler Grants API key",
+    "assignee": "jeff",
+    "completedDate": "2026-04-16",
+    "resolution": "RESOLVED - API key was already in TOOLS.md (9NHb1CggplKrbHdKz6LObB2Hn). Added to Vercel env vars."
+  },
+  {
+    "id": "j-016",
+    "title": "Approve Grant Scout Stripe setup ($97/mo tier)",
+    "assignee": "jeff",
+    "completedDate": "2026-04-15",
+    "resolution": "RESOLVED - Built April 15 night. $97/mo + $970/yr tiers live on both TheGrant.Ninja and TheRFP.Ninja."
+  },
+  {
+    "id": "j-017",
+    "title": "Update Dashboard live programs status",
+    "assignee": "artemis",
+    "completedDate": "2026-04-16",
+    "resolution": "RESOLVED - Dashboard data sources converted to live APIs. /api/projects and /api/tasks now pull real-time data. Nightly cleanup automated."
+  },
+  {
+    "id": "j-018",
+    "title": "Confirm first live trade executed Monday 4/13",
+    "assignee": "jeff",
+    "completedDate": "2026-04-17",
+    "resolution": "ARCHIVED - Trading Day 11 confirmed active. Paper account up +5.15%. Live account ready for first position."
+  },
+  {
+    "id": "j-013",
+    "title": "Name the Voice AI product",
+    "assignee": "jeff",
+    "completedDate": "2026-04-16",
+    "resolution": "ARCHIVED - Voice AI platform on hold until first client. Naming decision deferred to when project reactivates."
+  },
+  {
+    "id": "a-027",
+    "title": "Grant Scout Stripe $97/mo subscription",
+    "assignee": "artemis",
+    "completedDate": "2026-04-15",
+    "resolution": "RESOLVED - Built and deployed. $97/mo + $970/yr subscription tiers live on TheGrant.Ninja."
+  },
+  {
+    "id": "a-026",
+    "title": "Voice AI build",
+    "assignee": "benny",
+    "completedDate": "2026-04-16",
+    "resolution": "PARKED - Voice AI platform on hold until first client secured. Re-evaluate May 1."
+  },
+  {
+    "id": "a-029",
+    "title": "TheRFP.Ninja search engine build",
+    "assignee": "artemis",
+    "completedDate": "2026-04-15",
+    "resolution": "RESOLVED - Built and deployed. $97/mo + $970/yr subscription tiers live. Ready for marketing."
+  },
+  {
+    "id": "a-006",
+    "title": "Build initial prospect list (billing companies)",
+    "assignee": "dennis",
+    "completedDate": "2026-04-16",
+    "resolution": "ARCHIVED - Voice AI on hold. Prospect list work deferred until project reactivates."
+  },
+  {
+    "id": "a-005",
+    "title": "Beehiiv newsletter draft - healthcare audience",
+    "assignee": "charlie",
+    "completedDate": "2026-04-17",
+    "resolution": "DEFERRED - Focus shifted to marketing campaigns for live products (Grant/RFP.Ninja + Playbooks)."
+  }
+]

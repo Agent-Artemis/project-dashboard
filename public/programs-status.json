@@ -5,29 +5,29 @@
     "url": "https://grant-scout.vercel.app",
     "revenue7d": 0,
     "revenueMonth": 0,
-    "lastActivity": "9 APIs connected. Search working across Grants.gov, NIH, NSF, World Bank, EU, Federal Register, SBIR, SAM, USASpending.",
-    "nextAction": "Build $97/mo Stripe subscription (waiting on Jeff approval). Need Simpler Grants + SAM.gov real API keys.",
-    "updatedAt": "2026-04-14T14:57:00Z"
+    "lastActivity": "$97/mo + $970/yr Stripe subscriptions live. 9 APIs connected. Simpler Grants API active.",
+    "nextAction": "Activate marketing campaigns. Optional: SAM.gov API key upgrade (currently using DEMO_KEY).",
+    "updatedAt": "2026-04-18T06:00:00Z"
   },
   {
     "name": "TheRFP.Ninja",
-    "status": "not-started",
+    "status": "live",
     "url": "https://therfp.ninja",
     "revenue7d": 0,
     "revenueMonth": 0,
-    "lastActivity": "Priority #2 project. Domain ready. No build yet.",
-    "nextAction": "Build RFP search engine mirroring Grant Scout architecture. SAM.gov + USASpending + Federal Register APIs.",
-    "updatedAt": "2026-04-14T14:57:00Z"
+    "lastActivity": "$97/mo + $970/yr Stripe subscriptions live. RFP search engine deployed.",
+    "nextAction": "Activate marketing campaigns. Target government contractors, professional services firms.",
+    "updatedAt": "2026-04-18T06:00:00Z"
   },
   {
     "name": "Voice AI Platform",
-    "status": "blocked",
+    "status": "parked",
     "url": "",
     "revenue7d": 0,
     "revenueMonth": 0,
-    "lastActivity": "Priority #3 project. Framework complete (3 use cases, cost model, GTM). Ready to build.",
-    "nextAction": "BLOCKED: Waiting on Voice AI JSON config from Jeff (session cut off April 11).",
-    "updatedAt": "2026-04-14T14:57:00Z"
+    "lastActivity": "ON HOLD - waiting for first client. Retell will build initial agent when needed.",
+    "nextAction": "Parked until client secured. No JSON config needed. Re-evaluate May 1.",
+    "updatedAt": "2026-04-18T06:00:00Z"
   },
   {
     "name": "Trading Experiment",
@@ -35,19 +35,19 @@
     "url": "",
     "revenue7d": 0,
     "revenueMonth": 0,
-    "lastActivity": "Paper: $102,660 (+2.66%). Live: Day 1 was Monday April 13 (verify first trade executed). Daily journal auto-generating.",
-    "nextAction": "Continue daily 3-session strategy (9:45 AM / 12:30 PM / 3:45 PM ET M-F). Chart generation automated.",
-    "updatedAt": "2026-04-14T14:57:00Z"
+    "lastActivity": "Day 11/60. Paper: $105,148.27 (+5.15%). Live: $300.00 (no positions yet). Daily journal + charts automated.",
+    "nextAction": "Continue daily 3-session strategy (9:45 AM / 12:30 PM / 3:45 PM ET M-F). On track for 20% target.",
+    "updatedAt": "2026-04-18T06:00:00Z"
   },
   {
     "name": "Healthcare AI Playbook",
     "status": "live",
     "url": "https://playbook.augeohealth.com",
     "revenue7d": 0,
-    "revenueMonth": 49,
-    "lastActivity": "Live since April 1. Jeff tested purchase (card + Apple Pay). Stripe checkout working.",
-    "nextAction": "Drive traffic via LinkedIn healthcare posts (Jeff has 2 drafts ready).",
-    "updatedAt": "2026-04-14T14:57:00Z"
+    "revenueMonth": 0,
+    "lastActivity": "Live since April 1. $0 external revenue. Payment infrastructure working (Jeff tested).",
+    "nextAction": "Activate marketing campaigns. Jeff has 2 LinkedIn drafts ready to post.",
+    "updatedAt": "2026-04-18T06:00:00Z"
   },
   {
     "name": "General AI Playbook",
@@ -55,9 +55,9 @@
     "url": "https://playbook.agentartemis.ai",
     "revenue7d": 0,
     "revenueMonth": 0,
-    "lastActivity": "Live since March 30. Vercel Analytics added April 10.",
-    "nextAction": "X/Twitter content + LinkedIn outreach.",
-    "updatedAt": "2026-04-14T14:57:00Z"
+    "lastActivity": "Live since March 30. $0 external revenue. Social posts running 3/day.",
+    "nextAction": "Activate marketing campaigns. LinkedIn + X outreach.",
+    "updatedAt": "2026-04-18T06:00:00Z"
   },
   {
     "name": "CCM/RPM Calculator",
@@ -105,8 +105,8 @@
     "url": "https://project-dashboard-fawn-sigma.vercel.app",
     "revenue7d": 0,
     "revenueMonth": 0,
-    "lastActivity": "Data sync in progress (April 14). Updating tasks, agent workload, programs status.",
-    "nextAction": "Wire to real-time data sources or nightly cron updates.",
-    "updatedAt": "2026-04-14T14:57:00Z"
+    "lastActivity": "Nightly cleanup automated. Live data sources wired for projects + tasks. Vercel deployment working.",
+    "nextAction": "Continue nightly maintenance. Monitor for hardcoded data drift.",
+    "updatedAt": "2026-04-18T06:00:00Z"
   }
 ]
