@@ -519,9 +519,9 @@ function DashboardTab() {
   return (
     <div className="space-y-8">
       <RevenueHero />
-      <ProgramStatusBoard />
       <AgentCommandCenter />
       <TaskBoards />
+      <ProgramStatusBoard />
       <ProjectsGrid />
       <SocialMetrics />
     </div>
