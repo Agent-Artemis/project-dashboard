@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-04-19T06:00:00Z",
+  "revenue": {
+    "stripeLive": 0,
+    "external": 0,
+    "testTransactions": 2,
+    "daysSinceLaunch": 19
+  },
+  "programs": {
+    "live": 10,
+    "parked": 1,
+    "inProgress": 0
+  },
+  "trading": {
+    "paper": {
+      "balance": 104050.51,
+      "gain": 4050.51,
+      "gainPercent": 4.05,
+      "day": 11
+    },
+    "live": {
+      "balance": 300.00,
+      "gain": 0,
+      "gainPercent": 0
+    }
+  },
+  "marketing": {
+    "socialPosts": "3/day (automated)",
+    "campaigns": "0 active",
+    "status": "NEEDS ACTIVATION"
+  },
+  "blockers": {
+    "critical": [],
+    "optional": [
+      "SAM.gov API key (TheGrant.Ninja using DEMO_KEY)"
+    ]
+  }
+}

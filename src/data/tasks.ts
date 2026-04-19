@@ -133,7 +133,7 @@ export const tasks: Task[] = [
     assignee: "charlie",
     board: "agent",
     column: "this-week",
-    status: "not-started",
+    status: "in-progress",
     priority: "high",
     description: "Activate marketing for Grant.Ninja + RFP.Ninja. Both live with Stripe subscriptions but $0 revenue. Time to activate outreach.",
     details: [
@@ -148,7 +148,7 @@ export const tasks: Task[] = [
     assignee: "charlie",
     board: "agent",
     column: "this-week",
-    status: "not-started",
+    status: "in-progress",
     priority: "high",
     description: "Healthcare AI Playbook ($49) + General AI Playbook ($29) both live but $0 external revenue. Activate marketing.",
     details: [
@@ -165,7 +165,7 @@ export const tasks: Task[] = [
     column: "this-week",
     status: "in-progress",
     priority: "high",
-    description: "Day 11/60. Paper: $105,148.27 (+5.15%). Live: $300 (no positions yet). Daily journal + chart generation automated.",
+    description: "Day 11/60 complete. Paper: $104,050.51 (+4.05%). Live: $300 (no positions yet). Daily journal + chart generation automated.",
   },
   {
     id: "a-033",

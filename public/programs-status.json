@@ -7,7 +7,7 @@
     "revenueMonth": 0,
     "lastActivity": "$97/mo + $970/yr Stripe subscriptions live. 9 APIs connected. Simpler Grants API active.",
     "nextAction": "Activate marketing campaigns. Optional: SAM.gov API key upgrade (currently using DEMO_KEY).",
-    "updatedAt": "2026-04-18T06:00:00Z"
+    "updatedAt": "2026-04-19T06:00:00Z"
   },
   {
     "name": "TheRFP.Ninja",
@@ -17,7 +17,7 @@
     "revenueMonth": 0,
     "lastActivity": "$97/mo + $970/yr Stripe subscriptions live. RFP search engine deployed.",
     "nextAction": "Activate marketing campaigns. Target government contractors, professional services firms.",
-    "updatedAt": "2026-04-18T06:00:00Z"
+    "updatedAt": "2026-04-19T06:00:00Z"
   },
   {
     "name": "Voice AI Platform",
@@ -27,7 +27,7 @@
     "revenueMonth": 0,
     "lastActivity": "ON HOLD - waiting for first client. Retell will build initial agent when needed.",
     "nextAction": "Parked until client secured. No JSON config needed. Re-evaluate May 1.",
-    "updatedAt": "2026-04-18T06:00:00Z"
+    "updatedAt": "2026-04-19T06:00:00Z"
   },
   {
     "name": "Trading Experiment",
@@ -35,9 +35,9 @@
     "url": "",
     "revenue7d": 0,
     "revenueMonth": 0,
-    "lastActivity": "Day 11/60. Paper: $105,148.27 (+5.15%). Live: $300.00 (no positions yet). Daily journal + charts automated.",
+    "lastActivity": "Day 11/60. Paper: $104,050.51 (+4.05%). Live: $300.00 (no positions yet). Daily journal + charts automated.",
     "nextAction": "Continue daily 3-session strategy (9:45 AM / 12:30 PM / 3:45 PM ET M-F). On track for 20% target.",
-    "updatedAt": "2026-04-18T06:00:00Z"
+    "updatedAt": "2026-04-19T06:00:00Z"
   },
   {
     "name": "Healthcare AI Playbook",
@@ -47,7 +47,7 @@
     "revenueMonth": 0,
     "lastActivity": "Live since April 1. $0 external revenue. Payment infrastructure working (Jeff tested).",
     "nextAction": "Activate marketing campaigns. Jeff has 2 LinkedIn drafts ready to post.",
-    "updatedAt": "2026-04-18T06:00:00Z"
+    "updatedAt": "2026-04-19T06:00:00Z"
   },
   {
     "name": "General AI Playbook",
@@ -57,7 +57,7 @@
     "revenueMonth": 0,
     "lastActivity": "Live since March 30. $0 external revenue. Social posts running 3/day.",
     "nextAction": "Activate marketing campaigns. LinkedIn + X outreach.",
-    "updatedAt": "2026-04-18T06:00:00Z"
+    "updatedAt": "2026-04-19T06:00:00Z"
   },
   {
     "name": "CCM/RPM Calculator",
