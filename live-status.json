@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-04-18T06:00:00Z",
+  "updatedAt": "2026-04-20T06:00:00Z",
   "agents": {
     "artemis": {
       "status": "active",
-      "currentTask": "Trading Day 11/60 (Paper: +5.15%). GHL sync. Dashboard maintenance. Nightly cleanup.",
-      "workload": 25
+      "currentTask": "Trading Day 12/60 (Paper: +4.89%). Dashboard sync. Nightly cleanup completed.",
+      "workload": 20
     },
     "benny": {
       "status": "parked",
@@ -12,9 +12,9 @@
       "workload": 0
     },
     "charlie": {
-      "status": "active",
-      "currentTask": "3 social posts/day automated. Need marketing campaigns for Grant/RFP.Ninja + Playbooks.",
-      "workload": 15
+      "status": "idle",
+      "currentTask": "Social posts automated. Waiting on marketing campaign activation signal (20 days since launch, $0 revenue).",
+      "workload": 10
     },
     "dennis": {
       "status": "idle",
@@ -23,8 +23,8 @@
     },
     "evelyn": {
       "status": "idle",
-      "currentTask": "Grant Scout + RFP.Ninja live. Research capacity available.",
-      "workload": 5
+      "currentTask": "Research capacity available. Grant/RFP Scout APIs live (9 sources connected).",
+      "workload": 0
     },
     "frank": {
       "status": "parked",
