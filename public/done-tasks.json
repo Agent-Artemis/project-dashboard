@@ -75,5 +75,10 @@
     "assignee": "charlie",
     "completedDate": "2026-04-17",
     "resolution": "DEFERRED - Focus shifted to marketing campaigns for live products (Grant/RFP.Ninja + Playbooks)."
+  },
+  {
+    "taskId": "j-019",
+    "title": "Set up Zernio for social media management",
+    "doneAt": "2026-04-20T16:22:17.563Z"
   }
 ]
