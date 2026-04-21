@@ -22,93 +22,72 @@ export const tasks: Task[] = [
   // JEFF'S BOARD
   // ═══════════════════════════════
 
-  // TODAY (P1 - Optional)
-  {
-    id: "j-015",
-    title: "Get SAM.gov real API key (optional)",
-    assignee: "jeff",
-    board: "jeff",
-    column: "today",
-    status: "not-started",
-    priority: "medium",
-    description: "Optional upgrade for TheGrant.Ninja. Currently using DEMO_KEY which works but has rate limits.",
-    details: [
-      "Go to https://sam.gov/",
-      "Create account or log in",
-      "Navigate to API Access → Request API Key",
-      "Send API key to Artemis on Telegram",
-      "Not blocking - DEMO_KEY works for now",
-    ],
-    links: [
-      { label: "SAM.gov API", url: "https://sam.gov/" },
-    ],
-  },
+  // TODAY — No critical P0 blockers
 
   // THIS WEEK
   {
     id: "j-012",
-    title: "Set up augeoagency.com DNS",
+    title: "Set up augeoagency.com DNS (9+ days waiting)",
     assignee: "jeff",
     board: "jeff",
     column: "this-week",
     status: "not-started",
-    priority: "medium",
-    description: "augeoagency.com is sitting unpointed for 10+ days. GoDaddy account — update nameservers to Vercel or add A record.",
+    priority: "high",
+    description: "BLOCKING. augeoagency.com site built but DNS unpointed for 9 days. GoDaddy account needed.",
     details: [
       "Log into GoDaddy (credentials in TOOLS.md)",
       "Go to DNS for augeoagency.com",
       "Either: change nameservers to Vercel's, OR add A record pointing to 76.76.21.21",
-      "Send Artemis a confirmation once done",
+      "Send Artemis confirmation when done",
     ],
     links: [
       { label: "GoDaddy DNS", url: "https://dcc.godaddy.com/manage/dns" },
+    ],
+  },
+  {
+    id: "j-015",
+    title: "Post 2 LinkedIn drafts (12+ days waiting)",
+    assignee: "jeff",
+    board: "jeff",
+    column: "this-week",
+    status: "not-started",
+    priority: "high",
+    description: "Dennis drafted 2 LinkedIn posts. Copy-paste into LinkedIn, use 'link in comments' pattern.",
+    details: [
+      "Post 1: CCM revenue most practices miss → links to calculator",
+      "Post 2: 'I hired an AI as an employee' → links to AI playbook",
+      "Ask Artemis to send drafts now",
+    ],
+    links: [
+      { label: "LinkedIn", url: "https://www.linkedin.com/feed/" },
+      { label: "Calculator", url: "https://calculator.augeohealth.com" },
+      { label: "AI Playbook", url: "https://playbook.agentartemis.ai" },
     ],
   },
 
   // GENERAL (P2 items)
   {
     id: "j-019",
-    title: "Set up Zernio for social media management",
-    assignee: "jeff",
-    board: "jeff",
-    column: "general",
-    status: "not-started",
-    priority: "medium",
-    description: "Social automation platform. 4+ days waiting. Nice-to-have for scaling content distribution.",
-    links: [
-      { label: "Zernio", url: "https://zernio.com/" },
-    ],
-  },
-  {
-    id: "j-009",
-    title: "Post 2 LinkedIn drafts (ready now)",
-    assignee: "jeff",
-    board: "jeff",
-    column: "general",
-    status: "not-started",
-    priority: "medium",
-    description: "Dennis drafted 2 LinkedIn posts in your voice. 11+ days waiting.",
-    details: [
-      "Post 1 (Healthcare): CCM revenue most practices miss. Drives to calculator.",
-      "Post 2 (AI): 'I hired an AI as an employee.' Drives to playbook.",
-      "Use 'link in comments' pattern — post text first, drop link as first comment. Beats algorithm.",
-      "Ask Artemis to send both drafts here to copy-paste.",
-    ],
-    links: [
-      { label: "LinkedIn (post here)", url: "https://www.linkedin.com/feed/" },
-      { label: "Calculator (CTA)", url: "https://calculator.augeohealth.com" },
-      { label: "AI Playbook (CTA)", url: "https://playbook.agentartemis.ai" },
-    ],
-  },
-  {
-    id: "j-007",
-    title: "Provide Pixelmator logo exports",
+    title: "Set up Zernio for social media management (optional)",
     assignee: "jeff",
     board: "jeff",
     column: "general",
     status: "not-started",
     priority: "low",
-    description: "Your Pixelmator exports look better than anything AI generates. Need logos for all 3 brand sites. 11+ days waiting.",
+    description: "Nice-to-have for scaling content distribution. Low priority — social automation running manually.",
+    links: [
+      { label: "Zernio", url: "https://zernio.com/" },
+    ],
+  },
+  {
+    id: "j-007",
+    title: "Provide Pixelmator logo exports (nice-to-have)",
+    assignee: "jeff",
+    board: "jeff",
+    column: "general",
+    status: "not-started",
+    priority: "low",
+    description: "Your Pixelmator exports look better than anything AI generates. Need logos for all 3 brand sites.",
     details: [
       "Needed: Augeo Health, Artemis, Augeo Agency logos",
       "Export as PNG, transparent background, at least 512x512",
@@ -124,70 +103,70 @@ export const tasks: Task[] = [
   // AGENT BOARD
   // ═══════════════════════════════
 
-  // TODAY
-
-  // THIS WEEK
-  {
-    id: "a-030",
-    title: "Marketing campaigns for Grant/RFP.Ninja",
-    assignee: "charlie",
-    board: "agent",
-    column: "this-week",
-    status: "not-started",
-    priority: "high",
-    description: "Activate marketing for Grant.Ninja + RFP.Ninja. Both live with Stripe subscriptions but $0 revenue. 20 days since launch.",
-    details: [
-      "Target: Grant writers, consultants, nonprofits, small businesses",
-      "Channels: LinkedIn posts, X threads, cold email to grant consultants",
-      "Messaging: Save 20+ hours/week on grant research",
-      "Zero-revenue activation plan created: 7-day roadmap for each product",
-    ],
-  },
-  {
-    id: "a-031",
-    title: "Marketing campaigns for AI Playbooks",
-    assignee: "charlie",
-    board: "agent",
-    column: "this-week",
-    status: "not-started",
-    priority: "high",
-    description: "Healthcare AI Playbook ($49) + General AI Playbook ($29) both live but $0 external revenue. 20 days since launch.",
-    details: [
-      "Healthcare: Target practice managers, COOs, billing companies",
-      "General: Target entrepreneurs, consultants, small business owners",
-      "Jeff has 2 LinkedIn drafts ready to post (11+ days waiting)",
-      "Activation roadmap: Week 1 focus on Healthcare Playbook only, target 5 downloads",
-    ],
-  },
+  // TODAY — All automated systems running clean
   {
     id: "a-032",
     title: "Trading experiment daily execution",
     assignee: "artemis",
     board: "agent",
-    column: "this-week",
+    column: "today",
     status: "in-progress",
     priority: "high",
-    description: "Day 12/60. Paper: $104,892.03 (+4.89%). Live: $300 (no positions yet). Ahead of 20% target pace. Daily journal + chart generation automated.",
+    description: "Day 13/60. Paper: $104,892 (+4.89%). Live: $300 (no positions). Ahead of target pace. Crons automated.",
   },
   {
     id: "a-033",
-    title: "GHL Dashboard daily sync",
+    title: "GHL Dashboard daily sync (8 AM MDT)",
     assignee: "artemis",
     board: "agent",
-    column: "this-week",
+    column: "today",
     status: "in-progress",
     priority: "medium",
-    description: "Daily 8 AM MDT sync of 7 projects to GoHighLevel opportunities with 20 custom fields. Running clean.",
+    description: "Sync 7 projects to GoHighLevel with 20 custom fields. Running clean, automated.",
   },
   {
     id: "a-034",
-    title: "Social media automation (3 posts/day)",
+    title: "Social automation (3 posts/day)",
+    assignee: "charlie",
+    board: "agent",
+    column: "today",
+    status: "in-progress",
+    priority: "medium",
+    description: "Morning healthcare + noon Instagram + afternoon Artemis. Content calendar loaded, automated.",
+  },
+
+  // THIS WEEK
+  {
+    id: "a-030",
+    title: "CRITICAL: Activate marketing campaigns (Grant/RFP.Ninja)",
     assignee: "charlie",
     board: "agent",
     column: "this-week",
-    status: "in-progress",
-    priority: "medium",
-    description: "Automated social posts running: morning healthcare (Twitter/LinkedIn), noon Instagram, afternoon Artemis (Twitter/LinkedIn). Content calendar loaded.",
+    status: "not-started",
+    priority: "high",
+    description: "$0 revenue for 21 days. Both sites live with $97/mo + $970/yr tiers. 7-day activation plan ready.",
+    details: [
+      "Target: Grant writers, consultants, nonprofits, professional services",
+      "Channels: LinkedIn posts, X threads, direct email outreach",
+      "Messaging: Save 20+ hours/week on research + compliance",
+      "Execution: Follow zero-revenue-activation-plan.md scripts",
+    ],
+  },
+  {
+    id: "a-031",
+    title: "CRITICAL: Activate marketing campaigns (AI Playbooks)",
+    assignee: "charlie",
+    board: "agent",
+    column: "this-week",
+    status: "not-started",
+    priority: "high",
+    description: "$0 external revenue for 21 days. Healthcare + General playbooks live. Week 1 focus: Healthcare playbook only.",
+    details: [
+      "Week 1 target: 5 downloads of Healthcare Playbook by April 25",
+      "Healthcare: target practice managers, COOs, billing company owners",
+      "Jeff's 2 LinkedIn drafts ready to post (12+ days waiting)",
+      "Execution: Follow zero-revenue-activation-plan.md scripts",
+    ],
   },
 
   // NEXT WEEK

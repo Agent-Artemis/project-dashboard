@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-04-20T06:00:00Z",
+  "updatedAt": "2026-04-21T06:00:00Z",
   "agents": {
     "artemis": {
       "status": "active",
-      "currentTask": "Trading Day 12/60 (Paper: +4.89%). Dashboard sync. Nightly cleanup completed.",
+      "currentTask": "Trading Day 13/60 (Paper: +4.89%). Dashboard sync. Nightly cleanup completed.",
       "workload": 20
     },
     "benny": {
@@ -12,18 +12,18 @@
       "workload": 0
     },
     "charlie": {
-      "status": "idle",
-      "currentTask": "Social posts automated. Waiting on marketing campaign activation signal (20 days since launch, $0 revenue).",
-      "workload": 10
+      "status": "standby",
+      "currentTask": "Social posts automated. CRITICAL: Waiting on marketing campaign activation (21 days zero revenue). Ready to execute 7-day roadmap.",
+      "workload": 15
     },
     "dennis": {
-      "status": "idle",
-      "currentTask": "Waiting on marketing campaign activation signal. LinkedIn drafts ready.",
+      "status": "standby",
+      "currentTask": "Ready for outreach campaigns. LinkedIn drafts ready for Jeff. Awaiting signal to activate.",
       "workload": 5
     },
     "evelyn": {
-      "status": "idle",
-      "currentTask": "Research capacity available. Grant/RFP Scout APIs live (9 sources connected).",
+      "status": "available",
+      "currentTask": "Research capacity available. Grant/RFP Scout APIs live (9 sources connected). Ready for market analysis.",
       "workload": 0
     },
     "frank": {
