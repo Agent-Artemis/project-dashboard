@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-04-21T06:00:00Z",
+  "updatedAt": "2026-04-23T06:00:00Z",
   "agents": {
     "artemis": {
       "status": "active",
-      "currentTask": "Trading Day 13/60 (Paper: +4.89%). Dashboard sync. Nightly cleanup completed.",
+      "currentTask": "Trading Day 15/60 (Paper: +4.89%). Nightly dashboard sync completed. All systems operational."
       "workload": 20
     },
     "benny": {
@@ -13,13 +13,13 @@
     },
     "charlie": {
       "status": "standby",
-      "currentTask": "Social posts automated. CRITICAL: Waiting on marketing campaign activation (21 days zero revenue). Ready to execute 7-day roadmap.",
-      "workload": 15
+      "currentTask": "CRITICAL: Started marketing activation (Grant/RFP.Ninja Day 1 + AI Playbooks Week 1). 22 days zero revenue. 7-day roadmap in progress.",
+      "workload": 25
     },
     "dennis": {
       "status": "standby",
-      "currentTask": "Ready for outreach campaigns. LinkedIn drafts ready for Jeff. Awaiting signal to activate.",
-      "workload": 5
+      "currentTask": "2 LinkedIn drafts sent to Jeff (April 8). Awaiting Jeff post + Dennis cold outreach sequence launch.",
+      "workload": 10
     },
     "evelyn": {
       "status": "available",
