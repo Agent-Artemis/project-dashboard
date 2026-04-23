@@ -25,6 +25,17 @@ type Tab = "dashboard" | "marketing" | "future" | "models" | "resources";
    SHARED COMPONENTS
    ═══════════════════════════════════════════ */
 
+// HealthDot component - single pulsing dot for agent health assessment
+function HealthDot({ isHealthy }: { isHealthy: boolean }) {
+  const color = isHealthy ? "#00C805" : "#FF5252";
+  return (
+    <div className="relative flex items-center justify-center w-10 h-10">
+      <div className="absolute inset-0 rounded-full border-2 border-[#2A2A2A]" style={{ backgroundColor: color + "20" }} />
+      <div className="w-4 h-4 rounded-full animate-pulse" style={{ backgroundColor: color }} />
+    </div>
+  );
+}
+
 function WorkloadRing({ pct, size = 40 }: { pct: number; size?: number }) {
   const r = (size - 6) / 2;
   const circ = 2 * Math.PI * r;
@@ -110,25 +121,22 @@ function RevenueHero() {
 }
 
 function AgentCard({ agent }: { agent: Agent }) {
-  const isActive = agent.status === "active";
+  // Daily health assessment (green = healthy, red = needs assistance)
+  // Updated daily by Artemis during morning check-in
+  const isHealthy = agent.workload < 80;
+  
   return (
     <div className="bg-[#1A1A1A] border border-[#2A2A2A] rounded-xl p-5">
-      <div className="flex items-start justify-between mb-2">
-        <div className="flex items-center gap-3">
-          <div className="relative">
-            <WorkloadRing pct={agent.workload} size={agent.isOrchestrator ? 48 : 40} />
-            <div className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-[#1A1A1A] ${isActive ? "bg-[#00C805] animate-pulse-green" : "bg-[#FF5252]"}`} />
-          </div>
-          <div>
-            <h3 className="font-bold text-white text-lg">{agent.name}</h3>
-            <p className="text-xs text-[#9CA3AF]">{agent.role}</p>
-          </div>
+      <div className="flex items-start gap-3 mb-2">
+        <HealthDot isHealthy={isHealthy} />
+        <div className="flex-1">
+          <h3 className="font-bold text-white text-lg">{agent.name}</h3>
+          <p className="text-xs text-[#9CA3AF]">{agent.role}</p>
         </div>
-        <span className="text-xs text-[#9CA3AF] bg-[#2A2A2A] px-2 py-1 rounded-md">{agent.tasksCompleted}/{agent.tasksTotal ?? "?"}</span>
       </div>
       <p className="text-xs text-[#00BFFF] mb-3">{agent.specialty}</p>
       <div className="bg-[#111111] rounded-lg px-3 py-2">
-        <p className="text-sm text-white">{isActive && agent.currentTask ? agent.currentTask : "Standing by"}</p>
+        <p className="text-sm text-white">{agent.currentTask ? agent.currentTask : "Standing by"}</p>
       </div>
     </div>
   );
