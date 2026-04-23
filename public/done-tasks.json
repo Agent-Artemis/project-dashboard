@@ -82,5 +82,10 @@
     "assignee": "jeff",
     "completedDate": "2026-04-20",
     "resolution": "ARCHIVED - Optional setup deferred. Social automation running manually at 3/day. Zernio re-evaluate if scaling needed."
+  },
+  {
+    "taskId": "j-019",
+    "title": "Set up Zernio for social media management (optional)",
+    "doneAt": "2026-04-23T17:40:18.638Z"
   }
 ]
