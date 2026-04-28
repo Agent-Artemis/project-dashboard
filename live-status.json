@@ -1,35 +1,42 @@
 {
-  "updatedAt": "2026-04-23T06:00:00Z",
-  "agents": {
-    "artemis": {
-      "status": "active",
-      "currentTask": "Trading Day 15/60 (Paper: +4.89%). Nightly dashboard sync completed. All systems operational."
-      "workload": 20
+  "timestamp": "2026-04-28T06:00:00Z",
+  "revenue": {
+    "stripeLive": 0,
+    "external": 0,
+    "testTransactions": 2,
+    "daysSinceLaunch": 28
+  },
+  "programs": {
+    "live": 10,
+    "parked": 1,
+    "inProgress": 0
+  },
+  "trading": {
+    "paper": {
+      "balance": 105000,
+      "gain": 5000,
+      "gainPercent": 5.0,
+      "day": 22
     },
-    "benny": {
-      "status": "parked",
-      "currentTask": "Voice AI platform on hold — waiting for first client (Retell will build agent)",
-      "workload": 0
-    },
-    "charlie": {
-      "status": "standby",
-      "currentTask": "CRITICAL: Started marketing activation (Grant/RFP.Ninja Day 1 + AI Playbooks Week 1). 22 days zero revenue. 7-day roadmap in progress.",
-      "workload": 25
-    },
-    "dennis": {
-      "status": "standby",
-      "currentTask": "2 LinkedIn drafts sent to Jeff (April 8). Awaiting Jeff post + Dennis cold outreach sequence launch.",
-      "workload": 10
-    },
-    "evelyn": {
-      "status": "available",
-      "currentTask": "Research capacity available. Grant/RFP Scout APIs live (9 sources connected). Ready for market analysis.",
-      "workload": 0
-    },
-    "frank": {
-      "status": "parked",
-      "currentTask": "HCIP Acquisitions on hold until 2026-05-01",
-      "workload": 0
+    "live": {
+      "balance": 300.00,
+      "gain": 0,
+      "gainPercent": 0
     }
+  },
+  "marketing": {
+    "socialPosts": "3/day (automated)",
+    "campaigns": "2 active (Grant/RFP Ninja Day 5 + AI Playbooks Week 2)",
+    "status": "CRITICAL: Zero external revenue for 28 days. Marketing activation ongoing. Need Jeff's LinkedIn posts to unblock playbook boost."
+  },
+  "blockers": {
+    "critical": [
+      "Zero revenue for 28 days. Marketing campaigns ongoing (Day 5/7 Grant/RFP, Day 7+ AI Playbooks). Jeff's 2 LinkedIn drafts unblock playbook conversion (19+ days waiting).",
+      "augeoagency.com DNS still unpointed (18+ days). GoDaddy nameserver setup needed. Low priority, no revenue path."
+    ],
+    "optional": [
+      "SAM.gov API key (TheGrant.Ninja using DEMO_KEY, optional - does not block)",
+      "Voice AI platform parked until first client secured. Re-evaluate May 1."
+    ]
   }
 }

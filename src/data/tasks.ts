@@ -27,13 +27,13 @@ export const tasks: Task[] = [
   // THIS WEEK
   {
     id: "j-012",
-    title: "Set up augeoagency.com DNS (10+ days waiting)",
+    title: "Set up augeoagency.com DNS (17+ days waiting)",
     assignee: "jeff",
     board: "jeff",
     column: "this-week",
     status: "not-started",
     priority: "high",
-    description: "BLOCKING. augeoagency.com site built but DNS unpointed for 10+ days. GoDaddy account needed.",
+    description: "BLOCKING. augeoagency.com site built but DNS unpointed for 17+ days (April 10-27). GoDaddy account needed to point nameservers or A record.",
     details: [
       "Log into GoDaddy (credentials in TOOLS.md)",
       "Go to DNS for augeoagency.com",
@@ -46,13 +46,13 @@ export const tasks: Task[] = [
   },
   {
     id: "j-015",
-    title: "Post 2 LinkedIn drafts (14+ days waiting)",
+    title: "Post 2 LinkedIn drafts (19+ days waiting)",
     assignee: "jeff",
     board: "jeff",
     column: "this-week",
     status: "not-started",
     priority: "high",
-    description: "Dennis drafted 2 LinkedIn posts (April 8). Copy-paste into LinkedIn, use 'link in comments' pattern. UNBLOCKS AI Playbook activation.",
+    description: "Dennis drafted 2 LinkedIn posts (April 8). Copy-paste into LinkedIn, use 'link in comments' pattern. OVERDUE 19+ DAYS. UNBLOCKS marketing activation + Dennis outreach.",
     details: [
       "Post 1: CCM revenue most practices miss → links to calculator",
       "Post 2: 'I hired an AI as an employee' → links to AI playbook",
@@ -112,7 +112,7 @@ export const tasks: Task[] = [
     column: "today",
     status: "in-progress",
     priority: "high",
-    description: "Day 15/60 (April 23). Paper: +4.89% (ahead of 3.3% pace). Live: $300 (no positions). 3x daily crons automated (9:45a/12:30p/3:45p ET).",
+    description: "Day 22/60 (April 28). Paper pace tracking ahead of 3.3% target. Live: $300 (no positions). 3x daily crons automated (9:45a/12:30p/3:45p ET). Phase 1 book ready post-60 days.",
   },
   {
     id: "a-033",
@@ -122,7 +122,7 @@ export const tasks: Task[] = [
     column: "today",
     status: "in-progress",
     priority: "high",
-    description: "Sync tasks.ts, live-status.json, programs-status.json with memory/heartbeat-state.json. Archive DONE tasks. Run nightly.",
+    description: "Sync tasks.ts, live-status.json, programs-status.json from memory/heartbeat-state.json. Archive DONE tasks. Commit + push to GitHub. Last cleanup: 2026-04-28 06:00 UTC.",
   },
   {
     id: "a-034",
@@ -144,7 +144,7 @@ export const tasks: Task[] = [
     column: "this-week",
     status: "in-progress",
     priority: "high",
-    description: "$0 revenue for 22 days. Both sites live with $97/mo + $970/yr tiers. 7-day activation plan started April 23.",
+    description: "$0 revenue for 25 days. Both sites live with $97/mo + $970/yr tiers. Days 1-4 of 7-day activation plan (April 23-26). Target: 10+ signups by May 1.",
     details: [
       "Target: Grant writers, consultants, nonprofits, professional services",
       "Channels: LinkedIn posts, X threads, direct email outreach",
@@ -160,7 +160,7 @@ export const tasks: Task[] = [
     column: "this-week",
     status: "in-progress",
     priority: "high",
-    description: "$0 external revenue for 22 days. Healthcare + General playbooks live. Week 1 focus: Healthcare (target 5 downloads by April 25).",
+    description: "$0 external revenue for 26 days. Healthcare + General playbooks live. MISSED Week 1 deadline (April 25 - 0 downloads achieved). Week 2 activation in progress.",
     details: [
       "Week 1 target: 5 downloads of Healthcare Playbook by April 25",
       "Healthcare: target practice managers, COOs, billing company owners",
