@@ -27,13 +27,13 @@ export const tasks: Task[] = [
   // THIS WEEK
   {
     id: "j-012",
-    title: "Set up augeoagency.com DNS (18+ days waiting)",
+    title: "Set up augeoagency.com DNS (28+ days waiting)",
     assignee: "jeff",
     board: "jeff",
     column: "this-week",
     status: "not-started",
     priority: "high",
-    description: "BLOCKING. augeoagency.com site built but DNS unpointed for 18+ days (April 10-28). GoDaddy account needed to point nameservers or A record.",
+    description: "BLOCKING. augeoagency.com site built but DNS unpointed for 28+ days (April 10-May 8). GoDaddy account needed to point nameservers or A record.",
     details: [
       "Log into GoDaddy (credentials in TOOLS.md)",
       "Go to DNS for augeoagency.com",
@@ -46,13 +46,13 @@ export const tasks: Task[] = [
   },
   {
     id: "j-015",
-    title: "Post 2 LinkedIn drafts (20+ days waiting)",
+    title: "Post 2 LinkedIn drafts (27+ days waiting)",
     assignee: "jeff",
     board: "jeff",
     column: "this-week",
     status: "not-started",
     priority: "high",
-    description: "Dennis drafted 2 LinkedIn posts (April 8). Copy-paste into LinkedIn, use 'link in comments' pattern. OVERDUE 20+ DAYS. UNBLOCKS marketing activation + Dennis outreach.",
+    description: "Dennis drafted 2 LinkedIn posts (April 12). Copy-paste into LinkedIn, use 'link in comments' pattern. OVERDUE 27 DAYS. UNBLOCKS marketing activation + Dennis outreach. CRITICAL FOR REVENUE.",
     details: [
       "Post 1: CCM revenue most practices miss → links to calculator",
       "Post 2: 'I hired an AI as an employee' → links to AI playbook",
@@ -112,7 +112,7 @@ export const tasks: Task[] = [
     column: "today",
     status: "in-progress",
     priority: "high",
-    description: "Day 23/60 (April 29). Paper ahead of 3.3% target. Live: $300 (no positions). 3x daily crons automated (9:45a/12:30p/3:45p ET). Phase 1 book ready post-60 days.",
+    description: "Day 32/60 (May 8). Paper: +3.34% (ahead of 3.3% target pace). Live: $300 (no positions). 3x daily crons automated (9:45a/12:30p/3:45p ET). Phase 1 book due May 24.",
   },
   {
     id: "a-033",
@@ -122,7 +122,7 @@ export const tasks: Task[] = [
     column: "today",
     status: "in-progress",
     priority: "high",
-    description: "Sync tasks.ts, live-status.json, programs-status.json from memory/heartbeat-state.json. Archive DONE tasks. Commit + push to GitHub. Last cleanup: 2026-04-29 06:00 UTC.",
+    description: "Sync tasks.ts, live-status.json, programs-status.json from memory/heartbeat-state.json. Archive DONE tasks. Commit + push to GitHub. Last cleanup: 2026-05-08 06:00 UTC.",
   },
   {
     id: "a-034",
@@ -177,8 +177,8 @@ export const tasks: Task[] = [
     board: "agent",
     column: "next-week",
     status: "not-started",
-    priority: "medium",
-    description: "PARKED until first client secured. Retell AI will build agent when client ready. Re-evaluate May 1.",
+    priority: "high",
+    description: "PARKED since April 16 until first client secured. Re-evaluation OVERDUE (was May 1, now 7 days overdue). DECISION REQUIRED TODAY: (A) Activate client hunt? (B) Keep waiting? (C) Drop entirely?",
   },
   {
     id: "a-009",
@@ -242,13 +242,13 @@ export const tasks: Task[] = [
   },
   {
     id: "a-018",
-    title: "YouTube channel launch",
+    title: "YouTube channel launch (Napoleon Hill)",
     assignee: "charlie",
     board: "agent",
-    column: "future",
+    column: "next-week",
     status: "not-started",
-    priority: "low",
-    description: "Napoleon Hill content strategy. Two channels: general + women's.",
+    priority: "high",
+    description: "Napoleon Hill content strategy documented (2-channel). Scripts pending execution. Re-evaluation OVERDUE (was May 1, now 7 days overdue). DECISION TODAY: (A) Launch 5-7 day sprint (target 100 videos by May 31)? (B) Deprioritize? (C) Drop?",
   },
   {
     id: "a-019",
