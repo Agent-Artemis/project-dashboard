@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-05-10T06:00:00Z",
-  "lastCleanup": "2026-05-10T06:00:00Z",
+  "timestamp": "2026-05-15T06:00:00Z",
+  "lastCleanup": "2026-05-15T06:00:00Z",
   "revenue": {
     "stripeLive": 0,
     "external": 0,
     "testTransactions": 2,
-    "daysSinceLaunch": 39
+    "daysSinceLaunch": 44
   },
   "programs": {
     "live": 10,
@@ -17,7 +17,7 @@
       "balance": 103341,
       "gain": 3341,
       "gainPercent": 3.34,
-      "day": 34
+      "day": 39
     },
     "live": {
       "balance": 300.00,
@@ -28,13 +28,13 @@
   "marketing": {
     "socialPosts": "3/day (automated)",
     "campaigns": "On hold pending Jeff activation",
-    "status": "CRITICAL: Zero external revenue for 39 days. Jeff's 2 LinkedIn posts still pending (29+ days). augeoagency.com DNS unpointed (30+ days). 3 parked items OVERDUE for re-evaluation (now 9 days past May 1 deadline): voice AI, napoleon hill youtube, hcip acquisitions. DECISION REQUIRED TODAY."
+    "status": "CRITICAL: Zero external revenue for 44 days. Jeff's 2 LinkedIn posts still pending (34+ days). augeoagency.com DNS unpointed (35+ days). 3 parked items OVERDUE for re-evaluation (now 14 days past May 1 deadline): voice AI, napoleon hill youtube, hcip acquisitions. DECISION REQUIRED TODAY."
   },
   "blockers": {
     "critical": [
-      "URGENT: 3 parked items OVERDUE for re-evaluation (evaluateDate=2026-05-01 passed 9 days ago). voice_ai_platform, napoleon_hill_youtube, hcip_acquisitions need decisions TODAY. Decision options documented in tasks.ts.",
-      "Zero revenue for 39 days. Jeff's 2 LinkedIn drafts unblock playbook activation (29+ days waiting). Post to convert playbook + calculator traffic.",
-      "augeoagency.com DNS still unpointed (30+ days). GoDaddy nameserver setup needed. Low priority impact, no revenue path yet."
+      "URGENT: 3 parked items OVERDUE for re-evaluation (evaluateDate=2026-05-01 passed 14 days ago). voice_ai_platform, napoleon_hill_youtube, hcip_acquisitions need decisions ASAP. Decision options documented in tasks.ts.",
+      "Zero revenue for 44 days. Jeff's 2 LinkedIn drafts unblock playbook activation (34+ days waiting). Post to convert playbook + calculator traffic.",
+      "augeoagency.com DNS still unpointed (35+ days). GoDaddy nameserver setup needed. Low priority impact, no revenue path yet."
     ],
     "optional": [
       "SAM.gov API key (TheGrant.Ninja using DEMO_KEY, works fine - does not block)",

@@ -1,294 +1,174 @@
-export type Board = "jeff" | "agent";
-export type JeffColumn = "today" | "this-week" | "general";
-export type AgentColumn = "today" | "this-week" | "next-week" | "30-days" | "future";
-export type TaskStatus = "not-started" | "in-progress" | "done";
-export type Priority = "high" | "medium" | "low";
+// Dashboard Tasks - Updated May 20, 2026 (Nightly Cleanup)
+// Source: memory/heartbeat-state.json + MEMORY.md
 
 export interface Task {
   id: string;
   title: string;
-  assignee: string;
-  board: Board;
-  column: JeffColumn | AgentColumn;
-  status: TaskStatus;
-  priority: Priority;
-  description?: string;
-  details?: string[];
-  links?: { label: string; url: string }[];
+  assigned: string;
+  status: "active" | "blocked" | "waiting" | "archived";
+  priority: "P0" | "P1" | "P2";
+  dueDate?: string;
+  note?: string;
+  days?: number;
 }
 
-export const tasks: Task[] = [
-  // ═══════════════════════════════
-  // JEFF'S BOARD
-  // ═══════════════════════════════
-
-  // TODAY — No critical P0 blockers
-
-  // THIS WEEK
+// JEFF'S BOARD (awaiting his decisions/actions)
+export const jeffTasks: Task[] = [
   {
-    id: "j-012",
-    title: "Set up augeoagency.com DNS (28+ days waiting)",
-    assignee: "jeff",
-    board: "jeff",
-    column: "this-week",
-    status: "not-started",
-    priority: "high",
-    description: "BLOCKING. augeoagency.com site built but DNS unpointed for 28+ days (April 10-May 8). GoDaddy account needed to point nameservers or A record.",
-    details: [
-      "Log into GoDaddy (credentials in TOOLS.md)",
-      "Go to DNS for augeoagency.com",
-      "Either: change nameservers to Vercel's, OR add A record pointing to 76.76.21.21",
-      "Send Artemis confirmation when done",
-    ],
-    links: [
-      { label: "GoDaddy DNS", url: "https://dcc.godaddy.com/manage/dns" },
-    ],
+    id: "telegram-token",
+    title: "CRITICAL: Fix Telegram briefing delivery",
+    assigned: "Jeff",
+    status: "blocked",
+    priority: "P0",
+    dueDate: "2026-05-20",
+    note: "Execute BRIEFING-DEPLOYMENT-EXEC.md (5-min fix). Broken since May 1 (19 days). Token: get from @BotFather. Chat ID: -5143276750. When fixed: morning briefing surfaces 3 critical overdue parked items.",
+    days: 19,
   },
   {
-    id: "j-015",
-    title: "Post 2 LinkedIn drafts (27+ days waiting)",
-    assignee: "jeff",
-    board: "jeff",
-    column: "this-week",
-    status: "not-started",
-    priority: "high",
-    description: "Dennis drafted 2 LinkedIn posts (April 12). Copy-paste into LinkedIn, use 'link in comments' pattern. OVERDUE 27 DAYS. UNBLOCKS marketing activation + Dennis outreach. CRITICAL FOR REVENUE.",
-    details: [
-      "Post 1: CCM revenue most practices miss → links to calculator",
-      "Post 2: 'I hired an AI as an employee' → links to AI playbook",
-      "Ask Artemis to send drafts now",
-    ],
-    links: [
-      { label: "LinkedIn", url: "https://www.linkedin.com/feed/" },
-      { label: "Calculator", url: "https://calculator.augeohealth.com" },
-      { label: "AI Playbook", url: "https://playbook.agentartemis.ai" },
-    ],
-  },
-
-  // GENERAL (P2 items)
-  {
-    id: "j-019",
-    title: "Set up Zernio for social media management (optional)",
-    assignee: "jeff",
-    board: "jeff",
-    column: "general",
-    status: "not-started",
-    priority: "low",
-    description: "Nice-to-have for scaling content distribution. Low priority — social automation running manually.",
-    links: [
-      { label: "Zernio", url: "https://zernio.com/" },
-    ],
+    id: "parked-decisions",
+    title: "Decide on 3 parked items (overdue 19 days)",
+    assigned: "Jeff",
+    status: "waiting",
+    priority: "P0",
+    dueDate: "2026-05-20",
+    note: "Options per item: A) Reactivate, B) Keep waiting, C) Drop. Items: (1) voice_ai_platform (parked Apr 16), (2) napoleon_hill_youtube (parked Apr 8), (3) hcip_acquisitions (parked Apr 11). Each has full context in memory/heartbeat-state.json.",
+    days: 19,
   },
   {
-    id: "j-007",
-    title: "Provide Pixelmator logo exports (nice-to-have)",
-    assignee: "jeff",
-    board: "jeff",
-    column: "general",
-    status: "not-started",
-    priority: "low",
-    description: "Your Pixelmator exports look better than anything AI generates. Need logos for all 3 brand sites.",
-    details: [
-      "Needed: Augeo Health, Artemis, Augeo Agency logos",
-      "Export as PNG, transparent background, at least 512x512",
-      "Send to Artemis on Telegram or drop in workspace",
-    ],
-    links: [
-      { label: "agentartemis.ai", url: "https://agentartemis.ai" },
-      { label: "augeohealth.com", url: "https://augeohealth.com" },
-    ],
-  },
-
-  // ═══════════════════════════════
-  // AGENT BOARD
-  // ═══════════════════════════════
-
-  // TODAY — All automated systems running clean
-  {
-    id: "a-032",
-    title: "Trading experiment daily execution",
-    assignee: "artemis",
-    board: "agent",
-    column: "today",
-    status: "in-progress",
-    priority: "high",
-    description: "Day 32/60 (May 8). Paper: +3.34% (ahead of 3.3% target pace). Live: $300 (no positions). 3x daily crons automated (9:45a/12:30p/3:45p ET). Phase 1 book due May 24.",
-  },
-  {
-    id: "a-033",
-    title: "Dashboard nightly cleanup & sync (12 AM MDT)",
-    assignee: "artemis",
-    board: "agent",
-    column: "today",
-    status: "in-progress",
-    priority: "high",
-    description: "Sync tasks.ts, live-status.json, programs-status.json from memory/heartbeat-state.json. Archive DONE tasks. Commit + push to GitHub. Last cleanup: 2026-05-08 06:00 UTC.",
-  },
-  {
-    id: "a-034",
-    title: "Social automation (3 posts/day)",
-    assignee: "charlie",
-    board: "agent",
-    column: "today",
-    status: "in-progress",
-    priority: "medium",
-    description: "Morning healthcare + noon Instagram + afternoon Artemis. Content calendar loaded, automated.",
-  },
-
-  // THIS WEEK
-  {
-    id: "a-030",
-    title: "CRITICAL: Activate marketing campaigns (Grant/RFP.Ninja)",
-    assignee: "charlie",
-    board: "agent",
-    column: "this-week",
-    status: "in-progress",
-    priority: "high",
-    description: "$0 revenue for 28 days. Both sites live with $97/mo + $970/yr tiers. Days 1-6 of 7-day activation plan (April 23-29). Target: 10+ signups by May 1.",
-    details: [
-      "Target: Grant writers, consultants, nonprofits, professional services",
-      "Channels: LinkedIn posts, X threads, direct email outreach",
-      "Messaging: Save 20+ hours/week on research + compliance",
-      "Execution: Follow zero-revenue-activation-plan.md scripts",
-    ],
-  },
-  {
-    id: "a-031",
-    title: "CRITICAL: Activate marketing campaigns (AI Playbooks)",
-    assignee: "charlie",
-    board: "agent",
-    column: "this-week",
-    status: "in-progress",
-    priority: "high",
-    description: "$0 external revenue for 28 days. Healthcare + General playbooks live. MISSED Week 1 deadline (April 25 - 0 downloads). Week 2 activation ongoing. Jeff's 2 LinkedIn drafts still pending (20+ days).",
-    details: [
-      "Week 1 target: 5 downloads of Healthcare Playbook by April 25",
-      "Healthcare: target practice managers, COOs, billing company owners",
-      "Jeff's 2 LinkedIn drafts ready to post (12+ days waiting)",
-      "Execution: Follow zero-revenue-activation-plan.md scripts",
-    ],
-  },
-
-  // NEXT WEEK
-  {
-    id: "a-008",
-    title: "Voice AI MVP architecture",
-    assignee: "benny",
-    board: "agent",
-    column: "next-week",
-    status: "not-started",
-    priority: "high",
-    description: "PARKED since April 16 until first client secured. Re-evaluation OVERDUE (was May 1, now 7 days overdue). DECISION REQUIRED TODAY: (A) Activate client hunt? (B) Keep waiting? (C) Drop entirely?",
-  },
-  {
-    id: "a-009",
-    title: "Week 2 content calendar",
-    assignee: "charlie",
-    board: "agent",
-    column: "next-week",
-    status: "not-started",
-    priority: "medium",
-  },
-  {
-    id: "a-010",
-    title: "Cold outreach sequence draft",
-    assignee: "dennis",
-    board: "agent",
-    column: "next-week",
-    status: "not-started",
-    priority: "high",
-    description: "Email sequences for billing company outreach. 5-touch sequence, value-first.",
-  },
-
-  // 30 DAYS
-  {
-    id: "a-012",
-    title: "Voice AI pilot with first billing company",
-    assignee: "benny",
-    board: "agent",
-    column: "30-days",
-    status: "not-started",
-    priority: "high",
-  },
-  {
-    id: "a-013",
-    title: "5 qualified leads in pipeline",
-    assignee: "dennis",
-    board: "agent",
-    column: "30-days",
-    status: "not-started",
-    priority: "high",
-  },
-  {
-    id: "a-014",
-    title: "100+ X followers milestone",
-    assignee: "charlie",
-    board: "agent",
-    column: "30-days",
-    status: "not-started",
-    priority: "medium",
-  },
-
-  // FUTURE / IDEAS
-  {
-    id: "a-017",
-    title: "Trading experiment book (after 60 days)",
-    assignee: "artemis",
-    board: "agent",
-    column: "future",
-    status: "not-started",
-    priority: "medium",
-    description: "Two books: Phase 1 (autonomous AI, $29) + Phase 2 (human-in-the-loop, $29). Bundle at $49.",
-  },
-  {
-    id: "a-018",
-    title: "YouTube channel launch (Napoleon Hill)",
-    assignee: "charlie",
-    board: "agent",
-    column: "next-week",
-    status: "not-started",
-    priority: "high",
-    description: "Napoleon Hill content strategy documented (2-channel). Scripts pending execution. Re-evaluation OVERDUE (was May 1, now 7 days overdue). DECISION TODAY: (A) Launch 5-7 day sprint (target 100 videos by May 31)? (B) Deprioritize? (C) Drop?",
-  },
-  {
-    id: "a-019",
-    title: "Guided journaling app",
-    assignee: "artemis",
-    board: "agent",
-    column: "future",
-    status: "not-started",
-    priority: "low",
-  },
-  {
-    id: "a-020",
-    title: "Pre-auth Level II AI caller",
-    assignee: "benny",
-    board: "agent",
-    column: "future",
-    status: "not-started",
-    priority: "medium",
-  },
-  {
-    id: "a-021",
-    title: "Medical billing AI caller",
-    assignee: "benny",
-    board: "agent",
-    column: "future",
-    status: "not-started",
-    priority: "medium",
+    id: "sam-api-key",
+    title: "Get real SAM.gov API key (optional)",
+    assigned: "Jeff",
+    status: "waiting",
+    priority: "P1",
+    dueDate: "TBD",
+    note: "TheGrant.Ninja currently using DEMO_KEY. At https://sam.gov API docs. Not blocking launch.",
   },
 ];
 
-export const jeffColumns: { key: JeffColumn; label: string }[] = [
-  { key: "today", label: "Today" },
-  { key: "this-week", label: "This Week" },
-  { key: "general", label: "General" },
+// ARTEMIS BOARD (active execution items)
+export const artemisTasks: Task[] = [
+  {
+    id: "morning-briefing-exec",
+    title: "Morning briefing automation (pending Telegram fix)",
+    assigned: "Artemis",
+    status: "blocked",
+    priority: "P0",
+    dueDate: "2026-05-21",
+    note: "Blocked by Telegram token. When Jeff fixes token, briefing resumes at 7:30 AM MDT daily. 48 briefings generated but unread (file fallback May 1-20).",
+    days: 19,
+  },
+  {
+    id: "zero-revenue-activation",
+    title: "Marketing activation (48 days, $0 external revenue)",
+    assigned: "Artemis",
+    status: "active",
+    priority: "P0",
+    dueDate: "2026-05-27",
+    note: "All 5 products live. Zero marketing activated. Activation playbooks built (scripts/zero-revenue-activation-plan.md). Week 1 focus: Healthcare Playbook (target: 5 downloads by May 27). Charlie + Dennis executing.",
+  },
+  {
+    id: "trading-daily-journal",
+    title: "Trading Day 48 journal + EOD report",
+    assigned: "Artemis",
+    status: "active",
+    priority: "P1",
+    dueDate: "2026-05-20",
+    note: "Ongoing. Paper trading on pace. Live $300 (no positions yet). Journal at ~/trading/journal/. Charts at ~/trading/charts/MASTER.md.",
+  },
+  {
+    id: "social-automation",
+    title: "3 social posts/day (X, LinkedIn, Instagram, Facebook)",
+    assigned: "Artemis",
+    status: "active",
+    priority: "P1",
+    dueDate: "ongoing",
+    note: "Running cleanly since April 17. Daily content via Charlie (drafted) + Artemis (posted). Zernio integration for social scheduling.",
+  },
+  {
+    id: "ghl-dashboard-sync",
+    title: "GHL daily sync (8 AM MDT) - 7 projects tracked",
+    assigned: "Artemis",
+    status: "active",
+    priority: "P1",
+    dueDate: "daily",
+    note: "Live at dashboard-six-roan-46.vercel.app. 20 custom fields synced. All programs reporting correctly.",
+  },
 ];
 
-export const agentColumns: { key: AgentColumn; label: string }[] = [
-  { key: "today", label: "Today" },
-  { key: "this-week", label: "This Week" },
-  { key: "next-week", label: "Next Week" },
-  { key: "30-days", label: "30 Days" },
-  { key: "future", label: "Future / Ideas" },
+// Archive section (DONE items from past 30 days)
+export const archivedTasks: Task[] = [
+  {
+    id: "archived-grant-scout-api",
+    title: "Grant Scout: 4→9 API sources (ARCHIVED)",
+    assigned: "Artemis",
+    status: "archived",
+    priority: "P0",
+    dueDate: "2026-04-09",
+    note: "COMPLETED: Added NIH RePORTER, NSF Awards, World Bank Projects, EU Portal, Federal Register. Live at grant-scout.vercel.app/search.",
+  },
+  {
+    id: "archived-acquisition-contacts",
+    title: "HCIP Acquisitions: 25 contact list (ARCHIVED)",
+    assigned: "Artemis",
+    status: "archived",
+    priority: "P0",
+    dueDate: "2026-04-08",
+    note: "COMPLETED: CSV with 25 targets (503B, RV Parks, Storage, Port Land) + phone + direct URLs. GitHub: Agent-Artemis/acquisitions.",
+  },
+  {
+    id: "archived-grant-rfp-pricing",
+    title: "Grant/RFP Ninja: 3-tier pricing (ARCHIVED)",
+    assigned: "Artemis",
+    status: "archived",
+    priority: "P1",
+    dueDate: "2026-04-15",
+    note: "COMPLETED: Both sites live with $97/mo, $970/yr, $2,497 flat tiers. Stripe integration working.",
+  },
+  {
+    id: "archived-codex-setup",
+    title: "Codex CLI configured (ARCHIVED)",
+    assigned: "Artemis",
+    status: "archived",
+    priority: "P1",
+    dueDate: "2026-03-31",
+    note: "COMPLETED: New OpenAI API key loaded. Key in TOOLS.md under OpenAI (Codex).",
+  },
+  {
+    id: "archived-voice-clarity",
+    title: "Voice AI platform scoping clarified (ARCHIVED)",
+    assigned: "Artemis",
+    status: "archived",
+    priority: "P1",
+    dueDate: "2026-04-16",
+    note: "COMPLETED: No JSON config needed. Retell builds first agent. Project ON HOLD waiting for first client.",
+  },
+  {
+    id: "archived-heartbeat-looping",
+    title: "Memory looping fix (ARCHIVED)",
+    assigned: "Artemis",
+    status: "archived",
+    priority: "P0",
+    dueDate: "2026-04-16",
+    note: "COMPLETED (2026-05-16): Fixed nightly consolidation to AUDIT heartbeat-state.json for stale items, not just update. Jeff called out looping (May 14); fixed completely by May 16.",
+  },
+];
+
+// Export for UI
+export const tasks = [...jeffTasks, ...artemisTasks];
+
+// Define table columns
+export const jeffColumns = [
+  { key: "title", label: "Jeff's Tasks" },
+  { key: "status", label: "Status" },
+  { key: "priority", label: "Priority" },
+  { key: "days", label: "Days Open" },
+  { key: "note", label: "Notes" },
+];
+
+export const agentColumns = [
+  { key: "title", label: "Artemis Tasks" },
+  { key: "status", label: "Status" },
+  { key: "priority", label: "Priority" },
+  { key: "dueDate", label: "Due" },
+  { key: "note", label: "Notes" },
 ];

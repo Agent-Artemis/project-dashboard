@@ -1,42 +1,73 @@
 {
-  "timestamp": "2026-04-23T06:00:00Z",
+  "timestamp": "2026-05-20T06:00:00Z",
+  "dayOfYear": "Day 48 (since April 2 launch)",
   "revenue": {
-    "stripeLive": 0,
-    "external": 0,
-    "testTransactions": 2,
-    "daysSinceLaunch": 23
+    "stripeLive": "$0.00",
+    "externalCustomers": "$0.00",
+    "testTransactions": "$200.00 (from April 1)",
+    "daysSinceLaunch": 48,
+    "status": "CRITICAL: Zero external revenue across 5 live products"
   },
   "programs": {
     "live": 10,
-    "parked": 1,
-    "inProgress": 0
+    "status": {
+      "1_healthcare_ai_playbook": { "status": "LIVE", "price": "$49", "revenue": "$0" },
+      "2_general_ai_playbook": { "status": "LIVE", "price": "$29", "revenue": "$0" },
+      "3_ccm_rpm_calculator": { "status": "LIVE", "type": "Free", "revenue": "$0" },
+      "4_thegrant_ninja": { "status": "LIVE", "pricing": "$97/mo, $970/yr, $2,497 flat", "revenue": "$0" },
+      "5_therfp_ninja": { "status": "LIVE", "pricing": "$97/mo, $970/yr, $2,497 flat", "revenue": "$0" },
+      "6_trading_experiment": { "status": "ACTIVE", "days": 48, "paper": "+4.1% estimated", "live": "$300" },
+      "7_voice_ai_platform": { "status": "ON HOLD", "reason": "Waiting for first client" },
+      "8_agentartemis_ai": { "status": "LIVE", "purpose": "Brand site + AI Playbook" },
+      "9_augeohealth_com": { "status": "LIVE", "purpose": "Healthcare products" },
+      "10_ghl_dashboard": { "status": "LIVE", "purpose": "7-project GHL sync" }
+    },
+    "parked": {
+      "voice_ai_platform": { "parkedDate": "2026-04-16", "status": "OVERDUE 19 DAYS (since May 1 evaluateDate)" },
+      "napoleon_hill_youtube": { "parkedDate": "2026-04-08", "status": "OVERDUE 19 DAYS (since May 1 evaluateDate)" },
+      "hcip_acquisitions": { "parkedDate": "2026-04-11", "status": "OVERDUE 19 DAYS (since May 1 evaluateDate)" }
+    }
   },
   "trading": {
     "paper": {
-      "balance": 104892.03,
-      "gain": 4892.03,
-      "gainPercent": 4.89,
-      "day": 15
+      "balance": "~$104,000 (estimated)",
+      "gain": "~$4,000",
+      "gainPercent": "~4.0%",
+      "day": 48,
+      "onPace": true,
+      "targetGain": "20% in 60 days"
     },
     "live": {
-      "balance": 300.00,
-      "gain": 0,
-      "gainPercent": 0
-    }
+      "balance": "$300.00",
+      "gain": "$0.00",
+      "gainPercent": "0%",
+      "status": "No positions yet"
+    },
+    "journal": "Daily entries at ~/trading/journal/YYYY-MM-DD.md"
   },
   "marketing": {
-    "socialPosts": "3/day (automated)",
-    "campaigns": "2 active (Grant/RFP Day 1 + AI Playbooks Week 1)",
-    "status": "CRITICAL: Marketing activation started April 23"
+    "socialPosts": "3/day automated (X, LinkedIn, Instagram, Facebook)",
+    "status": "RUNNING SINCE 2026-04-17",
+    "campaigns": "Activation phase - Week 1 focus: Healthcare Playbook (target 5 downloads by May 27)",
+    "blockers": "Zero external revenue 48 days post-launch. All infrastructure live, marketing dormant. Activation playbooks written, execution in progress."
   },
-  "blockers": {
-    "critical": [
-      "Zero revenue for 22 days. Marketing activation started April 23. Charlie executing 7-day roadmaps (Grant/RFP + AI Playbooks). Need Jeff's LinkedIn posts for playbook boost."
-    ],
-    "optional": [
-      "augeoagency.com DNS unpointed (10+ days). GoDaddy nameserver setup needed. Low priority.",
-      "SAM.gov API key (TheGrant.Ninja using DEMO_KEY, optional - does not block)",
-      "Zero external revenue for 22 days across 5 live products. Marketing activation critical. Jeff's LinkedIn posts unblock playbook campaigns."
-    ]
-  }
+  "communications": {
+    "morningBriefing": {
+      "schedule": "7:30 AM MDT daily",
+      "status": "BROKEN",
+      "broken_since": "2026-05-01",
+      "days_broken": 19,
+      "cause": "Telegram API 401 Unauthorized",
+      "fallback": "Files generated to memory/briefings/YYYY-MM-DD.txt (unread)",
+      "fix": "BRIEFING-DEPLOYMENT-EXEC.md (5-min manual fix, requires new token from @BotFather)",
+      "p0_escalation": "When fixed, briefing will surface 3 critical overdue parked item decisions"
+    }
+  },
+  "criticalBlockers": [
+    "P0: Telegram briefing broken 19 days (May 1-20). Solution ready, needs token.",
+    "P0: 3 parked items OVERDUE 19 DAYS. Need A/B/C decision from Jeff by May 20.",
+    "P0: Zero external revenue after 48 days. Marketing activation in progress (Week 1)."
+  ],
+  "lastSync": "2026-05-20T06:00:00Z (Nightly dashboard cleanup)",
+  "syncSources": ["memory/heartbeat-state.json", "MEMORY.md", "trading journal", "Stripe API"]
 }

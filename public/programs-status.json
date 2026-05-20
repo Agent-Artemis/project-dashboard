@@ -1,112 +1,230 @@
-[
-  {
-    "name": "Healthcare AI Playbook",
-    "status": "live",
-    "url": "https://playbook.augeohealth.com",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "Live since April 1. Payment infrastructure tested and working. $0 external revenue for 22 days. Marketing activation started April 23.",
-    "nextAction": "CRITICAL: Week 1 target: 5 downloads by April 25. Jeff's 2 LinkedIn drafts ready to post (14+ days). Charlie executing 7-day roadmap Day 1.",
-    "updatedAt": "2026-04-23T06:00:00Z"
+{
+  "timestamp": "2026-05-20T06:00:00Z",
+  "totalPrograms": 10,
+  "summary": {
+    "live": 10,
+    "onHold": 1,
+    "inProgress": 0,
+    "archived": 0
   },
-  {
-    "name": "General AI Playbook",
-    "status": "live",
-    "url": "https://playbook.agentartemis.ai",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "Live since March 30. Social posts running 3/day (9 AM/12 PM/3 PM). $0 external revenue for 23 days.",
-    "nextAction": "Week 2 activation after Healthcare Playbook success. LinkedIn + X outreach. Dennis cold sequence ready.",
-    "updatedAt": "2026-04-23T06:00:00Z"
+  "programs": [
+    {
+      "id": 1,
+      "name": "Healthcare AI Playbook",
+      "brand": "Augeo Health",
+      "status": "LIVE",
+      "launchDate": "2026-03-30",
+      "url": "https://playbook.augeohealth.com",
+      "price": "$49",
+      "revenue": "$0 (test: $49 on 2026-04-01)",
+      "description": "85-page guide. CCM/RPM implementation, pre-auth automation, voice AI, revenue modeling.",
+      "type": "Digital Product (PDF)",
+      "lastUpdate": "2026-05-20"
+    },
+    {
+      "id": 2,
+      "name": "General AI Playbook",
+      "brand": "Artemis",
+      "status": "LIVE",
+      "launchDate": "2026-03-30",
+      "url": "https://playbook.agentartemis.ai",
+      "price": "$29",
+      "revenue": "$0 (test: $49 on 2026-04-01)",
+      "description": "59-page guide. AI implementation, automation frameworks, team building.",
+      "type": "Digital Product (PDF)",
+      "lastUpdate": "2026-05-20"
+    },
+    {
+      "id": 3,
+      "name": "CCM/RPM Revenue Calculator",
+      "brand": "Augeo Health",
+      "status": "LIVE",
+      "launchDate": "2026-03-30",
+      "url": "https://calculator.augeohealth.com",
+      "price": "FREE",
+      "revenue": "$0 (lead gen tool)",
+      "description": "Interactive calculator. Editable labor costs, PDF export. CPT codes built-in.",
+      "type": "Free Tool",
+      "purpose": "Lead generation for Augeo Health consulting",
+      "lastUpdate": "2026-05-20"
+    },
+    {
+      "id": 4,
+      "name": "TheGrant.Ninja",
+      "brand": "Artemis",
+      "status": "LIVE",
+      "launchDate": "2026-04-10",
+      "url": "https://thegrant.ninja",
+      "pricing": "$97/mo, $970/yr, $2,497 flat",
+      "revenue": "$0",
+      "description": "Federal grant discovery engine. 9 API sources (Grants.gov, SAM.gov, SBIR.gov, NIH RePORTER, NSF, World Bank, EU Portal, Federal Register, USASpending).",
+      "type": "SaaS Subscription",
+      "features": "Advanced search, saved searches, email alerts, PDF export",
+      "note": "Using DEMO_KEY for SAM.gov (optional, not blocking). Real API key available if needed.",
+      "lastUpdate": "2026-05-20"
+    },
+    {
+      "id": 5,
+      "name": "TheRFP.Ninja",
+      "brand": "Artemis",
+      "status": "LIVE",
+      "launchDate": "2026-04-10",
+      "url": "https://therfp.ninja",
+      "pricing": "$97/mo, $970/yr, $2,497 flat",
+      "revenue": "$0",
+      "description": "Federal RFP discovery engine. Same 9 API sources, RFP-specific search.",
+      "type": "SaaS Subscription",
+      "features": "Advanced search, saved searches, email alerts, PDF export",
+      "note": "$500B+ federal contracting market (higher contract values than grants).",
+      "lastUpdate": "2026-05-20"
+    },
+    {
+      "id": 6,
+      "name": "Trading Experiment",
+      "brand": "Artemis",
+      "status": "ACTIVE",
+      "launchDate": "2026-04-07 (paper), 2026-04-13 (live)",
+      "url": "~/trading/journal/YYYY-MM-DD.md",
+      "description": "60-day autonomous trading experiment. Phase 1 (autonomous) live, Phase 2 (human-in-loop) planned.",
+      "type": "Experiment / Book Project",
+      "paper": {
+        "balance": "~$104,000",
+        "gain": "~$4,000 (+4.0%)",
+        "day": 48,
+        "target": "+20% in 60 days"
+      },
+      "live": {
+        "balance": "$300",
+        "gain": "$0",
+        "status": "No positions yet",
+        "account": "Alpaca Live, funded, crypto active"
+      },
+      "book": "Two books planned ($29 ea or $49 bundle). Phase 1 (autonomous AI) + Phase 2 (human-in-loop). Sell on agentartemis.ai",
+      "lastUpdate": "2026-05-20"
+    },
+    {
+      "id": 7,
+      "name": "Voice AI Platform",
+      "brand": "Augeo Health",
+      "status": "ON HOLD",
+      "parkedDate": "2026-04-16",
+      "description": "Retell-powered HIPAA voice AI for CCM/RPM patient outreach + pre-auth calls.",
+      "type": "SaaS / Managed Service",
+      "note": "Waiting for first client. Retell API key in TOOLS.md. No JSON config needed.",
+      "decision_needed": "A) Reactivate outreach, B) Keep waiting, C) Drop",
+      "evaluateDate": "2026-05-01",
+      "status_as_of_may20": "OVERDUE 19 DAYS",
+      "lastUpdate": "2026-05-20"
+    },
+    {
+      "id": 8,
+      "name": "agentartemis.ai",
+      "brand": "Artemis",
+      "status": "LIVE",
+      "launchDate": "2026-03-31",
+      "url": "https://agentartemis.ai",
+      "description": "Brand homepage. Dark theme, hero, AI Playbook link.",
+      "type": "Marketing Site",
+      "dns": "Vercel nameservers configured",
+      "lastUpdate": "2026-05-20"
+    },
+    {
+      "id": 9,
+      "name": "augeohealth.com",
+      "brand": "Augeo Health",
+      "status": "LIVE",
+      "launchDate": "2026-03-31",
+      "url": "https://augeohealth.com",
+      "description": "Healthcare consulting homepage. Blue/teal design. Links to Playbook, Calculator, Voice AI.",
+      "type": "Marketing Site",
+      "dns": "Vercel nameservers configured",
+      "lastUpdate": "2026-05-20"
+    },
+    {
+      "id": 10,
+      "name": "GHL Dashboard",
+      "brand": "Artemis",
+      "status": "LIVE",
+      "launchDate": "2026-04-16",
+      "url": "https://dashboard-six-roan-46.vercel.app",
+      "description": "GoHighLevel integration. 7 projects synced, 20 custom fields, daily 8 AM MDT sync.",
+      "type": "Internal Dashboard",
+      "features": "Live opportunity tracking, pipeline, agent status, revenue graphs",
+      "sync": "Daily at 8 AM MDT",
+      "lastUpdate": "2026-05-20"
+    }
+  ],
+  "parkedItems": {
+    "total": 3,
+    "allOverdue": true,
+    "overdueDays": 19,
+    "items": [
+      {
+        "id": "voice_ai_platform",
+        "name": "Voice AI Platform",
+        "parkedDate": "2026-04-16",
+        "reason": "ON HOLD - waiting for first client",
+        "evaluateDate": "2026-05-01",
+        "statusAsOfMay20": "OVERDUE 19 DAYS",
+        "decision": "A) Reactivate outreach, B) Keep waiting, C) Drop",
+        "context": "Retell API key ready. No product work needed. Decision is GTM strategy."
+      },
+      {
+        "id": "napoleon_hill_youtube",
+        "name": "Napoleon Hill YouTube - Two Channel Strategy",
+        "parkedDate": "2026-04-08",
+        "reason": "Strategy complete, scripts pending execution",
+        "evaluateDate": "2026-05-01",
+        "statusAsOfMay20": "OVERDUE 19 DAYS",
+        "decision": "A) Launch scripts + production, B) Keep waiting, C) Drop",
+        "context": "Full two-channel strategy documented (general + women's channel). Scripts ready. Execution blocked on decision."
+      },
+      {
+        "id": "hcip_acquisitions",
+        "name": "HCIP Acquisitions Roll-Up Strategy",
+        "parkedDate": "2026-04-11",
+        "reason": "Deprioritized by Jeff (April 11)",
+        "evaluateDate": "2026-05-01",
+        "statusAsOfMay20": "OVERDUE 19 DAYS",
+        "decision": "A) Resume acquisition hunt, B) Keep waiting, C) Drop",
+        "context": "503B pharmacies rollup + 7-sector framework complete. 25 contact list with phone numbers. Waiting for strategic signal."
+      }
+    ]
   },
-  {
-    "name": "CCM/RPM Calculator",
-    "status": "live",
-    "url": "https://calculator.augeohealth.com",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "Free lead gen tool. Live. Traffic via healthcare outreach campaigns (not yet active).",
-    "nextAction": "Drive traffic via Jeff's LinkedIn posts + healthcare outreach campaigns (post activation).",
-    "updatedAt": "2026-04-23T06:00:00Z"
+  "criticalStatus": {
+    "blockingIssues": [
+      {
+        "issue": "Telegram briefing delivery BROKEN",
+        "severity": "P0",
+        "days": 19,
+        "since": "2026-05-01",
+        "fix": "Execute BRIEFING-DEPLOYMENT-EXEC.md (5 minutes). Get new token from @BotFather.",
+        "impact": "Morning briefing generated daily but Jeff never sees it. 48 briefings in queue."
+      },
+      {
+        "issue": "3 parked items OVERDUE 19 DAYS",
+        "severity": "P0",
+        "days": 19,
+        "since": "2026-05-01 (evaluateDate passed)",
+        "decision": "Jeff must choose A/B/C for each: voice_ai, napoleon_hill, hcip_acquisitions",
+        "impact": "Strategic roadmap frozen. Waiting on Go/No-Go calls."
+      },
+      {
+        "issue": "Zero external revenue after 48 days",
+        "severity": "P0",
+        "days": 48,
+        "since": "2026-04-02 (launch)",
+        "status": "Activation playbooks written, Week 1 execution in progress",
+        "impact": "5 live products, zero marketing activated. Marketing activation critical path."
+      }
+    ]
   },
-  {
-    "name": "TheGrant.Ninja",
-    "status": "live",
-    "url": "https://grant-scout.vercel.app",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "$97/mo + $970/yr Stripe subscriptions live. 9 APIs connected. Simpler Grants API active. $0 revenue for 22 days. Marketing started April 23.",
-    "nextAction": "CRITICAL: 7-day activation plan Day 1 (April 23). LinkedIn targeting grant writers, consultants, nonprofits. Day 2-3 content seeding.",
-    "updatedAt": "2026-04-23T06:00:00Z"
-  },
-  {
-    "name": "TheRFP.Ninja",
-    "status": "live",
-    "url": "https://therfp.ninja",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "$97/mo + $970/yr Stripe subscriptions live. RFP search engine deployed. $0 revenue for 22 days. Marketing started April 23.",
-    "nextAction": "CRITICAL: 7-day activation plan Day 1 (April 23). LinkedIn targeting contractors, consulting firms, agencies. Parallel to Grant.Ninja.",
-    "updatedAt": "2026-04-23T06:00:00Z"
-  },
-  {
-    "name": "Voice AI Platform",
-    "status": "parked",
-    "url": "",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "ON HOLD - waiting for first client. Retell will build initial agent when needed.",
-    "nextAction": "Parked until client secured. No JSON config needed. Re-evaluate May 1.",
-    "updatedAt": "2026-04-22T06:00:00Z"
-  },
-  {
-    "name": "Trading Experiment",
-    "status": "live",
-    "url": "",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "Day 15/60 (April 23). Paper: $104,892.03 (+4.89%, ahead of pace). Live: $300.00 (no positions yet). Daily journal + charts automated.",
-    "nextAction": "Continue daily 3-session strategy (9:45 AM / 12:30 PM / 3:45 PM ET M-F). Ahead of 3.3% pace target (at 4.89%). Book after Day 60.",
-    "updatedAt": "2026-04-23T06:00:00Z"
-  },
-  {
-    "name": "agentartemis.ai",
-    "status": "live",
-    "url": "https://agentartemis.ai",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "Artemis brand homepage. Vercel Analytics active. Site live. Social posts 3/day.",
-    "nextAction": "Traffic via X posts (3/week) + LinkedIn outreach (starting Week 2). SEO baseline established.",
-    "updatedAt": "2026-04-23T06:00:00Z"
-  },
-  {
-    "name": "augeohealth.com",
-    "status": "live",
-    "url": "https://augeohealth.com",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "Healthcare brand homepage. Vercel Analytics active. Site live. Traffic dashboard set up.",
-    "nextAction": "Healthcare LinkedIn outreach (Jeff posts + Dennis cold sequence). Drive traffic to playbook + calculator (April 25+).",
-    "updatedAt": "2026-04-23T06:00:00Z"
-  },
-  {
-    "name": "augeoagency.com",
-    "status": "built",
-    "url": "https://augeoagency-site.vercel.app",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "Site built and deployed to Vercel. DNS not pointed yet (GoDaddy). 10+ days waiting. Temp: augeoagency-site.vercel.app.",
-    "nextAction": "BLOCKING: Jeff needs to point augeoagency.com DNS to Vercel. GoDaddy credentials in TOOLS.md. Low priority - no revenue path yet.",
-    "updatedAt": "2026-04-23T06:00:00Z"
-  },
-  {
-    "name": "Dashboard (Project HQ)",
-    "status": "live",
-    "url": "https://project-dashboard-fawn-sigma.vercel.app",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "Nightly cleanup completed (April 23 12:00 AM MDT). tasks.ts synced. live-status + programs-status updated. Heartbeat-state audited. Git pushed.",
-    "nextAction": "Continue nightly maintenance (daily 12:00 AM MDT). Audit for data drift. Archive completed tasks. Update when status changes.",
-    "updatedAt": "2026-04-23T06:00:00Z"
-  }
-]
+  "nextSteps": [
+    "1. IMMEDIATE: Execute BRIEFING-DEPLOYMENT-EXEC.md to restore Telegram briefing (5 min)",
+    "2. IMMEDIATE: Decide on 3 parked items (A/B/C per item)",
+    "3. ONGOING: Healthcare Playbook activation (Week 1 target: 5 downloads by May 27)",
+    "4. ONGOING: Trading experiment Day 49+ (journal + EOD cron)"
+  ],
+  "syncSources": ["memory/heartbeat-state.json", "MEMORY.md", "project git status"],
+  "lastSyncTime": "2026-05-20T06:00:00Z"
+}
