@@ -1,4 +1,4 @@
-// Dashboard Tasks - Updated May 20, 2026 (Nightly Cleanup)
+// Dashboard Tasks - Updated May 28, 2026 (Nightly Cleanup)
 // Source: memory/heartbeat-state.json + MEMORY.md
 
 export interface Task {
@@ -21,18 +21,18 @@ export const jeffTasks: Task[] = [
     status: "blocked",
     priority: "P0",
     dueDate: "2026-05-20",
-    note: "Execute BRIEFING-DEPLOYMENT-EXEC.md (5-min fix). Broken since May 1 (19 days). Token: get from @BotFather. Chat ID: -5143276750. When fixed: morning briefing surfaces 3 critical overdue parked items.",
-    days: 19,
+    note: "Execute BRIEFING-DEPLOYMENT-EXEC.md (5-min fix). Broken since May 1 (27 days). Token: get from @BotFather. Chat ID: -5143276750. When fixed: morning briefing surfaces 3 critical overdue parked items.",
+    days: 27,
   },
   {
     id: "parked-decisions",
-    title: "Decide on 3 parked items (overdue 19 days)",
+    title: "Decide on 3 parked items (overdue 27 days)",
     assigned: "Jeff",
     status: "waiting",
     priority: "P0",
     dueDate: "2026-05-20",
     note: "Options per item: A) Reactivate, B) Keep waiting, C) Drop. Items: (1) voice_ai_platform (parked Apr 16), (2) napoleon_hill_youtube (parked Apr 8), (3) hcip_acquisitions (parked Apr 11). Each has full context in memory/heartbeat-state.json.",
-    days: 19,
+    days: 27,
   },
   {
     id: "sam-api-key",
@@ -54,17 +54,17 @@ export const artemisTasks: Task[] = [
     status: "blocked",
     priority: "P0",
     dueDate: "2026-05-21",
-    note: "Blocked by Telegram token. When Jeff fixes token, briefing resumes at 7:30 AM MDT daily. 48 briefings generated but unread (file fallback May 1-20).",
-    days: 19,
+    note: "Blocked by Telegram token. When Jeff fixes token, briefing resumes at 7:30 AM MDT daily. 56 briefings generated but unread (file fallback May 1-28).",
+    days: 27,
   },
   {
     id: "zero-revenue-activation",
-    title: "Marketing activation (48 days, $0 external revenue)",
+    title: "Marketing activation (56 days, $0 external revenue)",
     assigned: "Artemis",
     status: "active",
     priority: "P0",
-    dueDate: "2026-05-27",
-    note: "All 5 products live. Zero marketing activated. Activation playbooks built (scripts/zero-revenue-activation-plan.md). Week 1 focus: Healthcare Playbook (target: 5 downloads by May 27). Charlie + Dennis executing.",
+    dueDate: "2026-05-31",
+    note: "All 10 products live. Zero external revenue. Activation playbooks built (scripts/zero-revenue-activation-plan.md). Jeff's 2 LinkedIn posts (44+ days waiting) are the primary revenue unlocker. Telegram delivery broken 27 days blocking daily briefings.",
   },
   {
     id: "trading-daily-journal",

@@ -1,112 +1,44 @@
-[
-  {
-    "name": "Healthcare AI Playbook",
-    "status": "live",
-    "url": "https://playbook.augeohealth.com",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "Live since April 1. Payment infrastructure tested and working. $0 external revenue for 50 days. Marketing activation ongoing. Jeff's 2 LinkedIn drafts pending (40+ days waiting). Social automation running 3/day.",
-    "nextAction": "CRITICAL: Jeff posts 2 LinkedIn drafts to activate playbook. This unblocks calculator + playbook conversion funnel. Target: 10+ downloads by May 23.",
-    "updatedAt": "2026-05-23T06:00:00Z"
+{
+  "timestamp": "2026-05-29T06:00:00Z",
+  "lastCleanup": "2026-05-29T06:00:00Z",
+  "revenue": {
+    "stripeLive": 0,
+    "external": 0,
+    "testTransactions": 2,
+    "daysSinceLaunch": 57
   },
-  {
-    "name": "General AI Playbook",
-    "status": "live",
-    "url": "https://playbook.agentartemis.ai",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "Live since March 30. Social posts running 3/day (9 AM/12 PM/3 PM). $0 external revenue for 54 days. No customer acquisition yet.",
-    "nextAction": "Activation Week 4: Direct outreach via X/LinkedIn + Dennis email sequences. Target: 5 downloads by May 30.",
-    "updatedAt": "2026-05-23T06:00:00Z"
+  "programs": {
+    "live": 10,
+    "parked": 1,
+    "inProgress": 0
   },
-  {
-    "name": "CCM/RPM Calculator",
-    "status": "live",
-    "url": "https://calculator.augeohealth.com",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "Free lead gen tool. Live. Waiting for healthcare outreach activation. Zero signups yet. Funnel to Healthcare Playbook ($49).",
-    "nextAction": "Drive traffic via Jeff's LinkedIn posts + healthcare outreach. Secondary upsell to Healthcare Playbook. Day 52/60.",
-    "updatedAt": "2026-05-23T06:00:00Z"
+  "trading": {
+    "paper": {
+      "balance": 104000,
+      "gain": 4000,
+      "gainPercent": 4.0,
+      "day": 56
+    },
+    "live": {
+      "balance": 300.00,
+      "gain": 0,
+      "gainPercent": 0
+    }
   },
-  {
-    "name": "TheGrant.Ninja",
-    "status": "live",
-    "url": "https://grant-scout.vercel.app",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "$97/mo + $970/yr Stripe subscriptions live. 9 APIs connected (DEMO_KEY working fine). $0 revenue for 50 days. Activation paused pending other priorities.",
-    "nextAction": "Resume activation when Jeff signals. Target grant writers, consultants, nonprofits. Measure: 10+ signups on restart.",
-    "updatedAt": "2026-05-23T06:00:00Z"
+  "marketing": {
+    "socialPosts": "3/day (automated)",
+    "campaigns": "Healthcare playbook activation pending Jeff's LinkedIn posts",
+    "status": "CRITICAL: Zero external revenue for 57 days (April 2 launch). Jeff's 2 LinkedIn posts pending 47+ days (April 12→May 29). augeoagency.com DNS unpointed 49+ days (April 10→May 29). 3 parked items OVERDUE 28 days for re-evaluation (May 1 deadline passed): voice AI, napoleon hill youtube, hcip acquisitions. DECISIONS REQUIRED IMMEDIATELY. Telegram bot token invalid 28 days (May 1→May 29)."
   },
-  {
-    "name": "TheRFP.Ninja",
-    "status": "live",
-    "url": "https://therfp.ninja",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "$97/mo + $970/yr Stripe subscriptions live. RFP search engine deployed. $0 revenue for 50 days. Activation paused pending other priorities.",
-    "nextAction": "Resume activation when Jeff signals. Target contractors, consulting firms, agencies. Measure: 10+ signups on restart.",
-    "updatedAt": "2026-05-23T06:00:00Z"
-  },
-  {
-    "name": "Voice AI Platform",
-    "status": "parked",
-    "url": "",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "PARKED since April 16 - waiting for first client. Retell AI will build agent when client ready. Re-evaluation OVERDUE (was set for May 1, now 22 days overdue). DECISION REQUIRED IMMEDIATELY.",
-    "nextAction": "CRITICAL: Jeff decides TODAY. Options: (A) Activate client hunt? (B) Keep waiting? (C) Drop entirely? Benny standing by.",
-    "updatedAt": "2026-05-23T06:00:00Z"
-  },
-  {
-    "name": "Trading Experiment",
-    "status": "live",
-    "url": "",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "Day 50/60 (May 23). Paper: tracking toward 20% target. Live: $300.00 (no positions). Daily journal + charts automated. Phase 1 on track.",
-    "nextAction": "Continue daily 3-session strategy (9:45 AM / 12:30 PM / 3:45 PM ET M-F). Maintain momentum. Book 1 due end of May (60 days = May 26).",
-    "updatedAt": "2026-05-23T06:00:00Z"
-  },
-  {
-    "name": "agentartemis.ai",
-    "status": "live",
-    "url": "https://agentartemis.ai",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "Artemis brand homepage. Vercel Analytics active. Social posts 3/day automated (Day 54). No direct revenue path (funnel to playbook).",
-    "nextAction": "Traffic driver via X posts (3/week) + LinkedIn outreach (ongoing). SEO baseline established.",
-    "updatedAt": "2026-05-23T06:00:00Z"
-  },
-  {
-    "name": "augeohealth.com",
-    "status": "live",
-    "url": "https://augeohealth.com",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "Healthcare brand homepage. Vercel Analytics active. Traffic dashboard set up. Funnel to playbook + calculator (Day 54 automation).",
-    "nextAction": "Healthcare outreach activation (Jeff's LinkedIn posts + Dennis cold sequence). Drive traffic to playbook + calculator.",
-    "updatedAt": "2026-05-23T06:00:00Z"
-  },
-  {
-    "name": "augeoagency.com",
-    "status": "built",
-    "url": "https://augeoagency-site.vercel.app",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "Site built and deployed to Vercel. DNS not pointed yet (GoDaddy). 42+ days waiting (April 10-May 23). Temp: augeoagency-site.vercel.app.",
-    "nextAction": "BLOCKING: Jeff points augeoagency.com DNS to Vercel (42 days waiting). GoDaddy credentials in TOOLS.md. Low priority but unblocks brand site.",
-    "updatedAt": "2026-05-23T06:00:00Z"
-  },
-  {
-    "name": "Dashboard (Project HQ)",
-    "status": "live",
-    "url": "https://project-dashboard-fawn-sigma.vercel.app",
-    "revenue7d": 0,
-    "revenueMonth": 0,
-    "lastActivity": "Nightly cleanup completed (May 23 12:00 AM MDT). tasks.ts, live-status, programs-status synced with current data. Heartbeat-state audited. Done tasks archived. Git committed and pushed. ALL DATES UPDATED.",
-    "nextAction": "Continue nightly maintenance (daily 12:00 AM MDT). CRITICAL: 3 parked items 22 days overdue for decisions, Jeff's LinkedIn posts 40+ days, augeoagency DNS 42+ days. Telegram token invalid 22 days (401 Unauthorized, file fallback working). DECISIONS NEEDED TODAY.",
-    "updatedAt": "2026-05-23T06:00:00Z"
+  "blockers": {
+    "critical": [
+      "URGENT: 3 parked items OVERDUE 28 DAYS for re-evaluation (evaluateDate=2026-05-01 passed May 29). voice_ai_platform, napoleon_hill_youtube, hcip_acquisitions need A/B/C decisions TODAY. Decision options in tasks.ts + heartbeat-state.json. Options: A=activate/proceed, B=keep waiting, C=drop entirely.",
+      "Zero external revenue for 57 days (April 2→May 29). Jeff's 2 LinkedIn drafts pending 47+ DAYS (April 12→May 29). These posts unblock playbook + calculator conversion funnel. Action: Post both drafts to unlock $0→revenue loop.",
+      "augeoagency.com DNS still unpointed 49+ DAYS (April 10→May 29). GoDaddy nameserver setup needed. Nameserver: vercel.com. Low impact (no revenue path) but unblocks brand site launch.",
+      "Telegram bot token invalid 28 DAYS (May 1→May 29). Morning briefing cascades to file fallback (working). Token: 401 Unauthorized. Action: New token from @BotFather + update TOOLS.md. 5-minute fix documented in BRIEFING-DEPLOYMENT-EXEC.md."
+    ],
+    "optional": [
+      "SAM.gov API key (TheGrant.Ninja using DEMO_KEY, works fine - does not block, P1 optional)"
+    ]
   }
-]
+}
